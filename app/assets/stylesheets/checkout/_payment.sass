@@ -1,0 +1,52 @@
+.checkout
+    .form-buttons
+        +row
+        +fill-parent
+        margin-top: 32px
+        text-align: right
+        .btn
+            +nelou-button
+
+    .table
+        +row
+        +fill-parent
+
+        thead tr
+            +fill-parent
+            background: darken($colour-light-grey, 15%)
+            border-bottom: 3px solid $colour-grey
+        td
+            padding: 10px
+            &.item-image
+                min-width: 50px
+
+    .list-group, ul.nav
+        list-style-type: none
+
+    .existing-credit-card-list
+        +fill-parent
+        margin: 20px 0
+        box-sizing: border-box
+        border-top: 1px solid $colour-light-grey
+        border-bottom: 1px solid $colour-light-grey
+        td
+            +text-normal
+            padding: 10px 5px
+
+.checkout-coupon-box
+    +row
+    +fill-parent
+    margin: 20px 0
+
+.checkout-coupon-label
+    +span-columns(3 of 8)
+    +text-normal($colour-base, $font-weight-bold)
+    text-align: right
+    line-height: 24px
+    height: 24px
+
+.checkout-coupon-control
+    +span-columns(5 of 8)
+    +text-normal
+    box-sizing: border-box
+    height: 24px

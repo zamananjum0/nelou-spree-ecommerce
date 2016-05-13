@@ -1,0 +1,134 @@
+.product
+    +row
+    +fill-parent
+    box-sizing: border-box
+    border: 1px solid $colour-grey
+
+.product-left, .product-right
+    +span-columns(4 of 8)
+    padding: 30px
+    box-sizing: border-box
+
+.product-title
+    +text-headline
+
+.product-description-text
+    +text-normal
+
+.product-info
+    margin: 20px 0
+
+.product-main-image
+    width: 300px
+    height: 448px
+    overflow: hidden
+
+    img
+        width: 300px
+        height: auto
+        max-height: 448px
+
+.product-thumbnails
+    .list-inline
+        +row
+        list-style-type: none
+        margin: 10px 0
+        padding: 0
+        li
+            +span-columns(1 of 5)
+            display: inline-block
+            margin-right: 10px
+            min-height: 75px
+            img
+                display: block
+                width: 50px
+                height: auto
+                margin: auto
+
+.product-photo-credits
+    +text-small
+
+.product-info-line
+    +fill-parent
+    +row
+    border-top: 1px dotted $colour-light-blue
+    padding: 5px 0
+
+    &:last-child
+        border-bottom: 1px dotted $colour-light-blue
+
+.product-social-buttons
+    .g-plusone
+        display: inline-block
+
+.product-info-line-label
+    +span-columns(1 of 4)
+    +text-normal($colour-base, $font-weight-bold)
+    +ellipsis
+    text-align: right
+    &:after
+        content: ':'
+
+.product-info-line-contents
+    +span-columns(3 of 4)
+    +text-normal
+
+.product-info-line-link
+    +text-normal($colour-grey)
+    text-decoration: none
+    &:hover
+        text-decoration: underline
+
+.product-share-link
+    +text-caption
+    padding-right: 5px
+    text-decoration: none
+    &:hover
+        text-decoration: none
+
+.product-social-button
+    +span-columns(1 of 4)
+
+    &.product-social-facebook
+        +span-columns(2 of 4)
+
+.product-variant-list
+    list-style-type: none
+    padding: 0
+    margin: 0
+
+.product-variant
+    +text-normal
+
+.product-info-selling-price-sale
+    +text-small($colour-red)
+
+.product-info-item-price-stroke
+    text-decoration: line-through
+
+.product-info-selling-price
+    font-size: 14px
+    line-height: 1.25
+    font-weight: $font-weight-bold
+
+.product-info-price-hint
+    +text-tiny
+    +fill-parent
+    display: block
+
+.product-cart-button
+    +nelou-button
+    font-size: 14px
+    margin: 10px 0
+
+.product-wishlist-form
+    border: 0 !important
+
+.product-wishlist-button
+    +text-normal
+    text-decoration: none
+    border: 0
+    padding: 0
+    background: transparent
+    &:hover
+        text-decoration: underline

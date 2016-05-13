@@ -1,0 +1,120 @@
+.taxon-title
+    +row
+    +text-headline($colour-accent)
+    border-top: 1px dotted $colour-light-blue
+    border-bottom: 1px dotted $colour-light-blue
+    margin: 0 0 10px
+    padding: 10px 0
+
+.product-list
+    +fill-parent
+
+.product-list-row
+    +row
+    +fill-parent
+    margin-bottom: 10px
+
+.product-list-item
+    min-height: 340px
+    +span-columns(2 of 8)
+
+.product-list-image-link
+    display: block
+    width: 150px
+    height: 225px
+    margin: auto
+    padding: 0
+    border: 0
+
+.product-list-image
+    width: 150px
+    height: auto
+    max-height: 225px
+    margin: 0
+    padding: 0
+    border: 0
+
+.product-list-text
+    width: 150px
+    margin: auto
+
+.product-list-item-link
+    +text-normal
+    +ellipsis
+    display: block
+    text-decoration: none
+    &:hover
+        text-decoration: underline
+
+.product-list-item-designer
+    +text-normal($colour-grey, $font-weight-bold)
+
+.product-list-item-price
+    font-weight: $font-weight-bold
+
+.product-list-item-tag
+    +text-tiny($colour-white, $font-weight-bold)
+    margin: 0 5px 0 0
+    display: inline-block
+    text-transform: uppercase
+    border-radius: 3px
+    padding: 2px 4px
+
+.product-list-item-tag-sale, .product-list-item-tag-limit
+    background: $colour-red
+
+.product-list-item-tag-new
+    background: $colour-base
+
+.product-list-item-tag-eco
+    background: $colour-accent
+
+.product-list-item-price-sale
+    color: $colour-red
+
+.product-list-item-price-old
+    +text-normal($colour-red, $font-weight-normal)
+
+.product-list-item-price-old-stroke
+    text-decoration: line-through
+
+.product-list-sorting
+    +row
+    +fill-parent
+    +text-small
+    text-align: right
+    margin-bottom: 20px
+
+.product-list-sorting-link
+    display: inline-block
+    +text-small($colour-white)
+    background: $colour-grey
+    padding: 2px 5px
+    text-decoration: none
+    text-transform: uppercase
+    &.active
+        background: $colour-base
+
+.product-list-filter
+    +row
+    +fill-parent
+    border-bottom: 1px dotted $colour-light-blue
+    margin-bottom: 10px
+    padding-bottom: 10px
+    text-align: right
+
+.pagination
+    +fill-parent
+    list-style: none
+    text-align: right
+
+    li
+        display: inline-block
+        a
+            padding: 2px 5px
+            text-decoration: none
+            color: $colour-white
+            background: #9fa4b2
+        &.active, &:hover
+            a
+                background: #2f2f2f

@@ -1,0 +1,93 @@
+.checkout
+    +fill-parent
+    box-sizing: border-box
+    padding: 20px
+    border: 1px solid $colour-light-blue
+
+    .form-buttons
+        +row
+        +fill-parent
+        margin-top: 32px
+        text-align: right
+        .btn
+            +nelou-button
+
+    .table
+        +row
+        +fill-parent
+
+        thead tr
+            +fill-parent
+            background: darken($colour-light-grey, 15%)
+            border-bottom: 3px solid $colour-grey
+        td
+            padding: 10px
+            &.item-image
+                min-width: 50px
+
+    .list-group.shipping-methods
+        list-style-type: none
+
+.checkout-title
+    +text-caption
+
+.checkout-email
+    display: block
+    +fill-parent
+    margin: 20px 0
+    height: 24px
+
+.checkout-email-label
+    +text-normal($colour-base, $font-weight-bold)
+    +span-columns(1 of 3)
+    text-align: right
+    line-height: 24px
+
+.checkout-email-control
+    +text-normal
+    +span-columns(2 of 3)
+    box-sizing: border-box
+    height: 24px
+
+.checkout-row
+    +fill-parent
+    +row
+
+.checkout-column
+    +span-columns(4 of 8)
+    legend
+        +text-normal($colour-base, $font-weight-bold)
+
+
+.checkout-edit-address-link
+    +nelou-link
+    display: block
+
+.checkout-address-radio
+    float: left
+    width: 5%
+    margin-right: 5%
+
+.checkout-address-content
+    float: left
+    width: 90%
+
+.checkout-address-form
+    .form-control, select
+        +fill-parent
+        box-sizing: border-box
+
+.checkout-form-buttons
+    +row
+    +fill-parent
+    margin-top: 32px
+    text-align: right
+
+.checkout-button
+    +nelou-button
+
+.checkout-summary-box
+    +row
+    +fill-parent
+    margin-top: 20px
+    border-top: 1px dotted $colour-light-blue

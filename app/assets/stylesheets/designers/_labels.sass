@@ -1,0 +1,79 @@
+.designer-label-top
+    +row
+    +fill-parent
+    height: 30px
+    position: relative
+    margin-bottom: 5px
+    clear: both
+
+.designer-label-button
+    +nelou-button($colour-grey)
+    &.active
+        +nelou-button($colour-base)
+
+.designer-label-buttons
+    position: absolute
+    top: 0
+    left: 0
+
+.designer-label-logo
+    position: absolute
+    top: 0
+    right: 0
+    height: 24px
+    img
+        height: 24px
+        width: auto
+
+.designer-label-page
+    display: none
+    &.active
+        display: block
+
+.desinger-label-profile
+    +row
+    +fill-parent
+    clear: both
+    margin-bottom: 20px
+
+.designer-label-profile-left
+    display: block
+    width: 360px
+    height: 330px
+    float: left
+    img
+        border: 0
+        margin: 0
+        padding: 0
+        width: 360px
+        height: 330px
+
+.designer-label-profile-right
+    float: right
+    overflow: hidden
+    height: 330px
+    width: calc(100% - 360px)
+    padding: 30px 20px 0 20px
+
+.designer-label-profile-name
+    +text-caption($colour-white)
+    font-size: 24px
+    margin-bottom: 30px
+
+.designer-label-profile-text
+    +text-normal($colour-white)
+    font-size: 14px
+
+.designer-label-profile-credits
+    +text-small($colour-white)
+    margin-top: 1rem
+
+.designer-label-collection
+    +row
+    +fill-parent
+
+.designer-label-about
+    .designer-label-profile-right
+        height: auto
+    .designer-label-profile-text
+        +text-normal($colour-base)

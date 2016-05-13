@@ -1,0 +1,8 @@
+en:
+  nelou:
+    designer_labels:
+      show:
+        photo_by: "Photo by: %{by}"
+        about: About
+        collection: Collection
+        sale: Sale

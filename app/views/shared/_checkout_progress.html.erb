@@ -1,0 +1,17 @@
+<div class="checkout-progress">
+  <div class="checkout-progress-step checkout-progress-step-1 <%= 'active' if step == :cart %>">
+    <span class="checkout-progress-title checkout-progress-step-inner">
+      <%= t('.cart') %>
+    </span>
+  </div>
+  <div class="checkout-progress-step checkout-progress-step-2 <%= 'active' if step == :address %>">
+    <span class="checkout-progress-title checkout-progress-step-inner">
+      <%= t('.address') %>
+    </span>
+  </div>
+  <div class="checkout-progress-step checkout-progress-step-3 checkout-progress-step-last <%= 'active' if step == :checkout %>">
+    <span class="checkout-progress-title checkout-progress-step-inner">
+      <%= t('.checkout') %>
+    </span>
+  </div>
+</div>

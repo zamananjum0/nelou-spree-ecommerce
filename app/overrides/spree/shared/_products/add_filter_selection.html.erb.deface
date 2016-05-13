@@ -1,0 +1,28 @@
+<!--
+insert_before '[data-hook="products_search_results_heading"]'
+original '8b47dddca9dfaaacca3d462459c6c1ef06c09926'
+-->
+
+<% if products.any? && respond_to?(:current_filter_option?) %>
+  <div class="product-list-filter">
+    <% option_types = Spree::OptionType.in_products(products.map(&:id)) %>
+    <% if option_types.any? %>
+      <%= form_tag '', :method => :get, :id => 'products-filter' do %>
+        <%= hidden_field_tag 'page', params[:page] || 0 %>
+        <%= hidden_field_tag 'per_page', params[:per_page] %>
+        <%= Spree.t(:select_by) %>:
+        <% option_types.each do |option_type| %>
+          <select name="filter[]" class="products-filter-select">
+            <%= content_tag :option, option_type.presentation, value: '' %>
+            <% option_type.option_values.in_products(products.map(&:id)).each do |option_value| %>
+              <%= content_tag :option, option_value.presentation, value: option_value.id, selected: current_filter_option?(option_value.id) %>
+            <% end %>
+          </select>
+        <% end %>
+        <noscript>
+          <%= submit_tag %>
+        </noscript>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

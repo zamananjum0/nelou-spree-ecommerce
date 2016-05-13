@@ -1,0 +1,116 @@
+<table>
+  <tr>
+    <td>
+      <p>
+        <% if @order.bill_address.present? %>
+        <%= Spree.t("dear.#{@order.bill_address.gender}") %>
+        <%= @order.bill_address.name %>
+      <% else %>
+        Dear customer,
+        <% end %>
+      </p>
+      <p>Thank you for ordering from nelou.com. Your order has been passed on to the designer/s and will be processed there.</p>
+      <p>This e-mail contains all details relating to your order.</p>
+      <p>If you have any questions regarding your order or require further assistance, please contact us under:
+        <a href="mailto:customercare@nelou.com">customercare@nelou.com</a>
+      </p>
+      <p>Please refer to the order number below when making any enquiries.</p>
+
+      <hr/>
+      <h3>Personal Order Information</h3>
+      <hr/>
+
+      <table>
+        <tr>
+          <td>
+            <strong>Order No.:</strong>
+            <%= @order.number %>
+          </td>
+          <td>
+            <strong>Date:</strong>
+            <%= l(@order.completed_at) rescue '??' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Payment Method</strong><br/>
+            <%= @order.payments.map { |p| p.payment_method.try(:name) }.uniq.join ', ' %>
+          </td>
+          <td>
+            <strong>Shipping Method</strong><br/>
+            <%= @order.shipments.map { |s| s.selected_shipping_rate.try(:name) }.uniq.join ', ' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Shipping Address</strong><br/>
+            <%= @order.ship_address %>
+          </td>
+          <td>
+            <strong>Billing Address</strong><br/>
+            <%= @order.bill_address %>
+          </td>
+        </tr>
+      </table>
+
+      <hr/>
+      <h3>Items Ordered</h3>
+      <hr/>
+
+      <table>
+        <tr>
+          <th colspan="2">Item Description</th>
+          <th>Item price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+        <% @order.line_items.each do |item| %>
+        <tr>
+          <td><%= image_tag "#{root_url}#{item.variant.images.first.attachment.url(:mini)}", :itemprop => "image" %></td>
+          <td>
+            <strong><%= raw(item.variant.product.name) %></strong><br/>
+            <%= raw(item.variant.options_text) %>
+          </td>
+          <td style="text-align:right"><%= item.single_money %></td>
+          <td style="text-align:center"><%= item.quantity%></td>
+          <td style="text-align:right"><%= item.display_amount %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td colspan="4" style="text-align:right">Subtotal</td>
+          <td style="text-align:right">
+            <strong><%= @order.display_item_total %></strong>
+          </td>
+        </tr>
+        <% @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments| %>
+          <tr>
+            <td colspan="3" style="text-align:right">Shipping</td>
+            <td style="text-align:center"><%= name %></td>
+            <td style="text-align:right"><%= Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency) %></td>
+          </tr>
+        <% end %>
+        <% if @order.all_adjustments.eligible.tax.exists? %>
+          <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
+            <tr>
+              <td colspan="4" style="text-align:right"><%= label %></td>
+              <td style="text-align:right"><%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+        <% @order.adjustments.eligible.each do |adjustment| %>
+          <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+          <tr>
+            <td colspan="4" style="text-align:right"><%= adjustment.label %></td>
+            <td style="text-align:right"><%= adjustment.display_amount %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="4" style="text-align:right">Total</td>
+          <td style="text-align:right">
+            <strong><%= @order.display_total %></strong>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,35 @@
+.sidebar-blog-title
+    +text-caption
+    text-transform: uppercase
+    margin: 10px 0 5px
+    padding: 10px 0
+    border-bottom: 1px dashed $colour-grey
+
+.blog-excerpt-list
+    list-style-type: none
+    margin: 0
+    padding: 0
+
+.blog-excerpt-item
+    border-bottom: 1px dashed $colour-grey
+    margin: 10px 0
+    padding: 5px 0
+
+.blog-excerpt-item-link
+    text-decoration: none
+
+    &:hover
+        .blog-excerpt-item-title
+            text-decoration: underline
+
+.blog-excerpt-item-title
+    display: block
+    +nelou-link
+    text-transform: uppercase
+    font-size: 15px
+    margin-bottom: 5px
+
+.blog-excerpt
+    display: block
+    +text-normal
+    margin-bottom: 5px

@@ -1,0 +1,116 @@
+.main-header
+    +row
+
+.main-header-left
+    +span-columns(4)
+
+.main-header-right
+    +span-columns(6)
+
+.main-header-logo
+    margin-top: 20px
+
+.main-header-logo-image
+    img
+        height: 80px
+        width: auto
+
+.main-header-links
+    +row
+    margin-top: 20px
+    height: 27px
+
+.main-header-link-column
+    +span-columns(1.5 of 6)
+    position: relative
+    height: 27px
+
+.main-header-link-icon
+    position: absolute
+    top: 0
+    left: 0
+    width: 27px
+    height: 27px
+    background: $colour-base
+    color: $colour-white
+    border-radius: 3px
+    text-align: center
+    line-height: 27px
+    font-size: 18px
+
+.main-header-link-text
+    position: absolute
+    top: 2px
+    left: 40px
+    height: 23px
+    line-height: 1
+    font-weight: bold
+
+.main-header-link-text-link
+    color: $colour-accent
+    text-decoration: none
+    line-height: 1
+    margin-top: 4px
+    display: block
+
+.main-header-search
+    +row
+    margin-top: 23px
+
+.main-header-search-field
+    box-sizing: border-box !important
+    width: calc(100% - 40px)
+    height: 22px
+    padding: 0 8px
+
+.main-header-search-submit
+    box-sizing: border-box
+    width: 22px
+    height: 22px
+    margin-left: 8px
+    border: 0
+    background: $colour-grey
+    color: $colour-white
+
+.main-header-menu
+    position: relative
+    &:hover
+        .main-header-menu-list
+            display: block
+
+.main-header-menu-caption
+    +text-normal($colour-accent, $font-weight-bold)
+    &:after
+        +text-normal($colour-base, $font-weight-bold)
+        font-family: 'FontAwesome'
+        content: "\f0d7"            /* Caret down */
+        margin-left: 1rem
+
+.main-header-menu-list
+    position: absolute
+    display: none
+    border: 1px solid #333
+    list-style: none
+    top: 5px
+    padding: 5px
+    box-sizing: border-box
+    background: white
+    width: 150px
+
+.main-header-menu-item-link
+    +nelou-link
+    color: $colour-base
+    &:hover
+        color: $colour-accent
+        text-decoration: none
+
+.main-header
+    .locale-select-control, .currency-select-control
+        background: transparent
+        border: none
+        box-sizing: border-box
+        color: $colour-accent
+        display: inline-block
+        margin: 0 0 0 -8px
+        min-width: 72px
+        padding: 0

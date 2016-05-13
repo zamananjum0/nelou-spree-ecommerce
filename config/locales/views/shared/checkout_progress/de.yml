@@ -1,0 +1,6 @@
+de:
+  shared:
+    checkout_progress:
+      cart: Warenkorb
+      address: Adresse
+      checkout: Kasse

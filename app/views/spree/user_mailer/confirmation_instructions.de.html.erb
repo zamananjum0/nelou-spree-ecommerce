@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <td>
+      <p>Sehr geehrter Kunde,</p>
+      <p>Vielen Dank für Ihre Registrierung bei nelou.com!</p>
+      <p>Als Kunde können Sie nun alle Vorzüge von nelou.com nutzen und das Entdecken Ihrer liebsten Designer und Fashion-Favourites noch mehr genießen.</p>
+      <p><strong>Ihren Account können Sie <%= link_to 'hier', @confirmation_url %> bestätigen.</strong></p>
+      <p>Das Login zu Ihrem Account ist auf jeder Seite unserer Website möglich. Klicken Sie dazu einfach auf "<%= t('shared.header.user_login_or_create_account') %>", und loggen Sie sich mit der unten stehenden E-Mail-Adresse und dem dazu gehörigen Passwort ein.</p>
+      <p>E-Mail: <%= @user.email %></p>
+      <p>Mit Ihrem Account können Sie nun:
+        <ul>
+          <li>Wishlists anlegen und diese mit Ihren Freunden und Ihrer Familie teilen</li>
+          <li>Eine Übersicht all Ihrer Bestellungen einsehen</li>
+          <li>Ihre Account-Informationen und verschiedene Adressen anlegen</li>
+          <li>Ihr Profil gestalten</li>
+          <li>Ihre Newsletter managen</li>
+          <li>Ihr nelou-Konto verwalten</li>
+        </ul>
+      </p>
+      <p>Viel Spaß beim Entdecken wünscht</p>
+      <p>Ihr nelou-Team</p>
+    </td>
+  </tr>
+</table>

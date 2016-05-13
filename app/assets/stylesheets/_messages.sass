@@ -1,0 +1,38 @@
+.messages-list
+    position: fixed
+    @include fill-parent
+    @include row
+    top: 0
+    left: 0
+    right: 0
+    z-index: 10
+
+.message
+    min-height: 32px
+    padding: 8px 0
+    &.message-notice
+        background-color: #7997a1
+    &.message-error
+        background-color: #990000
+    &.message-success
+        background-color: $colour-accent
+
+.message-close
+    position: absolute
+    width: 15px
+    height: 15px
+    right: 5px
+    top: 0
+    bottom: 0
+    margin: auto
+    font-size: 15px
+    line-height: 15px
+    text-decoration: none
+    color: $colour-white
+
+.message-inner
+    position: relative
+    @include outer-container
+
+.message-content
+    @include text-normal($colour-white)

@@ -1,0 +1,12 @@
+de:
+  shared:
+    header:
+      currency: Währung
+      language: Sprache
+      logo: Home nelou - best of independent style
+      search_for_designers: Suche hier nach Designer oder Produkten
+      shopping_cart: Warenkorb
+      user_login_or_create_account: Kundenlogin & Neuanmeldung
+      welcome: Willkommen
+      my_account: Mein Konto
+      log_out: Abmelden

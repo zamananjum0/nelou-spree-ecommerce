@@ -1,0 +1,100 @@
+<% @body_id = 'product-details' %>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'related', locals: { product: @product } %>
+<% end %>
+
+<% cache [I18n.locale, current_currency, @product, @product.possible_promotions] do %>
+<div class="product" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
+  <div class="product-left" data-hook="product_left_part">
+    <div data-hook="product_left_part_wrap">
+      <div id="product-images" data-hook="product_images">
+        <div id="main-image" class="product-main-image" data-hook>
+          <%= render :partial => 'image' %>
+        </div>
+        <div id="thumbnails" class="product-thumbnails" data-hook>
+          <%= render :partial => 'thumbnails' %>
+        </div>
+        <% if @product.photo_credits.present? %>
+          <div class="product-photo-credits">
+            <%= Spree.t(:photo) %>:&nbsp;<%= @product.photo_credits %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-right" data-hook="product_right_part">
+    <div data-hook="product_right_part_wrap">
+      <div id="product-description" data-hook="product_description">
+        <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
+
+        <div class="product-info">
+
+          <div id="cart-form" data-hook="cart_form">
+            <%= render :partial => 'cart_form' %>
+          </div>
+
+          <div id="social-buttons" class="product-social-buttons product-info-line">
+            <div class="product-social-button product-social-facebook">
+              <%= like_button(facebook_app_id) %>
+            </div>
+            <div class="product-social-button product-social-google-plus">
+              <%= google_plus_button %>
+            </div>
+            <div class="product-social-button product-social-pinterest">
+              <%= pinit_button %>
+            </div>
+          </div>
+
+          <div class="product-info-line" title="<%= t('products.show.item_number') %>">
+            <div class="product-info-line-label"><%= t('products.show.item_number') %></div>
+            <div class="product-info-line-content"><%= @product.id %></div>
+          </div>
+
+          <% if @product.designer_label.present? %>
+          <div class="product-info-line">
+            <div class="product-info-line-label"><%= t('products.show.designer') %></div>
+            <div class="product-info-line-content">
+              <%= link_to @product.designer_label.name, main_app.nelou_designer_label_path(@product.designer_label), class: 'product-info-line-link' %>
+            </div>
+          </div>
+
+          <div class="product-info-line">
+            <div class="product-info-line-label"><%= t('products.show.made_in') %></div>
+            <div class="product-info-line-content"><%= [@product.designer_label.city, designer_country_name(@product.designer_label)].reject(&:nil?).reject(&:blank?).join(', ')  %></div>
+          </div>
+          <% end %>
+
+          <div class="product-info-line">
+            <div class="product-info-line-label"><%= t('products.show.production_type') %></div>
+            <div class="product-info-line-content"><%= Spree.t(@product.production_type) %></div>
+          </div>
+
+          <div class="product-info-line">
+            <div class="product-info-line-label"><%= t('products.show.share') %></div>
+            <div class="product-info-line-content">
+              <%= link_to facebook_sharer_path(spree.product_url(@product)), title: t('products.show.share_on_facebook'), target: '_blank', class: 'product-info-line-link product-share-link' do %>
+              <%= fa_icon :'facebook-square' %>
+              <% end %>
+              <%= link_to twitter_sharer_path(@product.name, spree.product_url(@product)), title: t('products.show.share_on_twitter'), target: '_blank', class: 'product-info-line-link product-share-link' do %>
+              <%= fa_icon :'twitter-square' %>
+              <% end %>
+              <%= link_to email_to_friend_path('product', @product), title: Spree.t(:send_to_friend, scope: :email_to_friend), target: '_blank', class: 'product-info-line-link product-share-link' do %>
+              <%= fa_icon :'envelope' %>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="product-description-text" itemprop="description" data-hook="description">
+          <%= product_description(@product) rescue Spree.t(:product_has_no_description) %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<% end %>

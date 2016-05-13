@@ -1,0 +1,69 @@
+.designer-application
+  %h1.designer-application-title= t('.apply_now')
+  %p.designer-application-description= t('.description')
+  = render partial: 'spree/shared/error_messages', locals: { target: @user }
+  = form_for @user, url: :create_designer do |f|
+    %fieldset.designer-application-fieldset
+      %legend.designer-application-header= t('.login_data')
+      .designer-form-row
+        = f.label :email, t('.email'), class: 'designer-form-label'
+        = f.email_field :email, class: 'designer-form-field', required: true
+      .designer-form-row
+        = f.label :password, t('.password'), class: 'designer-form-label'
+        = f.password_field :password, class: 'designer-form-field', required: true
+      .designer-form-row
+        = f.label :password_confirmation, t('.password_confirmation'), class: 'designer-form-label'
+        = f.password_field :password_confirmation, class: 'designer-form-field', required: true
+    %fieldset.designer-application-fieldset
+      %legend.designer-application-header= t('.your_label')
+      = f.fields_for :designer_label, @user.designer_label do |df|
+        .designer-form-row
+          = df.label :name, t('.name'), class: 'designer-form-label'
+          = df.text_field :name, class: 'designer-form-field', required: true
+        .designer-form-row
+          = df.label :website, t('.website'), class: 'designer-form-label'
+          = df.url_field :website, class: 'designer-form-field'
+        .designer-form-row
+          = df.label :green, class: 'designer-form-checkbox-label' do
+            = df.check_box :green, class: 'designer-form-checkbox'
+            = t('.green')
+        .designer-form-row
+          = df.label :vat, t('.vat'), class: 'designer-form-label'
+          = df.text_field :vat, class: 'designer-form-field'
+        .designer-form-row
+          = df.label :paypal, t('.paypal'), class: 'designer-form-label'
+          = df.text_field :paypal, class: 'designer-form-field'
+    %fieldset.designer-application-fieldset
+      %legend.designer-application-header= t('.personal_data')
+      = f.fields_for :bill_address do |bf|
+        .designer-form-row
+          = bf.label :firstname, t('.lastname'), class: 'designer-form-label'
+          = bf.text_field :firstname, class: 'designer-form-field', required: true
+        .designer-form-row
+          = bf.label :lastname, t('.firstname'), class: 'designer-form-label'
+          = bf.text_field :lastname, class: 'designer-form-field', required: true
+        .designer-form-row
+          = bf.label :address1, t('.address1'), class: 'designer-form-label'
+          = bf.text_field :address1, class: 'designer-form-field', required: true
+        .designer-form-row
+          = bf.label :zipcode, t('.zipcode'), class: 'designer-form-label'
+          = bf.text_field :zipcode, class: 'designer-form-field', required: true
+        .designer-form-row
+          = bf.label :city, t('.city'), class: 'designer-form-label'
+          = bf.text_field :city, class: 'designer-form-field', required: true
+        .designer-form-row
+          = bf.label :country_id, t('.country'), class: 'designer-form-label'
+          = bf.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'designer-form-field', required: true}
+        .designer-form-row
+          = bf.label :phone, t('.phone'), class: 'designer-form-label'
+          = bf.text_field :phone, class: 'designer-form-field', required: true
+    .designer-form-row
+      = f.label :privacy_and_conditions,  class: 'designer-form-checkbox-label' do
+        = f.check_box :privacy_and_conditions, class: 'designer-form-checkbox', required: true
+        = t('.i_agree_to_privacy_and_conditions', href: link_to(t('.privacy_and_conditions'), main_app.privacy_url, target: '_blank')).html_safe
+    .designer-form-row
+      = f.label :terms_and_services, class: 'designer-form-checkbox-label' do
+        = f.check_box :terms_and_services,  class: 'designer-form-checkbox', required: true
+        = t('.i_agree_to_terms_and_services', href: link_to(t('.terms_and_services'), main_app.terms_of_use_url, target: '_blank')).html_safe
+    .designer-form-buttons
+      = f.button t('.apply'), class: 'designer-form-button'

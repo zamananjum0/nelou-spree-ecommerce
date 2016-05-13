@@ -1,0 +1,32 @@
+.cart
+    position: relative
+    box-sizing: border-box
+    border: 1px solid $colour-grey
+    padding: 20px
+
+.cart-title
+    +text-caption
+
+.cart-buttons
+    text-align: right
+
+.cart-button
+    +nelou-button($colour-base)
+
+.cart-button-checkout
+    background-color: $colour-red
+
+.cart-item-table
+    +fill-parent
+    margin: 1rem 0 2rem
+
+.cart-item-title-row
+    background: darken($colour-light-grey, 15%)
+    border-bottom: 3px solid $colour-grey
+
+.cart-item-title
+    +text-normal($colour-white)
+
+.cart-item-total-hint
+    text-align: right
+    +text-normal($colour-base, $font-weight-bold)

@@ -1,0 +1,32 @@
++display-context(table)
+    .cart-item-line
+        +fill-parent
+        border-bottom: 1px dotted $colour-light-blue
+    .cart-item-column
+        +text-normal
+        +span-columns(1 of 6)
+        margin: 20px 0
+        padding: 5px
+
+.cart-item-image
+    text-align: center
+    img
+        width: 50px
+        max-height: 75px
+        display: inline-block
+
+.cart-item-quantity-control
+    +text-normal
+    width: 40px
+
+.cart-item-delete
+    +text-caption
+    margin-left: 5px
+    text-decoration: none
+
+.cart-item-name
+    +nelou-link
+    font-weight: $font-weight-bold
+
+.cart-item-column-price
+    text-align: right

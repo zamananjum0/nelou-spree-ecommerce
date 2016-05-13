@@ -1,0 +1,42 @@
+<% if @order.bill_address.present? %>
+<%= Spree.t("dear.#{@order.bill_address.gender}") %> <%= @order.bill_address.name %>
+<% else %>
+Sehr geehrter Kunde,
+<% end %>
+
+Vielen Dank für Ihre Bestellung auf nelou.com. Ihre Order wurde an den/die Designer weitergeleitet und wird dort bearbeitet.
+
+In dieser E-Mail finden Sie alle Details zu Ihrer Bestellung.
+
+Sollten Sie Fragen zu Ihrer Bestellung haben oder weitere Hilfe benötigen, bitte kontaktieren Sie uns unter: customercare@nelou.com
+
+Für Rückfragen die Bestellung betreffend halten Sie bitte die unten aufgeführte Bestellnummer bereit.
+
+Liebe Grüße,
+Ihr nelou-Team
+
+BESTELLINFORMATIONEN:
+
+===========================================================
+<% @order.line_items.each do |item| %>
+  <%= item.variant.sku %> <%= raw(item.variant.product.name) %> <%= raw(item.variant.options_text) -%> (<%=item.quantity%>) <%= Spree.t('at_symbol') %>  <%= item.single_money %> = <%= item.display_amount %>
+<% end %>
+===========================================================
+Bestellwert: <%= @order.display_item_total %>
+
+<% @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments| %>
+Versandkosten: <%= name %> <%= Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency) %>
+<% end %>
+
+<% if @order.all_adjustments.eligible.tax.exists? %>
+  <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
+MwSt.: <%= label %> <%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %>
+  <% end %>
+<% end %>
+
+<% @order.adjustments.eligible.each do |adjustment| %>
+  <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+<%= adjustment.label %> <%= adjustment.display_amount %>
+<% end %>
+===========================================================
+Gesamt: <%= @order.display_total %>

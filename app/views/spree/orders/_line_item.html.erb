@@ -1,0 +1,35 @@
+<% variant = line_item.variant %>
+
+<%= order_form.fields_for :line_items, line_item do |item_form| %>
+<tr class="cart-item-line line-item">
+  <td class="cart-item-column cart-item-image" data-hook="cart_item_image">
+    <% if variant.images.length == 0 %>
+    <%= link_to mini_image(variant.product), variant.product %>
+  <% else %>
+    <%= link_to image_tag(variant.images.first.attachment.url(:mini)), variant.product %>
+    <% end %>
+  </td>
+  <td class="cart-item-column cart-item-description" data-hook="cart_item_description">
+    <%= link_to line_item.name, product_path(variant.product), class: 'cart-item-name' %>
+    <%= variant.options_text %>
+    <% if line_item.insufficient_stock? %>
+    <span class="out-of-stock">
+      <%= Spree.t(:out_of_stock) %>&nbsp;&nbsp;<br/>
+    </span>
+    <% end %>
+  </td>
+  <td class="cart-item-column cart-item-quantity" data-hook="cart_item_quantity" valign="center">
+    <%= item_form.number_field :quantity, min: 0, class: 'cart-item-quantity-control line_item_quantity', size: 1 %>
+    <%= link_to 'javascript:void(0)', class: 'cart-item-delete delete', id: "delete_#{dom_id(line_item)}" do %>
+      <%= fa_icon :trash %>
+    <% end %>
+  </td>
+  <td class="cart-item-column"></td>
+  <td class="cart-item-column cart-item-column-price" data-hook="cart_item_price">
+    <%= line_item.single_money.to_html %>
+  </td>
+  <td class="cart-item-column cart-item-total cart-item-column-price" data-hook="cart_item_total">
+    <%= line_item.display_amount.to_html unless line_item.quantity.nil? %>
+  </td>
+</tr>
+<% end %>

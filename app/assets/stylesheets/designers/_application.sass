@@ -1,0 +1,67 @@
+.designer-application
+    +fill-parent
+    clear: both
+    padding: 20px
+    border: 1px solid $colour-light-blue
+
+.designer-application-title
+    +text-caption
+
+.designer-application-description
+    +text-normal
+
+.designer-application-fieldset
+    +row
+    +fill-parent
+    margin-top: 20px
+
+.designer-application-header
+    +fill-parent
+    +text-normal($colour-white, $font-weight-bold)
+    background: darken($colour-light-grey, 15%)
+    border-bottom: 3px solid darken($colour-light-grey, 25%)
+    padding: 5px 10px
+    &:after
+        content: ':'
+
+.designer-form-row
+    +row
+    +fill-parent
+    margin: 5px 0
+    padding: 5px 0
+    border-bottom: 1px dotted $colour-light-blue
+    &:last-child
+        border-bottom: none
+
+.designer-form-label
+    +text-normal($colour-base, $font-weight-bold)
+    +span-columns(2 of 8)
+    +ellipsis
+    text-align: right
+    height: 24px
+    line-height: 24px
+    &:after
+        content: ':'
+
+.designer-form-field
+    +text-normal
+    +span-columns(6 of 8)
+    box-sizing: border-box
+    height: 24px
+    padding: 2px 5px
+    border: 1px solid $colour-light-grey
+    &:focus
+        outline: 0
+        border: 1px solid $colour-base
+
+.designer-form-checkbox-label
+    +shift-in-context(2 of 8)
+    +span-columns(6 of 8)
+
+.designer-form-button
+    +nelou-button($colour-base)
+
+.designer-form-buttons
+    +fill-parent
+    margin-top: 20px
+    text-align: right

@@ -1,0 +1,29 @@
+<!--
+insert_after '.row'
+original 'ee6b6e2340b700703c0f461677a253a53727a39c'
+-->
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <div class="checkbox" data-hook="limited">
+        <%= f.label :limited do %>
+        <%= f.check_box :limited %>
+        <%= Spree.t(:variant_is_limited) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group" data-hook="limited_items">
+      <%= f.label :limited_items, Spree.t(:limited_items) %>
+      <%= f.number_field :limited_items, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group" data-hook="limited_items_sold">
+      <%= f.label :limited_items_sold, Spree.t(:limited_items_sold) %>
+      <%= f.number_field :limited_items_sold, :class => 'form-control' %>
+    </div>
+  </div>
+</div>

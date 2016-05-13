@@ -1,0 +1,11 @@
+de:
+  products:
+    show:
+      designer: Designer
+      item_number: Artikelnr.
+      made_in: Made in
+      price_hint: Inkl. USt & zuzügl. Versandkosten
+      production_type: Lieferung
+      share_on_facebook: Auf Facebook teilen
+      share_on_twitter: Tweeten
+      share: Teilen

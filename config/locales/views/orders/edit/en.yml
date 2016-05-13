@@ -1,0 +1,16 @@
+en:
+  orders:
+    edit:
+      form:
+        item:
+          one: Item
+          other: Items
+        quantity: Quantity
+        delivery_time: Delivery Time
+        price: Price per item
+        total: Total price
+        total_excl_shipping: Total price excl. shipping costs
+      shopping_cart: Your shopping cart
+      continue_shopping: Continue Shopping
+      refresh: Update
+      proceed_to_checkout: Proceed to checkout

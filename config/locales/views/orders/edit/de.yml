@@ -1,0 +1,16 @@
+de:
+  orders:
+    edit:
+      form:
+        item:
+          one: Artikel
+          other: Artikel
+        quantity: Anzahl
+        delivery_time: Lieferung
+        price: 'Preis/Stk.'
+        total: Preis gesamt
+        total_excl_shipping: Gesamtsumme exkl. Versandkosten
+      shopping_cart: 'Ihr Warenkorb/Bestellung'
+      continue_shopping: Einkauf fortsetzen
+      refresh: Aktualisieren
+      proceed_to_checkout: Zur Kasse

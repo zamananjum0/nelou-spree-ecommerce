@@ -1,0 +1,14 @@
+.password-box
+  %h2= t('.change_your_password')
+  = form_for @spree_user, :as => :spree_user, :url => spree.update_password_path, :method => :put do |f|
+    = f.hidden_input :reset_password_token
+    .password-form-group
+      = f.label :password, class: 'password-label'
+      = f.email_field :password, required: true, autofocus: true, class: 'password-field string'
+    .password-form-group
+      = f.label :password_confirmation, class: 'password-label'
+      = f.email_field :password_confirmation, required: true, autofocus: true, class: 'password-field string'
+    .password-form-actions
+      = f.button t('.change_password'), class: 'password-box-button'
+  .password-box-links
+    = render 'shared/user_links'

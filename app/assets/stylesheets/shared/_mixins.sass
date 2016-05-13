@@ -1,0 +1,59 @@
+=text-normal($text-colour: $colour-base, $text-weight: $font-weight-normal)
+    color: $text-colour
+    font-size: $font-size-base
+    font-weight: $text-weight
+    line-height: 1.5
+
+=text-caption($text-colour: $colour-base, $text-weight: $font-weight-normal)
+    color: $text-colour
+    font-size: $font-size-intro
+    font-weight: $text-weight
+    line-height: 1.2
+
+=text-menu($text-colour: $colour-base)
+    color: $text-colour
+    font-size: $font-size-menu
+    font-weight: $font-weight-bold
+    line-height: 1
+
+=text-small($text-colour: $colour-base)
+    color: $text-colour
+    font-size: $font-size-small
+    font-weight: $font-weight-normal
+    line-height: 1.5
+
+=text-headline($text-colour: $colour-base, $font-size: $font-size-headline)
+    color: $text-colour
+    font-size: $font-size
+    font-weight: $font-weight-normal
+    line-height: 1.25
+
+=text-tiny($text-colour: $colour-base, $text-weight: $font-weight-normal)
+    font-size: $font-size-tiny
+    font-weight: $text-weight
+    color: $text-colour
+    line-height: 1
+
+=nelou-button($bg-colour: $colour-red)
+    +text-normal($colour-white, $font-weight-bold)
+    background: $bg-colour
+    border-radius: 5px
+    border: none
+    box-sizing: border-box
+    cursor: pointer
+    display: inline-block
+    margin: 0
+    min-height: 28px
+    padding: 5px 15px
+    text-decoration: none
+    text-transform: uppercase
+    &:focus
+        outline: 0
+    &:disabled
+        background: $colour-grey
+
+=nelou-link
+    color: $colour-grey
+    text-decoration: none
+    &:hover
+        text-decoration: underline

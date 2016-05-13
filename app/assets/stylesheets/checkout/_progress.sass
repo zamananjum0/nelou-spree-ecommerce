@@ -1,0 +1,59 @@
+$checkout-progress-height: 50px
+$checkout-progress-steps: 3
+
+.checkout-progress
+    +row
+    +fill-parent
+    position: relative
+    display: block
+    height: $checkout-progress-height
+    margin-bottom: 4rem
+
+.checkout-progress-step
+    border-right: 3px solid white
+    bottom: 0
+    box-sizing: border-box
+    display: block
+    position: absolute
+    top: 0
+    width: (100% / $checkout-progress-steps)
+    &.checkout-progress-last
+        border-right: 0
+    &.active
+        .checkout-progress-step-inner, &:after
+            background: darken($colour-light-grey, 20%)
+
+.checkout-progress-step-inner
+    +text-caption($colour-light, $font-weight-bold)
+    font-size: 12px
+    background: darken($colour-light-grey, 10%)
+    bottom: 0
+    left: 0
+    line-height: $checkout-progress-height
+    text-transform: uppercase
+    position: absolute
+    right: 0
+    text-align: center
+    top: 0
+    z-index: 1
+
+@for $i from 1 through $checkout-progress-steps
+    .checkout-progress-step-#{$i}
+        z-index: 6 - ($i * 2)
+        left: (100% / $checkout-progress-steps) * ($i - 1)
+        @if $i < 3
+            &:after
+                +transform(rotate(45deg))
+                background: darken($colour-light-grey, 10%)
+                border: 3px solid white
+                bottom: 0
+                box-sizing: border-box
+                content: ' '
+                display: block
+                height: 20px
+                margin: auto
+                position: absolute
+                right: -10px
+                top: 0
+                width: 20px
+                z-index: 0

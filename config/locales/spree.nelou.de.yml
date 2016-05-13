@@ -1,0 +1,73 @@
+de:
+  devise:
+    user_confirmations:
+      spree_user:
+        send_instructions: In ein paar Minuten erhalten Sie eine E-Mail mit Anweisungen, um Ihr Konto zu aktivieren.
+        confirmed: Ihr Konto wurde erfolgreich aktiviert.
+    passwords:
+      spree_user:
+        send_instructions: Sie erhalten in Kürze eine E-Mail mit Anweisungen, um Ihr Passwort zu ändern.
+    mailer:
+      welcome:
+        subject: Willkommen auf nelou!
+  spree:
+    dear:
+      f: Liebe
+      m: Lieber
+    i18n:
+      this_file_language: Deutsch
+    accepted: Bewerbung akzeptiert
+    add_to_wishlist: Auf die Wunschliste
+    amount_off_sale_price: Betrag vom Verkaufspreis
+    are_you_sure_you_want_to_cancel_the_sale: Sind Sie sich sicher, dass sie das Sonderangebot entfernen wollen?
+    back_designer: Zurück zum Designer
+    back_to_user: Zurück zum Benutzer
+    calculator_type: Sonderangebotstyp
+    cancel_sale: Sonderangebot entfernen
+    change_your_password: Passwort ändern
+    conversions: Konvertiert zu
+    country_code: Ländercode
+    current_price: 'Aktueller Preis:'
+    currently_percent_off: Momentan %{percent} weniger
+    custom_made: Custom Made
+    designer_label: Designer-Label
+    designer_labels: Designer-Label
+    designer: Designer
+    designers: Designer
+    end_at: Endet am
+    gender: Anrede
+    green: Ökologisch
+    international: International
+    limited_items_sold: Verkaufte Exemplare
+    limited_items: Anzahl der verfügbaren Exemplare
+    limited: Limitiert
+    logo: Logo
+    miss: Frau
+    mister: Herr
+    my_label: Mein Label
+    name_of_label: Name des Labels
+    new_designer_application: Neue Designer-Bewerbung!
+    new_designer: Neuer Designer
+    new_order_from_customer: Ein Kunde hat eines Ihrer Produkte bestellt
+    no_sale_going_on: Keine Sonderangebote zur Zeit.
+    of_x_available: "Noch %{available} von %{count} verfügbar"
+    on_demand: Made on Demand
+    optimal_image_size: 'Optimales Verhältnis: Hochformat 2:3; Optimale Größe: 2000&times;3000 Pixel'
+    percent_off_sale_price: Prozent vom Verkaufspreis
+    photo_credits: Fotos von
+    product_is_currently_on_sale: Produkt ist zur Zeit im Sonderangebot!
+    production_type: Herstellung
+    profile_image: Profilbild
+    profile: Profiltext
+    ready_to_wear: Ready To Wear
+    registered_since: Registriert seit
+    resend_confirmation_instructions: Bestätigungslink erneut senden
+    sales: Sonderangebote
+    select_by: Filtern nach
+    set_on_sale: Sonderangebot einrichten
+    short_description: Kurzbeschreibung
+    size_option_types: Größen
+    start_at: Beginnt am
+    unique_item: Einzelstück
+    variant_is_limited: Variante ist Limitiert
+    vat: Umsatzsteuernummer

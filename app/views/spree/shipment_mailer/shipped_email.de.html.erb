@@ -1,0 +1,52 @@
+<% user = @shipment.order.user %>
+<table>
+  <tr>
+    <td>
+      <p class="lede">
+        <%= Spree.t("dear.#{@shipment.address.gender}") %> <%= @shipment.address.name %>,
+      </p>
+      <p>
+        Ihre nelou-Bestellung <%= @shipment.number %> wurde versendet.
+      </p>
+      <p>
+        Folgende Produkte sind in dieser Sendung enthalten:
+      </p>
+      <table>
+        <% @shipment.manifest.each do |item| %>
+        <tr>
+          <td><%= item.variant.product.name %></td>
+          <td><%= item.variant.options_text %></td>
+        </tr>
+        <% end %>
+      </table>
+      <% if @shipment.tracking.present? || @shipment.tracking_url.present? %>
+        <h3>SENDUNGSVERFOLGUNG</h3>
+        <% if @shipment.tracking_url %>
+        <p>
+          Um den Status Ihrer Sendung zu verfolgen, klicken Sie einfach auf diesen Link: <a href="<%= @shipment.tracking_url %>"><%= @shipment.tracking_url %></a>
+        </p>
+        <p>
+          Bitte beachten Sie, dass es etwas dauern kann, bis Ihre Nummer auf der Website des Versandpartners registriert ist.
+        </p>
+        <% end %>
+        <% if @shipment.tracking %>
+          <p>Weitere Informationen: <%= @shipment.tracking %></p>
+        <% end %>
+      <% end %>
+      <p>
+        Vielen Dank für Ihren Einkauf auf nelou.com - wir hoffen, Ihre Bestellung bereitet Ihnen viel Freude!
+      </p>
+      <p>
+        Sie haben Fragen zu Ihrer Bestellung? BItte kontaktieren Sie uns unter: <a href="mailto:customercare@nelou.com"></a>
+      </p>
+      <p>
+        Für Fragen Ihre Bestellung betreffend verweisen Sie bitte auf Ihre Bestellnummer <%= @shipment.order.number %>.
+      </p>
+      <p>
+        Mit vielen Grüßen,<br/>
+        Ihr nelou-Team
+      </p>
+    </td>
+    <td class="expander"></td>
+  </tr>
+</table>

@@ -1,0 +1,90 @@
+.account
+    +fill-parent
+    +row
+    border: 1px solid $colour-light-blue
+    padding: 20px
+    box-sizing: border-box
+
+    .order-summary
+        +fill-parent
+        tr
+            border-bottom: 1px dotted $colour-light-blue
+    .order-number, .order-date, .order-status, .order-payment-state, .order-shipment-state, .order-total
+        +span-columns(1 of 6)
+        text-align: center
+        padding: 5px 10px
+    .order-total
+        text-align: right
+
+.account-title
+    +text-headline
+
+.account-block
+    margin-bottom: 42px
+
+.account-block-title
+    +fill-parent
+    +text-normal($colour-white)
+    padding: 5px 10px
+    text-transform: uppercase
+    background: darken($colour-light-grey, 15%)
+    border-bottom: 3px solid darken($colour-light-grey, 25%)
+
+.account-summary-list
+    +fill-parent
+
+.account-summary-line
+    +fill-parent
+    +row
+    border-bottom: 1px solid $colour-light-blue
+    padding: 1rem 0
+.account-summary-line-label
+    +text-normal($colour-base, $font-weight-bold)
+    +span-columns(2 of 8)
+    text-align: right
+.account-summary-line-content
+    +text-normal
+    +span-columns(6 of 8)
+
+.account-button-container
+    +fill-parent
+    +row
+    clear: both
+    margin-top: 20px
+    text-align: right
+
+.account-button
+    +nelou-button($colour-base)
+
+.account-wishlist-list
+    list-style-type: none
+
+.account-wishlist-link
+    +nelou-link
+
+.account-edit-form
+    hr
+        display: none
+
+    .form-group
+        +fill-parent
+        margin: 10px 0
+
+        #{$all-text-inputs}
+            +fill-parent
+            +text-normal
+            border: 1px solid
+            padding: 5px 10px
+
+.account-address-block
+    +fill-parent
+    +row
+
+.account-address-block-item
+    +span-columns(2 of 8)
+
+.account-address-block-content
+    +text-normal
+
+.account-address-block-link
+    +nelou-link

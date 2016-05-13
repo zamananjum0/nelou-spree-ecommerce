@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <td>
+      <p>Dear Customer,</p>
+      <p>Thank you for creating a nelou.com account!</p>
+      <p>Now that you are a nelou.com customer, you can enjoy the discovery of your favourite designers and fashion items even more.</p>
+      <p>You can confirm your account using <%= link_to 'this link', @confirmation_url %>.</p>
+      <p>You can log in to your account at every page of the website. Simply click on "<%= t('shared.header.user_login_or_create_account') %>" and log in using the email-adress below and the corresponding password.</p>
+      <p>E-mail: <%= @user.email %></p>
+      <p>Now that you have a nelou.com account you will be able to:
+          <ul>
+            <li>Create wishlists and share them with your friends and family</li>
+            <li>View all your orders</li>
+            <li>Manage your profile-information and addresses</li>
+            <li>Configure your profile</li>
+            <li>Administer your Newsletters</li>
+            <li>Manage your nelou-lockbox</li>
+          </ul>
+      </p>
+      <p>Happy discovery and all the best,<p>
+      <p>Your nelou-Team</p>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,73 @@
+en:
+  devise:
+    user_confirmations:
+      spree_user:
+        send_instructions: You will soon receive your confirmation instructions via e-mail.
+        confirmed: Your account was confirmed. Thank you!
+    passwords:
+      spree_user:
+        send_instructions: You will soon receive password instructions via e-mail.
+    mailer:
+      welcome:
+        subject: Welcome to nelou!
+  spree:
+    dear:
+      f: Dear
+      m: Dear
+    i18n:
+      this_file_language: English
+    accepted: Application accepted
+    add_to_wishlist: Add to wishlist
+    amount_off_sale_price: Amount of sale price
+    are_you_sure_you_want_to_cancel_the_sale: Are you sure you want to cancel the sale?
+    back_designer: Back to Designer
+    back_to_user: Back to User
+    calculator_type: Sale type
+    cancel_sale: Cancel Sale
+    change_your_password: Change Your Password
+    conversions: Convertible into
+    country_code: Country Code
+    current_price: 'Current price:'
+    currently_percent_off: Currently %{percent} off
+    custom_made: Custom Made
+    designer_label: Designer Label
+    designer_labels: Designer Labels
+    designer: Designer
+    designers: Designers
+    end_at: End at
+    gender: Salutation
+    green: 'Green/Eco'
+    international: International
+    limited_items_sold: Sold Items
+    limited_items: Number of available items
+    limited: Limited
+    logo: Logo
+    miss: Ms.
+    mister: Mr.
+    my_label: My Label
+    name_of_label: Name of Designer Label
+    new_designer_application: New Designer Application
+    new_designer: New Designer
+    new_order_from_customer: A Customer Ordered a Product of Yours
+    no_sale_going_on: No Sale going on for this product.
+    of_x_available: "%{available} of %{count} available"
+    on_demand: Made on Demand
+    optimal_image_size: 'Optimal ratio: Portrait 2:3; Optimal size: 2000&times;3000 Pixels'
+    percent_off_sale_price: Percentage off sale price
+    photo_credits: Credits for Photos
+    produciton_type: Manufacturing
+    product_is_currently_on_sale: Product is currently on sale!
+    profile_image: Profile Image
+    profile: Profile Text
+    ready_to_wear: Ready To Wear
+    registered_since: Registered since
+    resend_confirmation_instructions: Resend Confirmation Instructions
+    sales: Sales
+    select_by: Select by
+    set_on_sale: Set on Sale
+    short_description: Short Description
+    size_option_types: Sizes
+    start_at: Start at
+    unique_item: Unique Item
+    variant_is_limited: Variant is limited
+    vat: 'VAT (international tax number)'

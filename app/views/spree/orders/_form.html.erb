@@ -1,0 +1,34 @@
+<%= render partial: 'spree/shared/error_messages', locals: { target: @order } %>
+<table class="cart-item-table" id="cart-detail" data-hook>
+  <thead>
+    <tr class="cart-item-title-row" data-hook="cart_items_headers">
+      <th class="cart-item-title cart-item-description-header" colspan="2"><%= t('orders.edit.form.item', count: order_form.object.line_items.count) %></th>
+      <th class="cart-item-title cart-item-quantity-header"><%= t('orders.edit.form.quantity') %></th>
+      <th class="cart-item-title cart-item-delivery-time"><%= t('orders.edit.form.delivery_time') %></th>
+      <th class="cart-item-title cart-item-price-header"><%= t('orders.edit.form.price') %></th>
+      <th class="cart-item-title cart-item-total-header"><%= t('orders.edit.form.total') %></th>
+    </tr>
+  </thead>
+  <tbody id="line_items" data-hook>
+    <%= render partial: 'spree/orders/line_item', collection: order_form.object.line_items, locals: { order_form: order_form } %>
+  </tbody>
+  <% if @order.adjustments.nonzero.exists? || @order.line_item_adjustments.nonzero.exists? || @order.shipment_adjustments.nonzero.exists? || @order.shipments.any? %>
+  <tr class="cart-item-line cart-subtotal">
+    <td colspan="5" class="cart-item-total-hint">
+      <!--<%= t('orders.edit.form.total_excl_shipping') %>-->
+    </td>
+    <td class="cart-item-column cart-item-total cart-item-column-price">
+      <%= order_form.object.display_item_total %>
+    </td>
+  </tr>
+  <%= render "spree/orders/adjustments" %>
+  <% end %>
+  <tr class="cart-item-line cart-total">
+    <td colspan="5" class="cart-item-total-hint">
+      <%= t('orders.edit.form.total_excl_shipping') %>
+    </td>
+    <td class="cart-item-column cart-item-total cart-item-column-price">
+      <%= order_form.object.display_total %>
+    </td>
+  </tr>
+</table>
