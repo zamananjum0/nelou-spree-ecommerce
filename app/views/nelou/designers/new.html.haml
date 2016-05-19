@@ -37,6 +37,9 @@
       %legend.designer-application-header= t('.personal_data')
       = f.fields_for :bill_address do |bf|
         .designer-form-row
+          = bf.label :gender, t('.gender'), class: 'designer-form-label'
+          = bf.select :gender, options_for_select([[Spree.t(:mister), 'm'], [Spree.t(:miss), 'f']]), class: 'designer-form-field', required: true
+        .designer-form-row
           = bf.label :firstname, t('.lastname'), class: 'designer-form-label'
           = bf.text_field :firstname, class: 'designer-form-field', required: true
         .designer-form-row

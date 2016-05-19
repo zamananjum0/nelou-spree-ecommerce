@@ -17,6 +17,7 @@ module Nelou
     default_scope -> { joins(:translations) }
     scope :active, -> { where(active: true, accepted: true) }
     scope :featured, -> { where(featured: true) }
+    scope :with_name_like, -> (name) { where("#{Nelou::DesignerLabel.quoted_table_name}.name ILIKE ? OR nelou_designer_label_translations.name ILIKE ?", "%#{name}%", "%#{name}%") }
 
     has_attached_file :logo,
                       styles: { profile: 'x50>', profile_2x: 'x100>' },

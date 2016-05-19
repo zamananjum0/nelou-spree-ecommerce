@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       resources :designers, only: [ :index, :new, :create ], as: :nelou_designers
       resources :designer_labels, except: [ :show ], as: :nelou_designer_labels
 
+      get '/orders_export', to: 'orders_export#index', as: :export_orders
+
       resources :size_option_types, except: [ :show ], as: :nelou_size_option_types do
         resources :size_option_values, only: [ :update ], as: :nelou_size_option_value
       end

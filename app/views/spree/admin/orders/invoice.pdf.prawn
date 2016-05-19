@@ -16,6 +16,7 @@ repeat(:all) do
     text Spree.t(:invoice, scope: :print_invoice), align: :right, style: :bold, size: 18
     move_down 4
     text Spree.t(:order_number, number: @order.number), align: :right
+    text Spree.t(:invoice_number, number: @order.invoice_number), align: :right
     move_down 2
     text I18n.l(@order.completed_at.to_date), align: :right
   end
@@ -57,8 +58,8 @@ grid([1,0], [6,4]).bounding_box do
   move_down 10
 
   header = [
-    make_cell(content: Spree.t(:sku)),
     make_cell(content: Spree.t(:item_description)),
+    make_cell(content: Spree.t(:designer)),
     make_cell(content: Spree.t(:options)),
     make_cell(content: Spree.t(:price)),
     make_cell(content: Spree.t(:qty)),
@@ -67,9 +68,11 @@ grid([1,0], [6,4]).bounding_box do
   data = [header]
 
   @order.line_items.each do |item|
+    next unless item.variant.present?
+
     row = [
-      item.variant.sku,
       item.variant.name,
+      item.variant.product.designer_label.name,
       item.variant.options_text,
       item.single_display_amount.to_s,
       item.quantity,
@@ -78,7 +81,7 @@ grid([1,0], [6,4]).bounding_box do
     data += [row]
   end
 
-  table(data, header: true, position: :center, column_widths: [70, 200, 100, 65, 40, 65]) do
+  table(data, header: true, position: :center, column_widths: [180, 90, 100, 65, 40, 65]) do
     row(0).style align: :center, font_style: :bold
     column(0..2).style align: :left
     column(3..6).style align: :right
@@ -98,7 +101,7 @@ grid([1,0], [6,4]).bounding_box do
 
   # Shipments
   @order.shipments.each do |shipment|
-    totals << [make_cell(content: shipment.shipping_method.name), shipment.display_cost.to_s]
+    totals << [make_cell(content: [Spree.t(:shipping), ': ', shipment.shipping_method.name].join('')), shipment.display_cost.to_s]
   end
 
   # Totals
@@ -107,13 +110,14 @@ grid([1,0], [6,4]).bounding_box do
   # Payments
   total_payments = 0.0
   @order.payments.each do |payment|
+    next unless payment.state == 'completed'
     totals << [
       make_cell(
         content: Spree.t(:payment_via,
-        gateway: (payment.source_type || Spree.t(:unprocessed, scope: :print_invoice)),
-        number: payment.number,
-        date: I18n.l(payment.updated_at.to_date, format: :long),
-        scope: :print_invoice)
+          gateway: (payment.payment_method.name || Spree.t(:unprocessed, scope: :print_invoice)),
+          number: payment.number,
+          date: I18n.l(payment.updated_at.to_date, format: :long),
+          scope: :print_invoice)
       ),
       payment.display_amount.to_s
     ]
@@ -127,6 +131,16 @@ grid([1,0], [6,4]).bounding_box do
 
   move_down 30
   text Spree::PrintInvoice::Config[:return_message], align: :right, size: @font_size
+end
+
+repeat(:all) do
+  bounding_box [bounds.left, bounds.bottom + 25], width: bounds.width, height: 40  do
+    font @font_face, size: 8
+    text "nelou GmbH - Novalisstraße 11 - D-10115 Berlin - www.nelou.com - mail@nelou.com\n", align: :center
+    text "Handelsregister: HRB 128494 B - Registergericht: Amtsgericht Charlottenburg - Steuernummer: 30/453/32609\n", align: :center
+    text "UID: DE275221414 - Bankverbindung: nelou gmbh - Deutsche Bank - Kontonummer: 270.930.100\n", align: :center
+    text "BLZ: 100.700.24 - IBAN: DE19.1007.0024.0270.9301.00 - BIC: DEUTDEDBBER", align: :center
+  end
 end
 
 # FOOTER

@@ -1,4 +1,8 @@
 de:
+  activerecord:
+    attributes:
+      spree/order:
+          invoice_number: Rechnungsnummer
   devise:
     user_confirmations:
       spree_user:
@@ -16,6 +20,9 @@ de:
       m: Lieber
     i18n:
       this_file_language: Deutsch
+    print_invoice:
+      payment_via: Zahlung per %{gateway}
+    invoice_number: 'Rechnungsnummer #%{number}'
     accepted: Bewerbung akzeptiert
     add_to_wishlist: Auf die Wunschliste
     amount_off_sale_price: Betrag vom Verkaufspreis
@@ -71,3 +78,5 @@ de:
     unique_item: Einzelstück
     variant_is_limited: Variante ist Limitiert
     vat: Umsatzsteuernummer
+    shipping: Versand
+    designers_with: "Designer mit '%{name}'"

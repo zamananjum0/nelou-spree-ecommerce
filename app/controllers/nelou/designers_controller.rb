@@ -30,7 +30,8 @@ module Nelou
         :password_confirmation, designer_label_attributes: [
           :name, :website, :green, :vat, :paypal
         ], bill_address_attributes: [
-          :firstname, :lastname, :address1, :address2, :zipcode, :city, :country_id, :state_id, :phone
+          :firstname, :lastname, :address1, :address2, :zipcode, :city,
+          :country_id, :state_id, :phone, :gender
         ]
     end
   end

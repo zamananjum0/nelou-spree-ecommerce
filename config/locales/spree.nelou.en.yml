@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    attributes:
+      spree/order:
+          invoice_number: Invoice Number
   devise:
     user_confirmations:
       spree_user:
@@ -16,6 +20,9 @@ en:
       m: Dear
     i18n:
       this_file_language: English
+    print_invoice:
+      payment_via: Payment via %{gateway}
+    invoice_number: 'Invoice #%{number}'
     accepted: Application accepted
     add_to_wishlist: Add to wishlist
     amount_off_sale_price: Amount of sale price
@@ -71,3 +78,5 @@ en:
     unique_item: Unique Item
     variant_is_limited: Variant is limited
     vat: 'VAT (international tax number)'
+    shipping: Shipping
+    designers_with: "Designers with '%{name}'"
