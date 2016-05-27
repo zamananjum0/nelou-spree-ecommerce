@@ -15,6 +15,10 @@ en:
       welcome:
         subject: Welcome to nelou!
   spree:
+    contact_us:
+      contacts:
+        new:
+          description: Here you can contact our customer service directly. We will come back to you as soon as possible.
     dear:
       f: Dear
       m: Dear
@@ -80,3 +84,4 @@ en:
     vat: 'VAT (international tax number)'
     shipping: Shipping
     designers_with: "Designers with '%{name}'"
+    vat_included_in_price: 'VAT 19% (included in price)'

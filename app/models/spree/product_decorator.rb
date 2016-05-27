@@ -21,6 +21,9 @@ Spree::Product.class_eval do
 
   # attr_accessor :sale_price, :original_price
 
+  self.whitelisted_ransackable_associations = %w[stores variants_including_master master variants designer_label]
+  self.whitelisted_ransackable_attributes = %w[description name slug designer_label_id]
+
   def recent_from_same_designer
     Spree::Product.active.by_designer(designer_label).order(available_on: :desc)
   end

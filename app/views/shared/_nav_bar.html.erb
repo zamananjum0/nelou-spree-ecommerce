@@ -3,7 +3,7 @@
     <li class="main-nav-item">
       <%= link_to t('.new'), spree.recent_products_path, class: 'main-nav-link' %>
     </li>
-    <% cache("nav_bar_taxonomies-#{Spree::Taxonomy.all.maximum(:updated_at)}-#{I18n.locale}-#{Spree::Taxonomy.all.count}") do %>
+    <% cache("nav_bar_taxonomies-#{Spree::Taxonomy.all.maximum(:updated_at)}-#{Spree::Product.all.maximum(:updated_at)}-#{I18n.locale}-#{Spree::Taxonomy.all.count}") do %>
       <% Spree::Taxonomy.all.each do |taxonomy| %>
         <% if taxonomy.root.leaf? %>
           <li class="main-nav-item">
@@ -16,9 +16,10 @@
               <% taxonomy.root.children.each_slice(7) do |taxons| %>
                 <ul class="main-nav-dropdown-menu-list">
                   <% taxons.each do |taxon| %>
+                    <% next unless taxon.products.available.count > 0 %>
                     <li class="main-nav-dropdown-menu-item">
                       <%= link_to spree.nested_taxons_path(taxon), class: 'main-nav-dropdown-link' do %>
-                        <%= taxon.name %>&nbsp;<span class="main-nav-dropdown-link-hint">(<%= taxon.products.count %>)</span>
+                        <%= taxon.name %>&nbsp;<span class="main-nav-dropdown-link-hint">(<%= taxon.products.available.count %>)</span>
                       <% end %>
                     </li>
                   <% end %>

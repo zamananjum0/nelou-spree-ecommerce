@@ -32,7 +32,7 @@ module Nelou
     has_custom_file_name :profile_image, :generate_hex_for_file_name
 
     has_attached_file :teaser_image,
-                      styles: { slider: '720x268>', slider_2x: '1440x536>' },
+                      styles: { slider: '780x268>', slider_2x: '1560x536>' },
                       default_url: '/images/missing/teaser-images/:style.png'
     validates_attachment_content_type :teaser_image, content_type: /\Aimage\/(png|jpeg|gif)\Z/
     has_custom_file_name :teaser_image, :generate_hex_for_file_name

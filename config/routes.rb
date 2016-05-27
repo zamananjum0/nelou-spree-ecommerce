@@ -43,6 +43,9 @@ Rails.application.routes.draw do
   get '/designerprofil/:slug', to: redirect('/designer/%{slug}?locale=de', status: 301), constraints: { id: /[0-9a-zA-Z\-]+/ }
   get '/label/:slug', to: redirect('/designer/%{slug}?locale=en', status: 301), constraints: { id: /[0-9a-zA-Z\-]+/ }
   get '/designerprofile/:slug', to: redirect('/designer/%{slug}?locale=en', status: 301), constraints: { id: /[0-9a-zA-Z\-]+/ }
+
+  get '/de', to: redirect('/?locale=de', status: 301)
+  get '/en', to: redirect('/?locale=en', status: 301)
 end
 
 Spree::Core::Engine.add_routes do

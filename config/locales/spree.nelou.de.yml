@@ -15,6 +15,10 @@ de:
       welcome:
         subject: Willkommen auf nelou!
   spree:
+    contact_us:
+      contacts:
+        new:
+          description: Hier können Sie unseren Kundenservice kontaktieren. Wir werden Ihre Anfrage so schnell wie möglich bearbeiten.
     dear:
       f: Liebe
       m: Lieber
@@ -80,3 +84,4 @@ de:
     vat: Umsatzsteuernummer
     shipping: Versand
     designers_with: "Designer mit '%{name}'"
+    vat_included_in_price: 'MwSt 19% (Im Preis enthalten)'

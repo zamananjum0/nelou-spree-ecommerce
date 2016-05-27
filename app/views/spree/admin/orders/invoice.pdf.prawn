@@ -95,14 +95,18 @@ grid([1,0], [6,4]).bounding_box do
   totals << [make_cell(content: Spree.t(:subtotal)), @order.display_item_total.to_s]
 
   # Adjustments
-  @order.all_adjustments.eligible.each do |adjustment|
-    totals << [make_cell(content: adjustment.label), adjustment.display_amount.to_s]
-  end
+  # @order.all_adjustments.eligible.each do |adjustment|
+  #   totals << [make_cell(content: adjustment.label), adjustment.display_amount.to_s]
+  # end
 
   # Shipments
   @order.shipments.each do |shipment|
     totals << [make_cell(content: [Spree.t(:shipping), ': ', shipment.shipping_method.name].join('')), shipment.display_cost.to_s]
   end
+
+  # Taxes
+  # TODO: This is very, very wrong. But it works for now. Fix as soon as it's clear how!
+  totals << [make_cell(content: Spree.t(:vat_included_in_price)), Spree::Money.new(@order.total * 0.19, currency: @order.currency).to_s]
 
   # Totals
   totals << [make_cell(content: Spree.t(:order_total)), @order.display_total.to_s]
