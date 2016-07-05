@@ -14,25 +14,25 @@
         <%= sort_link @search, :email, Spree.t(:designer), {}, {:title => 'designers_email_title'} %>
       </th>
       <th>
-        <%= Spree.t(:designer_label) %>
+        <%= sort_link @search, :designer_label, Spree.t(:designer_label) %>
       </th>
       <th>
-        <%= Spree.t(:active) %>
+        <%= sort_link @search, :active, Spree.t(:active) %>
       </th>
       <th>
-        <%= Spree.t(:accepted) %>
+        <%= sort_link @search, :accepted, Spree.t(:accepted) %>
       </th>
       <th>
-        <%= Spree.t(:selection) %>
+        <%= sort_link @search, :selection, Spree.t(:selection) %>
       </th>
       <th>
-        <%= Spree.t(:featured) %>
+        <%= sort_link @search, :featured, Spree.t(:featured) %>
       </th>
       <th>
-        <%= Spree.t(:last_sign_in_at) %>
+        <%= sort_link @search, :last_sign_in_at, Spree.t(:last_sign_in_at) %>
       </th>
       <th>
-        <%= sort_link @search, :created_at, Spree.t(:designer), {}, {:title => 'designers_created_at_title'} %>
+        <%= sort_link @search, :created_at, Spree.t(:created_at) %>
       </th>
       <th class="actions" data-hook="admin_users_index_header_actions"></th>
     </tr>

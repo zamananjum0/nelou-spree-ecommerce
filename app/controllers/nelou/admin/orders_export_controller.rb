@@ -1,6 +1,6 @@
 require 'csv'
 
-class Nelou::Admin::OrdersExportController < ApplicationController
+class Nelou::Admin::OrdersExportController < Spree::Admin::BaseController
   def index
     csv_string = ::CSV.generate(col_sep: ';') do |csv|
       csv << ['Rechnungsnummer', 'Rechnngsdatum', 'Betrag brutto', 'Waehrung', 'Name des Kunden', 'Bezahlart', 'Storniert']

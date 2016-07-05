@@ -3,6 +3,7 @@
 <% content_for :head do %>
   <% cache ['meta', I18n.locale, current_currency, @product, @product.updated_at] do %>
     <%= og_meta_tag :title, @product.name %>
+    <%= og_meta_tag :site_name, 'nelou' %>
     <%= og_meta_tag :description, strip_tags(@product.description) %>
     <%= og_meta_tag :url, spree.product_url(@product) %>
     <% if @product.images.any? %>
@@ -15,6 +16,14 @@
     <%= og_meta_tag :type, :product %>
     <%= property_meta_tag :'product:price:amount', @product.price.to_s %>
     <%= property_meta_tag :'product:price:currency', current_currency %>
+    <% if @product.in_stock? %>
+      <%= og_meta_tag :availability, :instock %>
+    <% else %>
+      <%= og_meta_tag :availability, :'out of stock' %>
+    <% end %>
+    <% if @product.designer_label.present? %>
+      <%= og_meta_tag :brand, @product.designer_label.name %>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -22,7 +31,7 @@
   <%= render partial: 'related', locals: { product: @product } %>
 <% end %>
 
-<% cache [I18n.locale, current_currency, @product, @product.possible_promotions] do %>
+<% cache [I18n.locale, current_currency, @product, @product.possible_promotions, spree_current_user.present?] do %>
 <div class="product" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
   <div class="product-left" data-hook="product_left_part">
     <div data-hook="product_left_part_wrap">
@@ -60,9 +69,6 @@
             <div class="product-social-button product-social-google-plus">
               <%= google_plus_button %>
             </div>
-            <div class="product-social-button product-social-pinterest">
-              <%#= pinit_button %>
-            </div>
           </div>
 
           <div class="product-info-line" title="<%= t('products.show.item_number') %>">
@@ -86,21 +92,30 @@
 
           <div class="product-info-line">
             <div class="product-info-line-label"><%= t('products.show.production_type') %></div>
-            <div class="product-info-line-content"><%= Spree.t(@product.production_type) %></div>
+            <div class="product-info-line-content">
+              <%= Spree.t(@product.production_type) %>&nbsp;
+              <%= link_to(main_app.help_path(anchor: '4'), class: 'product-info-circle', target: :blank) do %>
+                <%= fa_icon :'info-circle' %>
+              <% end %>
+            </div>
           </div>
 
           <div class="product-info-line">
             <div class="product-info-line-label"><%= t('products.show.share') %></div>
             <div class="product-info-line-content">
-              <%= link_to facebook_sharer_path(spree.product_url(@product)), title: t('products.show.share_on_facebook'), target: '_blank', class: 'product-info-line-link product-share-link' do %>
-              <%= fa_icon :'facebook-square' %>
+
+              <%= link_to facebook_sharer_path(spree.product_url(@product)), title: t('products.show.share_on_facebook'), target: :blank, class: 'product-info-line-link product-share-link' do %>
+                <%= fa_icon :'facebook-square' %>
               <% end %>
-              <%= link_to twitter_sharer_path(@product.name, spree.product_url(@product)), title: t('products.show.share_on_twitter'), target: '_blank', class: 'product-info-line-link product-share-link' do %>
-              <%= fa_icon :'twitter-square' %>
+
+              <%= link_to twitter_sharer_path(@product.name, spree.product_url(@product)), title: t('products.show.share_on_twitter'), target: :blank, class: 'product-info-line-link product-share-link' do %>
+                <%= fa_icon :'twitter-square' %>
               <% end %>
-              <%= link_to email_to_friend_path('product', @product), title: Spree.t(:send_to_friend, scope: :email_to_friend), target: '_blank', class: 'product-info-line-link product-share-link' do %>
-              <%= fa_icon :'envelope' %>
+
+              <%= link_to pinterest_share_path(@product), 'data-pin-do': 'buttonPin', 'data-pin-lang': I18n.locale, 'data-pin-save': 'true', class: 'product-share-link pinterest-link-wrapper', target: :blank do %>
+                <%= fa_icon :'pinterest-square' %>
               <% end %>
+
             </div>
           </div>
 
@@ -116,3 +131,5 @@
   </div>
 </div>
 <% end %>
+
+<%= render partial: 'sold_out_dialog', locals: { product: @product } %>

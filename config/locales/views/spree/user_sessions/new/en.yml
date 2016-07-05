@@ -2,7 +2,7 @@ en:
   spree:
     user_sessions:
       new:
-        already_registered: I already have an user account
+        already_registered: I already have an account
         i_want_to_register: I do not have an account yet, but would like to register one.
         login: Login
         new_customer: Register

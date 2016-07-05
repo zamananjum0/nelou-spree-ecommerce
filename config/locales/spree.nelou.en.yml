@@ -15,6 +15,8 @@ en:
       welcome:
         subject: Welcome to nelou!
   spree:
+    address_book:
+      edit_shipping_address: 'Edit address'
     contact_us:
       contacts:
         new:
@@ -26,6 +28,11 @@ en:
       this_file_language: English
     print_invoice:
       payment_via: Payment via %{gateway}
+      buttons:
+        invoice: Your invoice
+    payment_methods:
+      creditcard: Credit card
+      paypal: PayPal
     invoice_number: 'Invoice #%{number}'
     accepted: Application accepted
     add_to_wishlist: Add to wishlist
@@ -84,4 +91,43 @@ en:
     vat: 'VAT (international tax number)'
     shipping: Shipping
     designers_with: "Designers with '%{name}'"
-    vat_included_in_price: 'VAT 19% (included in price)'
+    vat_included_in_price: 'VAT 19%'
+    gross: Net Amount
+    date_of_performance: 'Unless otherweise stated, the date of performance is the invoice date.'
+    order_total: Total
+    order_total_gross: 'Total (Gross)'
+    export_orders: Export Orders
+    view_details: 'View details'
+    view_invoice: 'Download invoice'
+    order_processed_successfully: Great! Your payment was successful.
+    thank_you_for_your_order: Thank you for your order!
+    your_order_from_date: 'Your order from %{date}'
+    product_designer: 'Designer:'
+    view_details: 'View details'
+    view_invoice: 'Download invoice'
+    order_processed_successfully: Great! Your payment was successful.
+    thank_you_for_your_order: Thank you for your order!
+    redirect_to_paypal: You will be redirected to PayPal
+    you_will_be_redirected_to_paypal: You will be redirected to the PayPal site. There, you can pay your new pieces.
+    proceed_to_paypal: Proceed to PayPal
+    selected_products: Selected items
+    select_payment_methods: Select your payment method
+    pay_by: Select your payment method
+    save_and_continue: Next
+    place_order: Commit to buy
+    ending_in: Ending in
+    register_as_new: Register as a new customer
+    delivery_info: Your pieces will be bundled by designer and may thus vary in time of delivery.
+    please_enter_reasonable_quantity: The requested amount of %{quantity} is not available.
+    use_existing_cc: Use an existing card
+    use_new_cc_or_payment_method: Use a new card
+    name_on_card: Name on card
+    card_code: Card code
+    card_number: Card number
+    expiration: Expiration date
+    delivery_info: Your pieces will be bundled by designer and may thus vary in time of delivery.
+    please_enter_reasonable_quantity: The requested amount of %{quantity} is not available.
+    register_as_new: Register as a new customer
+    delivery_info: Your pieces will be bundled by designer and may thus vary in time of delivery.
+    please_enter_reasonable_quantity: The requested amount of %{quantity} is not available.
+    remove_from_cart: Remove from cart

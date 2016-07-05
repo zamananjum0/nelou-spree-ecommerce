@@ -7,6 +7,8 @@ module Nelou
         validates :limited_items, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
         validates :limited_items_sold, numericality: { only_integer: true, lesser_than_or_equal_to: :limited_items }, allow_nil: true
         validates :limited_items, presence: true, if: :limited?
+
+        after_save :set_sold_out_on_product
       end
 
       def limited?
@@ -27,6 +29,12 @@ module Nelou
 
       def set_limited
         limited = true
+      end
+
+      private
+
+      def set_sold_out_on_product
+        self.product.update_columns( sold_out: self.product.not_in_stock?, updated_at: Time.now )
       end
     end
   end

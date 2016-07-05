@@ -1,0 +1,74 @@
+$closeSize: 30px
+
+.flyout-container
+  // bottom: 0
+  background: #fff
+  height: 100%
+  left: 0
+  margin: auto
+  overflow: visible
+  position: absolute
+  right: 0
+  text-align: center
+  top: 0
+  width: 100%
+  z-index: 99
+  -webkit-touch-callout: none
+
+  &::before
+    +border-radius(50%)
+    +clear
+    +prefix-values(transform, translate(44vw, 0) )
+    background-color: rgba(255,255,255,0.15)
+    bottom: auto
+    // box-shadow: 0 0 0 2px #212121, 0 0 0 3px rgba(255,255,255,0.2)
+    box-shadow: 0 0 0 2px #212121
+    color: #212121
+    content: '×'
+    cursor: pointer
+    font-family: Arial, sans-serif
+    font-size: $closeSize
+    height: 2em
+    left: 0
+    line-height: 2em
+    margin: auto
+    position: fixed
+    right: 2rem
+    text-align: center
+    top: 2rem
+    width: 2em
+    z-index: 1
+
+  img
+    border: 0
+    bottom: auto
+    // cursor: zoom-out
+    cursor: ns-resize
+    height: auto
+    left: 0
+    margin: auto
+    max-width: $max-width
+    padding: 0
+    position: absolute
+    right: 0
+    top: 0
+    width: 100%
+
+.fixed
+  position: fixed
+
+body.flyout-open
+  overflow: hidden
+  &::before
+    +absCenter(fixed)
+    background-color: #fff
+    bottom: 0
+    content: ''
+    display: block
+    z-index: 1
+
+
+@media only screen and ( min-width: $max-width + 1 )
+  .flyout-container
+    &::before
+      +prefix-values(transform, translate( ($max-width/2) - $closeSize*1.5, 0) )

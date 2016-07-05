@@ -1,3 +1,23 @@
+.order-summary
+    .checkout
+        border: 0
+        margin-bottom: -10px
+        margin-top: -20px
+
+.order-page-header
+    margin-top: 0
+
+.order-complete-title
+    margin: 30px 0
+    position: relative
+
+.order-invoice-button
+    +nelou-button($colour-base)
+    // +prefix-values(transform, translateY(-25%))
+    position: absolute
+    right: 0
+    top: -4px
+
 .account
     +fill-parent
     +row
@@ -8,16 +28,27 @@
     .order-summary
         +fill-parent
         tr
-            border-bottom: 1px dotted $colour-light-blue
-    .order-number, .order-date, .order-status, .order-payment-state, .order-shipment-state, .order-total
+            border-bottom: 1px dotted $colour-border
+    .order-number, .order-date, .order-status, .order-payment-state, .order-shipment-state, .order-total, .order-actions
         +span-columns(1 of 6)
         text-align: center
         padding: 5px 10px
     .order-total
         text-align: right
 
+    .icon-link
+        color: inherit
+        display: inline-block
+        margin-left: 5px
+        padding: 0 5px
+        &:visited
+            color: inherit
+        &:hover
+            text-decoration: underline
+
 .account-title
     +text-headline
+    margin-top: 0
 
 .account-block
     margin-bottom: 42px
@@ -73,8 +104,10 @@
         #{$all-text-inputs}
             +fill-parent
             +text-normal
-            border: 1px solid
+            border: 1px solid $colour-border
             padding: 5px 10px
+            &:focus
+                border-color: $colour-grey
 
 .account-address-block
     +fill-parent
@@ -87,4 +120,4 @@
     +text-normal
 
 .account-address-block-link
-    +nelou-link
+    +nelou-account-link

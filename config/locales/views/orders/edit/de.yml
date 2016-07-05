@@ -6,11 +6,18 @@ de:
           one: Artikel
           other: Artikel
         quantity: Anzahl
-        delivery_time: Lieferung
+        delivery_time: Fertigung
         price: 'Preis/Stk.'
-        total: Preis gesamt
+        total: Gesamt
         total_excl_shipping: Gesamtsumme exkl. Versandkosten
-      shopping_cart: 'Ihr Warenkorb/Bestellung'
+      shopping_cart: 'Dein Warenkorb'
       continue_shopping: Einkauf fortsetzen
-      refresh: Aktualisieren
+      refresh: Neu berechnen
       proceed_to_checkout: Zur Kasse
+      really_delete: Möchtest Du den Artikel wirklich entfernen?
+      there_were_some_errors: Es tut uns leid, wir mussten Deinen Warenkorb anpassen.
+      sold_out: Dieser Artikel ist leider nicht mehr lieferbar.
+      not_enough_left: Die Menge wurde auf das Maximum lieferbarer Artikel angepasst.
+      only_x_left:
+        one: Nur noch ein Stück übrig
+        other: Es gibt nur noch %{count} Stück

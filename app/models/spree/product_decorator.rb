@@ -1,10 +1,8 @@
 Spree::Product.class_eval do
-  PRODUCTION_TYPES = %w(ready_to_wear on_demand custom_made)
-
   belongs_to :designer_label, class_name: 'Nelou::DesignerLabel'
 
   validates :designer_label, presence: true, on: :create
-  validates :production_type, presence: true, inclusion: { in: PRODUCTION_TYPES }
+  validates :production_type, presence: true, inclusion: { in: Nelou::PRODUCTION_TYPES }
 
   scope :by_designer, -> (designer_label) { where(designer_label_id: designer_label.id) }
   scope :recent, -> { where('available_on >= ?', 50.days.ago) }
@@ -47,7 +45,7 @@ Spree::Product.class_eval do
   end
 
   def available?
-    !(available_on.nil? || available_on.future?) && !deleted? && designer_label.present? && designer_label.active && designer_label.accepted
+    !(available_on.nil? || available_on.future? || sold_out) && !deleted? && designer_label.present? && designer_label.active && designer_label.accepted
   end
 
   # Can't use add_search_scope for this as it needs a default argument
@@ -58,14 +56,40 @@ Spree::Product.class_eval do
       .where("#{Nelou::DesignerLabel.quoted_table_name}.active": true, "#{Nelou::DesignerLabel.quoted_table_name}.accepted": true)
       .where("#{Spree::Product.quoted_table_name}.available_on IS NOT NULL")
       .where("#{Spree::Product.quoted_table_name}.available_on <= ?", available_on)
+      .where("#{Spree::Product.quoted_table_name}.sold_out = ?", false)
+      .uniq
+  end
+
+  def self.active(currency = nil)
+    not_deleted
+      .joins(master: :prices)
+      .joins(:designer_label)
+      .where("#{Nelou::DesignerLabel.quoted_table_name}.active": true, "#{Nelou::DesignerLabel.quoted_table_name}.accepted": true)
+      .where("#{Spree::Product.quoted_table_name}.available_on IS NOT NULL")
+      .where("#{Spree::Product.quoted_table_name}.available_on <= ?", Time.current)
+      .where("#{Spree::Product.quoted_table_name}.sold_out = ?", false)
+      .uniq
+  end
+
+  def self.active_with_sold_out(currency = nil)
+    not_deleted
+      .joins(master: :prices)
+      .joins(:designer_label)
+      .where("#{Nelou::DesignerLabel.quoted_table_name}.active": true, "#{Nelou::DesignerLabel.quoted_table_name}.accepted": true)
+      .where("#{Spree::Product.quoted_table_name}.available_on IS NOT NULL")
+      .where("#{Spree::Product.quoted_table_name}.available_on <= ?", Time.current)
       .uniq
   end
 
   def slug_candidates
-      [
-        :name,
-        [:name, :id],
-        [:name, :id, :sku]
-      ]
-    end
+    [
+      :name,
+      [:name, :id],
+      [:name, :id, :sku]
+    ]
+  end
+
+  def self.at_random(limit = 12)
+    where(id: available.select(:id).map(&:id).shuffle.slice(0, limit))
+  end
 end

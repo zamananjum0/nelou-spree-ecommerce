@@ -2,13 +2,11 @@ Spree::TaxonsController.class_eval do
   include Nelou::ProductSorting
   include Nelou::ProductFiltering
 
-  SPECIAL_CATEGORIES = [:recent, :limited, :eco, :on_sale]
+  before_action :load_taxonomies, only: Nelou::SPECIAL_CATEGORIES
+  before_action :load_special_categories, only: Nelou::SPECIAL_CATEGORIES
+  before_action :paginate_products, only: Nelou::SPECIAL_CATEGORIES
 
-  before_action :load_taxonomies, only: SPECIAL_CATEGORIES
-  before_action :load_special_categories, only: SPECIAL_CATEGORIES
-  before_action :paginate_products, only: SPECIAL_CATEGORIES
-
-  SPECIAL_CATEGORIES.each do |name|
+  Nelou::SPECIAL_CATEGORIES.each do |name|
     define_method name do
       render :show
     end

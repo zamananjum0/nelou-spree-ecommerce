@@ -6,11 +6,18 @@ en:
           one: Item
           other: Items
         quantity: Quantity
-        delivery_time: Delivery Time
+        delivery_time: Making
         price: Price per item
-        total: Total price
+        total: Total
         total_excl_shipping: Total price excl. shipping costs
-      shopping_cart: Your shopping cart
+      shopping_cart: Your Shopping Basket
       continue_shopping: Continue Shopping
-      refresh: Update
+      refresh: Recalculate
       proceed_to_checkout: Proceed to checkout
+      really_delete: Do you really want to remove this article?
+      there_were_some_errors: Unfortunately, we had to adjust your shopping cart.
+      sold_out: This article is no longer available.
+      not_enough_left: We reset your order to the maximum number of items in stock.
+      only_x_left:
+        one: Only one piece left
+        other: Only %{count} pieces left

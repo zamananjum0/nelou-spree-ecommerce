@@ -40,13 +40,13 @@
         </div>
       </div>
       <div class="designer-label-collection">
-        <%= render partial: 'spree/shared/products', locals: { products: @designer_label.products.active.descend_by_available_on } %>
+        <%= render partial: 'spree/shared/products', locals: { products: @designer_label.products.not_deleted.available.descend_by_available_on } %>
       </div>
     </div>
     <% if @designer_label.has_products_on_sale? %>
       <div class="designer-label-page" id="designer-label-on-sale">
         <div class="designer-label-collection">
-          <%= render partial: 'spree/shared/products', locals: { products: @designer_label.products.active.on_sale.descend_by_available_on } %>
+          <%= render partial: 'spree/shared/products', locals: { products: @designer_label.products.not_deleted.available.on_sale.descend_by_available_on } %>
         </div>
       </div>
     <% end %>

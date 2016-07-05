@@ -1,5 +1,5 @@
 .messages-list
-    position: fixed
+    position: relative
     @include fill-parent
     @include row
     top: 0
@@ -10,7 +10,7 @@
 .message
     min-height: 32px
     padding: 8px 0
-    &.message-notice
+    &.message-notice, &.message-alert
         background-color: #7997a1
     &.message-error
         background-color: #990000
@@ -33,6 +33,9 @@
 .message-inner
     position: relative
     @include outer-container
+    a
+        &:hover
+            text-decoration: none
 
 .message-content
     @include text-normal($colour-white)

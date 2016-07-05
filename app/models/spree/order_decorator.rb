@@ -16,11 +16,15 @@ Spree::Order.class_eval do
   # Do not generate random order numbers
   def generate_number(options = {})
     options[:length]  ||= Spree::NumberGenerator::NUMBER_LENGTH
-    self.number = "R%0#{options[:length]}i" % (Spree::Order.count + 1)
+    self.number = "R%s%04i" % [Time.now.strftime("%y%m%d"), Random.rand(0..9_999)]
   end
 
   def price_from_line_item(line_item)
     line_item.variant.price_in(currency)
+  end
+
+  def available_payment_methods
+    @available_payment_methods ||= (Spree::PaymentMethod.available(:front_end) + Spree::PaymentMethod.available(:both)).uniq.sort { |a,b| a.name <=> b.name }
   end
 
   private

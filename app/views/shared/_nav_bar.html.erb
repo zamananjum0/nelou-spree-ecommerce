@@ -16,7 +16,7 @@
               <% taxonomy.root.children.each_slice(7) do |taxons| %>
                 <ul class="main-nav-dropdown-menu-list">
                   <% taxons.each do |taxon| %>
-                    <% next unless taxon.products.available.count > 0 %>
+                    <% next unless taxon.products.not_deleted.available.count > 0 %>
                     <li class="main-nav-dropdown-menu-item">
                       <%= link_to spree.nested_taxons_path(taxon), class: 'main-nav-dropdown-link' do %>
                         <%= taxon.name %>&nbsp;<span class="main-nav-dropdown-link-hint">(<%= taxon.products.available.count %>)</span>

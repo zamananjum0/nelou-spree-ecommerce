@@ -3,6 +3,17 @@ de:
     attributes:
       spree/order:
           invoice_number: Rechnungsnummer
+      spree/address:
+        address1: Straße und Hausnr.
+        address2: Adresse (Fortsetzung)
+        city: Stadt
+        country: Land
+        firstname: Vorname
+        lastname: Nachname
+        phone: Telefonnummer
+        state: Bundesland
+        zipcode: PLZ
+        company: Firma
   devise:
     user_confirmations:
       spree_user:
@@ -15,6 +26,8 @@ de:
       welcome:
         subject: Willkommen auf nelou!
   spree:
+    address_book:
+      edit_shipping_address: 'Adresse bearbeiten'
     contact_us:
       contacts:
         new:
@@ -26,6 +39,11 @@ de:
       this_file_language: Deutsch
     print_invoice:
       payment_via: Zahlung per %{gateway}
+      buttons:
+        invoice: Deine Rechnung
+    payment_methods:
+      creditcard: Kreditkarte
+      paypal: PayPal
     invoice_number: 'Rechnungsnummer #%{number}'
     accepted: Bewerbung akzeptiert
     add_to_wishlist: Auf die Wunschliste
@@ -59,7 +77,7 @@ de:
     name_of_label: Name des Labels
     new_designer_application: Neue Designer-Bewerbung!
     new_designer: Neuer Designer
-    new_order_from_customer: Ein Kunde hat eines Ihrer Produkte bestellt
+    new_order_from_customer: Ein Kunde hat eines Deiner Produkte bestellt
     no_sale_going_on: Keine Sonderangebote zur Zeit.
     of_x_available: "Noch %{available} von %{count} verfügbar"
     on_demand: Made on Demand
@@ -84,4 +102,45 @@ de:
     vat: Umsatzsteuernummer
     shipping: Versand
     designers_with: "Designer mit '%{name}'"
-    vat_included_in_price: 'MwSt 19% (Im Preis enthalten)'
+    vat_included_in_price: 'MwSt 19%'
+    order_number: 'Bestellnummer %{number}'
+    gross: Netto
+    date_of_performance: 'Soweit nicht anders angegeben ist, gilt der Zeitpunkt der Rechnungsausstellung als Zeitpunkt der Leistung.'
+    order_total: Gesamt
+    order_total_gross: 'Gesamtsumme (Brutto)'
+    export_orders: Bestellungen exportieren
+    view_details: 'Details ansehen'
+    view_invoice: 'Rechnung herunterladen'
+    order_processed_successfully: Prima! Deine Zahlung war erfolgreich.
+    thank_you_for_your_order: Vielen Dank für Deine Bestellung!
+    your_order_from_date: 'Deine Bestellung vom %{date}'
+    product_designer: 'Designer:'
+    view_details: 'Details ansehen'
+    view_invoice: 'Rechnung herunterladen'
+    order_processed_successfully: Prima! Deine Zahlung war erfolgreich.
+    thank_you_for_your_order: Vielen Dank für Deine Bestellung!
+    redirect_to_paypal: Du wirst zu PayPal weiter geleitet
+    you_will_be_redirected_to_paypal: Du wirst auf die Seite von PayPal weitergeleitet. Dort kannst Du Deine neuen Stücke bezahlen.
+    proceed_to_paypal: Weiter zu Paypal
+    selected_products: Gewählte Stücke
+    select_payment_methods: Wähle Deine Zahlungsart
+    pay_by: Zahlungsmethode
+    save_and_continue: Weiter
+    place_order: Zahlungspflichtig bestellen
+    ending_in: Endet auf
+    register_as_new: Als neuer Kunde registrieren
+    delivery_info: 'Deine Stücke werden zusammengefasst vom jeweiligen Designer in separaten Paketen versendet. Die Lieferzeiten der einzelnen Sendungen können daher voneinander abweichen.'
+    please_enter_reasonable_quantity: Die gewünsche Anzahl von %{quantity} ist nicht verfügbar.
+    redeem_coupon: Gutschein einlösen
+    use_existing_cc: Karte wiederverwenden
+    use_new_cc_or_payment_method: Andere Karte benutzen
+    name_on_card: Karteninhaber
+    card_number: Kartennummer
+    card_code: Prüfnummer
+    expiration: Gültig bis
+    delivery_info: 'Deine Stücke werden zusammengefasst vom jeweiligen Designer in separaten Paketen versendet. Die Lieferzeiten der einzelnen Sendungen können daher voneinander abweichen.'
+    please_enter_reasonable_quantity: Die gewünsche Anzahl von %{quantity} ist nicht verfügbar.
+    register_as_new: Als neuer Kunde registrieren
+    delivery_info: 'Deine Stücke werden zusammengefasst vom jeweiligen Designer in separaten Paketen versendet. Die Lieferzeiten der einzelnen Sendungen können daher voneinander abweichen.'
+    please_enter_reasonable_quantity: Die gewünsche Anzahl von %{quantity} ist nicht verfügbar.
+    remove_from_cart: Aus Warenkorb entfernen

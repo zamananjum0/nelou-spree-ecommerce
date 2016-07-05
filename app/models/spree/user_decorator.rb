@@ -1,6 +1,7 @@
 Spree::User.class_eval do
   include Nelou::Legacy::Login
   include Nelou::Legacy::Password
+  include Nelou::User::Subscription
 
   has_one :designer_label, class_name: 'Nelou::DesignerLabel', dependent: :destroy, autosave: true, inverse_of: :user
   has_many :products, through: :designer_label

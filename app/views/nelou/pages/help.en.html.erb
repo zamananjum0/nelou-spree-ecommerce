@@ -64,10 +64,10 @@
     <h2>My user account
     </h2>
     <p>To go shopping on nelou.com you need to register first. This service is completely free and only takes a few minutes. Going forward you will not have to insert your personal data and shipping address again.</p>
-    <p>To open an unser account and to login please follow the &quot;<a href="<%= registration_path %>">Register</a>&quot; link on the top right corner. All you information is safely secured and will not be handed out to any third party (to read more on that please follow the link tot &quot;<a href="<%= privacy_path %>">Privacy Policy</a>&quot;).
+    <p>To open an unser account and to login please follow the &quot;<a href="<%= spree.signup_path %>">Register</a>&quot; link on the top right corner. All you information is safely secured and will not be handed out to any third party (to read more on that please follow the link tot &quot;<a href="<%= main_app.privacy_path %>">Privacy Policy</a>&quot;).
     </p>
     <p>After registering you will receive a confirmation email with all your access details (Tip: in case a third party has access to your account, we recommend that you delete this email and safely store your access information in a different location).</p>
-    <p>In case you lose your account details, please go to &quot;<a href="<%= recover_password_path %>">forgotten password?</a>&quot;.
+    <p>In case you lose your account details, please go to &quot;<a href="<%= spree.recover_password_path %>">forgotten password?</a>&quot;.
     </p>
     <p class='toplink'>
       <a href='#top'>up</a>
@@ -77,7 +77,7 @@
     <a name='3'></a>
     <h2>Using my styleaut user account
     </h2>
-    <p>If you have registered with us through one of our partner websites you are able to also login to nelou.com with the same user account details. Please use the &quot;<a href="<%= account_path %>">My account</a>&quot; button in the top right corner to login. Enjoy shopping on our new and bigger platform!
+    <p>If you have registered with us through one of our partner websites you are able to also login to nelou.com with the same user account details. Please use the &quot;<a href="<%= spree.account_path %>">My account</a>&quot; button in the top right corner to login. Enjoy shopping on our new and bigger platform!
     </p>
     <p class='toplink'>
       <a href='#top'>up</a>
@@ -101,7 +101,7 @@
       <h2>Delivering my order and returning my order</h2>
       <p>Depending on whether you ordered a &quot;Ready To Wear&quot; item or a &quot;Custom Made&quot; item the items is send to you either in 3 - 5 days or is especially made for you and might take a little longer. If you order from one designer
         &quot;Custom Made&quot; &amp; &quot;Ready To Wear&quot; items at the same time, those will be shipped out together and may take up to 14 days before they get to you directly from the designer. To find out more about the shipping policy please visit
-        <a href="<%= help_path %>">this page</a>.<br/>
+        <a href="<%= main_app.help_path %>">this page</a>.<br/>
         <br/>
         Shipping cost and duration depends from where and to where a product is shipped to (for more information see the &quot;Shipping Costs Table&quot;) and are highlighted in your bill.</p>
       <p>You can cancel an order within 14 days of placing it via email, letter and through the system, or in case you have received the item already, by sending it back to the designer.</p>
@@ -113,7 +113,7 @@
         <a name='6' id="6"></a>
         <h2>My bill</h2>
         <p>
-          To view &quot;<a href="<%= account_path %>">Your order</a>&quot; please access your user account. For environmental reasons we are not sending bills with the physical order. Please download your bill as pdf in your user account. However, if you need a physical bill, please email
+          To view &quot;<a href="<%= spree.account_path %>">Your order</a>&quot; please access your user account. For environmental reasons we are not sending bills with the physical order. Please download your bill as pdf in your user account. However, if you need a physical bill, please email
           <a href="mailto:info@nelou.com">info@nelou.com</a>
           with your order number. We are happy to send you a copy of the bill via post.
         </p>
@@ -177,7 +177,7 @@
     <div class='content-item topborder'>
       <a name='1'></a>
       <h2>Open a user account</h2>
-      <p>Regardless of where you are on nelou.com you always find your shopping cart on the right corner with important help links below the sign. Please follow the link &quot;<a href="<%= registration_path %>">New at nelou? Register now</a>&quot;, to open a user account.
+      <p>Regardless of where you are on nelou.com you always find your shopping cart on the right corner with important help links below the sign. Please follow the link &quot;<a href="<%= spree.signup_path %>">New at nelou? Register now</a>&quot;, to open a user account.
         <br/>
         <br/>
         In case you have not register with nelou.com already please follow the &quot;NEXT&quot; button below &quot; I want to set up an account now&quot;. (In case you have registered with nelou.com already please login under &quot;I am a registered user
@@ -192,7 +192,7 @@
     <div class='content-item topborder'>
       <a name='2'></a>
       <h2>Using my styleaut user account</h2>
-      <p>If you registered through any of our partner website with us, you can &quot;<a href="<%= login_path %>">Login</a>&quot; to your nelou.com account using those access details. You do not have to reregister with us again.
+      <p>If you registered through any of our partner website with us, you can &quot;<a href="<%= spree.login_path %>">Login</a>&quot; to your nelou.com account using those access details. You do not have to reregister with us again.
       </p>
       <p class='toplink'>
         <a href='#top'>up</a>
@@ -201,7 +201,7 @@
     <div class='content-item topborder'>
       <a name='3'></a>
       <h2>Shopping on nelou.com after registration</h2>
-      <p>Once you have successfully opened your user account you can easily and securely shop on nelou.com 24/7. You only need your account details (username and password) to &quot;<a href="<%= login_path %>">Login</a>&quot;. When you proceed to check out you need to confirm all the details you inserted when you opened your account. Please make sure to check all the details again, in case some of the information changed like the shipping address.</p>
+      <p>Once you have successfully opened your user account you can easily and securely shop on nelou.com 24/7. You only need your account details (username and password) to &quot;<a href="<%= spree.login_path %>">Login</a>&quot;. When you proceed to check out you need to confirm all the details you inserted when you opened your account. Please make sure to check all the details again, in case some of the information changed like the shipping address.</p>
       <p class='toplink'>
         <a href='#top'>up</a>
       </p>
@@ -209,7 +209,7 @@
     <div class='content-item topborder'>
       <a name='4' id="4"></a>
       <h2>Forgotten your user account details?</h2>
-      <p>In case you forgot your account details please go to &quot;<a href="<%= recover_password_path %>">Forgot Password?</a>&quot;. After entering the username and email address you will receive an email with your password. In case you forgot your username please send an email with the subject &quot;Access details - user account&quot; to
+      <p>In case you forgot your account details please go to &quot;<a href="<%= spree.recover_password_path %>">Forgot Password?</a>&quot;. After entering the username and email address you will receive an email with your password. In case you forgot your username please send an email with the subject &quot;Access details - user account&quot; to
         <a href="mailto:info@nelou.com">info@nelou.com</a>. Please add your customer ID t
         o the email (you find the ID on each order/bill which we emailed to you) or information which helps us to identify you like your address or telephone number. After
         receiving your email we will process your request as soon as possible.
@@ -222,7 +222,7 @@
     <div class='content-item topborder'>
       <a name='5' id="5"></a>
       <h2>Is my personal information on nelou.com secure?</h2>
-      <p>Security is one of our main priority on nelou.com. Please see &quot;<a href="<%= privacy_path %>">Privacy Policy</a>&quot; for further information.
+      <p>Security is one of our main priority on nelou.com. Please see &quot;<a href="<%= main_app.privacy_path %>">Privacy Policy</a>&quot; for further information.
       </p>
       <p class='toplink'>
         <a href='#top'>up</a>
@@ -243,7 +243,7 @@
       <h2>Personal information in your user account
       </h2>
       <p>You can change any of the provided information in your user account at any time. Please login to your
-        <a href="<%= account_path %>">user account</a>
+        <a href="<%= spree.account_path %>">user account</a>
         to do so. Please make sure to save your changes by clicking the &quot;edit&quot; button.
       </p>
       <p class='toplink'>
@@ -264,7 +264,7 @@
       <a name='9' id="9"></a>
       <h2>My Orders and Bills
       </h2>
-      <p>Please login to your user account where you can find your order/bill under &quot;<a href="<%= account_path %>">Your Order</a>&quot;.
+      <p>Please login to your user account where you can find your order/bill under &quot;<a href="<%= spree.account_path %>">Your Order</a>&quot;.
       </p>
       <p>Due to environmental issues we are not sending out physical bills with your orders. You can easily download your bills as a PDF from your user account. In case you do need a physical copy of the bill please email
         <a href="mailto:info@nelou.com">info@nelou.com</a>
@@ -319,7 +319,7 @@
     <div class='content-item topborder'>
       <a name='1'></a>
       <h2>My Wish List</h2>
-      <p>Your &quot;<a href="<%= default_wishlist_path %>">Wish List</a>&quot; is a tool which helps you remember products which you like. You do not even need to be registered! Those products remain saved in the wish list for one year. It basically helps you remember
+      <p>Your &quot;<a href="<%= spree.default_wishlist_path %>">Wish List</a>&quot; is a tool which helps you remember products which you like. You do not even need to be registered! Those products remain saved in the wish list for one year. It basically helps you remember
 what you like and you can come back to it any time. You can add products from the wish list to your shopping cart and then proceed to check out. Please note, in order to be able to use the shopping, so called &quot;Cookies&quot; in your browser need
 to be active.
       </p>
@@ -330,7 +330,7 @@ to be active.
     <div class='content-item topborder'>
       <a name='2'></a>
       <h2>My Shopping Cart</h2>
-      <p>Your &quot;<a href="<%= cart_path %>">Shopping Cart</a>&quot; works similar to your Wish List - however products placed in the Shopping Cart will be deleted after a few days. However, the main difference is, you can go straight to Check Out from the
+      <p>Your &quot;<a href="<%= spree.cart_path %>">Shopping Cart</a>&quot; works similar to your Wish List - however products placed in the Shopping Cart will be deleted after a few days. However, the main difference is, you can go straight to Check Out from the
 Shopping Cart and place an order. You can place the order while you are on the website or come back at a later point in time and complete the order. An order placed in the Shopping Cart is not binding. You can easily remove a product or change the
 quantity. Once you decided that what is in your Shopping Cart is what you would like to buy, you proceed to Checkout.
       </p>
@@ -387,7 +387,7 @@ quantity. Once you decided that what is in your Shopping Cart is what you would 
       <a name='8' id="7"></a>
       <h2>Receiving my Bill</h2>
       <p>Due to environmental reasons we decided not to print of bills and add them to your package. You can
-        <a href="<%= account_path %>">download your bill as PDF in your user account</a>. However, if you require a hard copy please send an email to
+        <a href="<%= spree.account_path %>">download your bill as PDF in your user account</a>. However, if you require a hard copy please send an email to
         <a href="mailto:info@nelou.com">info@nelou.com</a>
         with your billing number. We are happy to send a hard copy to you via postal mail.</p>
       <p class='toplink'>

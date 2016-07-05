@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, :at => '/'
 
   scope module: :nelou do
+    match '/404', to: 'errors#not_found', via: :all
+
     get '/designer/:id', to: 'designer_labels#show', as: :nelou_designer_label
 
     get '/designer_registration', to: 'designers#new', as: :new_designer
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
     get '/imprint', to: 'pages#imprint', as: :imprint
     get '/privacy', to: 'pages#privacy', as: :privacy
     get '/terms-of-use', to: 'pages#terms_of_use', as: :terms_of_use
+
+    post '/newsletter/unsubscribe', to: 'subscriptions#unsubscribe', as: :unsubscribe
 
     namespace :admin do
       resources :designers, only: [ :index, :new, :create ], as: :nelou_designers
@@ -55,4 +59,6 @@ Spree::Core::Engine.add_routes do
   get '/limit', to: 'taxons#limited', as: :limited_products
   get '/sale', to: 'taxons#on_sale', as: :sale_products
   get '/eco', to: 'taxons#eco', as: :eco_products
+
+  get '/wished_products', to: 'wished_products#create'
 end

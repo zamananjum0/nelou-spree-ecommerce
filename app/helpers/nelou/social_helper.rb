@@ -16,4 +16,14 @@ module Nelou::SocialHelper
     }
     "https://twitter.com/home?#{params.to_query}"
   end
+
+  def pinterest_share_path(product)
+    params = {
+      url: spree.product_url(product),
+      media: asset_url(product.images.first.attachment.url(:original)),
+      description: strip_tags(product.description)
+    }
+
+    "https://de.pinterest.com/pin/create/button/?#{params.to_query}"
+  end
 end

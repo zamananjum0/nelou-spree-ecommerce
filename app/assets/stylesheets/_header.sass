@@ -1,5 +1,8 @@
 .main-header
     +row
+    a
+        &:hover
+            text-decoration: none
 
 .main-header-left
     +span-columns(4)
@@ -87,19 +90,24 @@
         margin-left: 1rem
 
 .main-header-menu-list
-    position: absolute
-    display: none
-    border: 1px solid #333
-    list-style: none
-    top: 5px
-    padding: 5px
+    background: $colour-white
+    border: 1px solid $colour-grey
     box-sizing: border-box
-    background: white
+    display: none
+    list-style: none
+    padding: 5px 0
+    position: absolute
+    top: 5px
     width: 150px
+    // Make sure that submenu is topmost header element
+    z-index: 11
 
 .main-header-menu-item-link
     +nelou-link
     color: $colour-base
+    display: block
+    line-height: 1.2
+    padding: 0.5em 1em
     &:hover
         color: $colour-accent
         text-decoration: none

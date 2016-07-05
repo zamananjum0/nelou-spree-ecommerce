@@ -5,10 +5,13 @@
         <div class="product-info-line-label"><%= Spree.t(:variants) %></div>
         <div class="product-info-line-contents">
           <ul class="product-variant-list">
+            <% variant_selected = 0 %>
             <% @product.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
+              <% variant_selected = 2 if variant_selected == 1 %>
+              <% variant_selected = 1 if variant_selected == 0 && variant.can_supply? %>
               <li class="product-variant">
                 <%= label_tag "variant_id_#{ variant.id }" do %>
-                  <%= radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_in(current_currency).money, class: 'product-variant-button', disabled: !variant.can_supply?  %>
+                  <%= radio_button_tag "variant_id", variant.id, variant_selected == 1, 'data-price' => variant.price_in(current_currency).money, class: 'product-variant-button', disabled: !variant.can_supply?  %>
                   <span class="product-variant-description">
                     <%= variant_options variant %>
                   </span>
@@ -65,6 +68,7 @@
               <link itemprop="availability" href="https://schema.org/InStock"/>
             <% elsif @product.variants.empty? %>
               <br/>
+              <link itemprop="availability" href="https://schema.org/SoldOut"/>
               <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
             <% end %>
             <span class="product-info-price-hint">(<%= t('products.show.price_hint') %>)</span>
@@ -89,3 +93,5 @@
     <% end %>
   </div>
 <% end %>
+
+<%= render partial: 'wishlist_form' %>

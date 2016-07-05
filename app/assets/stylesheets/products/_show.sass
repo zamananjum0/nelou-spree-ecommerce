@@ -2,7 +2,7 @@
     +row
     +fill-parent
     box-sizing: border-box
-    border: 1px solid $colour-grey
+    border: 1px solid $colour-border
 
 .product-left, .product-right
     +span-columns(4 of 8)
@@ -11,6 +11,7 @@
 
 .product-title
     +text-headline
+    margin-top: 0
 
 .product-description-text
     +text-normal
@@ -19,9 +20,10 @@
     margin: 20px 0
 
 .product-main-image
-    width: 300px
+    cursor: zoom-in
     height: 448px
     overflow: hidden
+    width: 300px
 
     img
         width: 300px
@@ -30,15 +32,25 @@
 
 .product-thumbnails
     .list-inline
-        +row
+        font-size: 0
         list-style-type: none
-        margin: 10px 0
+        margin: 0 0 10px
         padding: 0
+        width: 300px
         li
-            +span-columns(1 of 5)
+            +borderbox
             display: inline-block
             margin-right: 10px
             min-height: 75px
+            list-style-type: none
+            margin: 11px 12px 0 0
+            position: relative
+            &:nth-child(5n+5)
+                margin-right: 0
+            &.selected
+                box-shadow: 0 0 0 3px rgba($colour-grey, 0.5)
+            a
+                display: inline-block
             img
                 display: block
                 width: 50px
@@ -51,11 +63,11 @@
 .product-info-line
     +fill-parent
     +row
-    border-top: 1px dotted $colour-light-blue
+    border-top: 1px dotted $colour-border
     padding: 5px 0
 
     &:last-child
-        border-bottom: 1px dotted $colour-light-blue
+        border-bottom: 1px dotted $colour-border
 
 .product-social-buttons
     .g-plusone
@@ -81,10 +93,15 @@
 
 .product-share-link
     +text-caption
+    display: inline-block
     padding-right: 5px
     text-decoration: none
+    vertical-align: top
     &:hover
         text-decoration: none
+
+// .pinterest-link-wrapper
+    margin-bottom: -6px
 
 .product-social-button
     +span-columns(1 of 4)
@@ -132,3 +149,8 @@
     background: transparent
     &:hover
         text-decoration: underline
+
+.product-info-circle
+    +nelou-link
+    &:hover
+        text-decoration: none

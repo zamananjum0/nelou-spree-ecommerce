@@ -3,6 +3,10 @@ module Nelou
     module LimitedItems
       extend ActiveSupport::Concern
 
+      included do
+        before_save :set_sold_out
+      end
+
       def limited?
         variants.where(limited: true).any?
       end
@@ -25,6 +29,13 @@ module Nelou
 
       def in_stock?
         !not_in_stock?
+      end
+
+      private
+
+      def set_sold_out
+        self.sold_out = not_in_stock?
+        true
       end
     end
   end

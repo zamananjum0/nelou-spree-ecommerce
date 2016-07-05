@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415082559) do
+ActiveRecord::Schema.define(version: 20160608102244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -576,9 +576,11 @@ ActiveRecord::Schema.define(version: 20160415082559) do
     t.boolean  "eco",                              default: false,           null: false
     t.string   "photo_credits",        limit: 255
     t.string   "production_type",      limit: 20,  default: "ready_to_wear", null: false
+    t.boolean  "sold_out",                         default: false,           null: false
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on", using: :btree
+  add_index "spree_products", ["deleted_at", "available_on", "sold_out"], name: "index_spree_products_on_available_on_and_sold_out", using: :btree
   add_index "spree_products", ["deleted_at"], name: "index_spree_products_on_deleted_at", using: :btree
   add_index "spree_products", ["designer_label_id"], name: "index_spree_products_on_designer_label_id", using: :btree
   add_index "spree_products", ["eco"], name: "index_spree_products_on_eco", using: :btree
@@ -586,6 +588,7 @@ ActiveRecord::Schema.define(version: 20160415082559) do
   add_index "spree_products", ["production_type"], name: "index_spree_products_on_production_type", using: :btree
   add_index "spree_products", ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id", using: :btree
   add_index "spree_products", ["slug"], name: "index_spree_products_on_slug", unique: true, using: :btree
+  add_index "spree_products", ["sold_out"], name: "index_spree_products_on_sold_out", using: :btree
   add_index "spree_products", ["tax_category_id"], name: "index_spree_products_on_tax_category_id", using: :btree
 
   create_table "spree_products_promotion_rules", id: false, force: :cascade do |t|
@@ -1202,6 +1205,7 @@ ActiveRecord::Schema.define(version: 20160415082559) do
   end
 
   add_index "spree_variants", ["deleted_at"], name: "index_spree_variants_on_deleted_at", using: :btree
+  add_index "spree_variants", ["is_master", "deleted_at"], name: "index_spree_variants_on_is_master_and_deleted_at", using: :btree
   add_index "spree_variants", ["is_master"], name: "index_spree_variants_on_is_master", using: :btree
   add_index "spree_variants", ["limited", "limited_items", "limited_items_sold"], name: "index_spree_variants_on_limited_and_limited_items", using: :btree
   add_index "spree_variants", ["position"], name: "index_spree_variants_on_position", using: :btree

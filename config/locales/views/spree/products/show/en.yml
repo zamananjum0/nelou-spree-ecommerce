@@ -4,8 +4,8 @@ en:
       designer: Designer
       item_number: Item number
       made_in: Made in
-      price_hint: incl. tax & plus shipping costs
-      production_type: Delivery Time
+      price_hint: incl. VAT plus shipping
+      production_type: Making
       share_on_facebook: Share on Facebook
       share_on_twitter: Share on Twitter
       share: Share

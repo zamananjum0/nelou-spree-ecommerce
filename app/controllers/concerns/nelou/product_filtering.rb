@@ -27,7 +27,7 @@ module Nelou
 
     def apply_filter_scope(products)
       if filter_params.present? && filter_params.any?
-        products.option_any(filter_params)
+        products.where(id: Spree::Product.option_all(filter_params).select(:id))
       else
         products
       end

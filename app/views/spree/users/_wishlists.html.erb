@@ -1,5 +1,5 @@
 <div class="account-wishlists account-block">
-  <h2 class="account-block-title"><%= t(:my_wishlists) %></h2>
+  <h2 class="account-block-title"><%= Spree.t(:my_wishlists) %></h2>
   <ul class="account-wishlist-list">
     <% @user.wishlists.each do |wl| %>
       <% if !wl.is_private? || @user == spree_current_user %>

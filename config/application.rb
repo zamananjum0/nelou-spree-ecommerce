@@ -43,6 +43,9 @@ module Nelou
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # Do not use default app for errors
+    config.exceptions_app = self.routes
+
     config.x.social = config_for :social
   end
 end

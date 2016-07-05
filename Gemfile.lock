@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/DynamoMTL/spree_chimpy.git
-  revision: f8c66869249eb4a7c8cb84dd41763d841302e0b4
-  branch: 3-stable
-  specs:
-    spree_chimpy (2.0.0.alpha)
-      mailchimp-api (~> 2.0.5)
-      spree_core (~> 3.0)
-
-GIT
   remote: git://github.com/RubyMoney/eu_central_bank.git
   revision: 00a9fcb7c8eba95e5779d67b0deac7257e6c693d
   specs:
@@ -48,15 +39,6 @@ GIT
   specs:
     spree_contact_us (2.2.0)
       spree_core (~> 3.0.0)
-
-GIT
-  remote: git://github.com/spree-contrib/spree_email_to_friend.git
-  revision: bada2e955ed63704867a186d3dd0e469ff8b8004
-  branch: 3-0-stable
-  specs:
-    spree_email_to_friend (1.3.0)
-      recaptcha (>= 0.3.1)
-      spree_core (~> 3.0.0.rc2)
 
 GIT
   remote: git://github.com/spree-contrib/spree_i18n.git
@@ -250,6 +232,9 @@ GEM
       mail (~> 2.6.3)
     erubis (2.7.0)
     eventmachine (1.2.0.1)
+    exception_notification (4.1.4)
+      actionmailer (~> 4.0)
+      activesupport (~> 4.0)
     excon (0.49.0)
     execjs (2.6.0)
     exifr (1.2.4)
@@ -459,6 +444,7 @@ GEM
       thor (~> 0.14)
     sexp_processor (4.7.0)
     sixarm_ruby_unaccent (1.1.1)
+    slack-notifier (1.5.1)
     social-buttons (0.3.9)
       rails (>= 3.0.0)
     sort_alphabetical (1.0.2)
@@ -597,6 +583,7 @@ DEPENDENCIES
   date_validator (= 0.9.0)
   email_spec (= 2.0.0)
   eu_central_bank!
+  exception_notification (= 4.1.4)
   factory_girl_rails (= 4.7.0)
   ffaker (= 1.32.1)
   font-awesome-rails (= 4.6.1.0)
@@ -608,6 +595,7 @@ DEPENDENCIES
   iso_country_codes (= 0.7.4)
   jbuilder (= 2.4.1)
   jquery-rails (= 4.1.1)
+  mailchimp-api (= 2.0.6)
   mysql2 (= 0.4.2)
   neat (= 1.7.4)
   paperclip (= 4.2.4)
@@ -616,16 +604,16 @@ DEPENDENCIES
   quiet_assets (= 1.1.0)
   rails (= 4.2.6)
   rails-i18n (= 4.0.8)
+  recaptcha (= 1.3.0)
   rspec-rails (= 3.4.2)
   sass-rails (= 5.0.4)
   sdoc (= 0.4.1)
+  slack-notifier (= 1.5.1)
   social-buttons (= 0.3.9)
   spree (= 3.0.8)
   spree_address_book!
   spree_auth_devise!
-  spree_chimpy!
   spree_contact_us!
-  spree_email_to_friend!
   spree_gateway!
   spree_i18n!
   spree_multi_currency!

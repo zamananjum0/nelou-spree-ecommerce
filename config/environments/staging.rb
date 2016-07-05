@@ -62,7 +62,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
 
   # config.active_job.queue_adapter = :sidekiq
 
@@ -79,7 +79,13 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'email-smtp.eu-west-1.amazonaws.com',
+    port: 587,
+    user_name: 'AKIAIAJT77SY5H4FOHJA',
+    password: 'Ak1jVg7kTpSiGQuQy7NO4/uaxZBLXKBjGUZSrOPXlS4f'
+  }
 
   config.action_mailer.default_url_options = { host: 'ec2-54-93-201-196.eu-central-1.compute.amazonaws.com' }
 

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require zoom.overlay
 //= require spree/frontend
 //= require bxslider
 //= require_tree .

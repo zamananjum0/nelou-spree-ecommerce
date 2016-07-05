@@ -17,13 +17,13 @@
               </span>
               <ul class="main-header-menu-list">
                 <li class="main-header-menu-item">
-                  <%= link_to t('.log_out'), spree_logout_path, class: 'main-header-menu-item-link' %>
-                </li>
-                <li class="main-header-menu-item">
                   <%= link_to t('.my_account'), spree.account_path, class: 'main-header-menu-item-link' %>
                 </li>
                 <li class="main-header-menu-item">
                   <%= link_to t('.wishlist'), spree.wishlist_path(spree_current_user.wishlist), class: 'main-header-menu-item-link' %>
+                </li>
+                <li class="main-header-menu-item">
+                  <%= link_to t('.log_out'), spree_logout_path, class: 'main-header-menu-item-link' %>
                 </li>
               </ul>
             </div>
@@ -55,15 +55,17 @@
         </div>
       </div>
       <div class="main-header-link-column">
-        <div class="main-header-link-icon">
-          <%= fa_icon :money %>
-        </div>
-        <div class="main-header-link-text">
-          <span>
-            <%= t('.currency') %>
-          </span>
-          <%= render partial: 'shared/currency_selector' %>
-        </div>
+        <% if Spree::Config[:allow_currency_change] && Spree::Config[:show_currency_selector] && supported_currencies.size > 1 %>
+          <div class="main-header-link-icon">
+            <%= fa_icon :money %>
+          </div>
+          <div class="main-header-link-text">
+            <span>
+              <%= t('.currency') %>
+            </span>
+            <%= render partial: 'shared/currency_selector' %>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="main-header-search">

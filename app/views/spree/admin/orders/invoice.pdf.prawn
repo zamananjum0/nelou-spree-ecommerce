@@ -39,17 +39,17 @@ grid([1,0], [6,4]).bounding_box do
     billing =  "#{bill_address.firstname} #{bill_address.lastname}"
     billing << "\n#{bill_address.address1}"
     billing << "\n#{bill_address.address2}" unless bill_address.address2.blank?
-    billing << "\n#{bill_address.city}, #{bill_address.state_text} #{bill_address.zipcode}"
+    billing << "\n#{bill_address.zipcode} #{bill_address.city}"
     billing << "\n#{bill_address.country.name}"
-    billing << "\n#{bill_address.phone}"
+    #billing << "\n#{bill_address.phone}"
 
     shipping =  "#{ship_address.firstname} #{ship_address.lastname}"
     shipping << "\n#{ship_address.address1}"
     shipping << "\n#{ship_address.address2}" unless ship_address.address2.blank?
-    shipping << "\n#{ship_address.city}, #{ship_address.state_text} #{ship_address.zipcode}"
+    shipping << "\n#{ship_address.zipcode} #{ship_address.city}"
     shipping << "\n#{ship_address.country.name}"
-    shipping << "\n#{ship_address.phone}"
-    shipping << "\n\n#{Spree.t(:via, scope: :print_invoice)} #{@order.shipments.first.shipping_method.name}"
+    #shipping << "\n#{ship_address.phone}"
+    #shipping << "\n\n#{Spree.t(:via, scope: :print_invoice)} #{@order.shipments.first.shipping_method.name}"
 
     data = [[address_cell_billing, address_cell_shipping], [billing, shipping]]
     table(data, position: :center, column_widths: [270, 270])
@@ -106,10 +106,15 @@ grid([1,0], [6,4]).bounding_box do
 
   # Taxes
   # TODO: This is very, very wrong. But it works for now. Fix as soon as it's clear how!
-  totals << [make_cell(content: Spree.t(:vat_included_in_price)), Spree::Money.new(@order.total * 0.19, currency: @order.currency).to_s]
+  gross_price = @order.total * (1 / (1 + 0.19))
+  net_price = @order.total
+  tax = @order.total - gross_price
+
+  totals << [make_cell(content: Spree.t(:gross)), Spree::Money.new(gross_price, currency: @order.currency).to_s]
+  totals << [make_cell(content: Spree.t(:vat_included_in_price)), Spree::Money.new(tax, currency: @order.currency).to_s]
 
   # Totals
-  totals << [make_cell(content: Spree.t(:order_total)), @order.display_total.to_s]
+  totals << [make_cell(content: Spree.t(:order_total_gross)), @order.display_total.to_s]
 
   # Payments
   total_payments = 0.0
@@ -132,6 +137,9 @@ grid([1,0], [6,4]).bounding_box do
     row(0..6).style align: :right
     column(0).style borders: [], font_style: :bold
   end
+
+  move_down 60
+  text Spree.t(:date_of_performance), align: :right, size: @font_size
 
   move_down 30
   text Spree::PrintInvoice::Config[:return_message], align: :right, size: @font_size

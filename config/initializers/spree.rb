@@ -18,6 +18,7 @@ Spree.config do |config|
   config.address_requires_state = false
   config.show_variant_full_price = true
   config.auto_capture = true
+  config.allow_guest_checkout = false
 end
 
 Spree::Config.show_products_without_price = true # To make automatically exchanged prices work
@@ -49,7 +50,7 @@ Spree::Image.attachment_definitions[:attachment][:styles] = {
 # Add permitted attributes for standard spree classes
 Spree::PermittedAttributes.product_attributes.push :designer_label_id, :eco, :photo_credits, :production_type
 Spree::PermittedAttributes.variant_attributes.push :limited, :limited_items, :limited_items_sold, :original_price
-Spree::PermittedAttributes.user_attributes.push :terms_and_services, :privacy_and_conditions, designer_label_attributes: [:name]
+Spree::PermittedAttributes.user_attributes.push :subscribed, :terms_and_services, :privacy_and_conditions, designer_label_attributes: [:name]
 Spree::PermittedAttributes.address_attributes.push :gender
 
 # Split orders by designer label

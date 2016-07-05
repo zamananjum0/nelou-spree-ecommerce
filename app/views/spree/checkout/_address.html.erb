@@ -1,6 +1,11 @@
 <% @addresses = spree_current_user ? spree_current_user.addresses : [] %>
 
 <div class="checkout-row">
+
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= Spree.t(:address) %></h3>
+  </div>
+
   <% ['billing', 'shipping'].each do |address_type|
   next if address_type == 'billing' && Spree::AddressBook::Config[:disable_bill_address]
   address_name = "#{address_type[0...4]}_address" %>

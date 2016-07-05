@@ -11,4 +11,17 @@ Spree::ProductsController.class_eval do
       @designers = Nelou::DesignerLabel.active.with_name_like(params[:keywords]).distinct
     end
   end
+
+  private
+
+
+  def load_product
+    if try_spree_current_user.try(:has_spree_role?, "admin")
+      @products = Spree::Product.with_deleted
+    else
+      @products = Spree::Product.active_with_sold_out(current_currency)
+    end
+    @product = @products.friendly.find(params[:id])
+  end
+
 end
