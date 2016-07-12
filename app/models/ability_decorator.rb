@@ -6,6 +6,7 @@ class AbilityDecorator
     if user.designer? && user.approved?
       can [:admin, :index], :translations
       can :manage, :sales
+      can [:admin, :index], :dashboard
 
       can [:admin, :index, :new, :create], Spree::Product
       can [:admin, :manage], Spree::Product do |product|

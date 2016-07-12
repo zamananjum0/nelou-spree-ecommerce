@@ -3,35 +3,53 @@ de:
     attributes:
       spree/order:
           invoice_number: Rechnungsnummer
-      spree/address:
-        address1: Straße und Hausnr.
-        address2: Adresse (Fortsetzung)
-        city: Stadt
-        country: Land
-        firstname: Vorname
-        lastname: Nachname
-        phone: Telefonnummer
-        state: Bundesland
-        zipcode: PLZ
-        company: Firma
   devise:
     user_confirmations:
       spree_user:
-        send_instructions: In ein paar Minuten erhalten Sie eine E-Mail mit Anweisungen, um Ihr Konto zu aktivieren.
-        confirmed: Ihr Konto wurde erfolgreich aktiviert.
+        send_instructions: In ein paar Minuten erhältst Du eine E-Mail mit Anweisungen, um Dein Konto zu aktivieren.
+        confirmed: Dein Konto wurde erfolgreich aktiviert.
     passwords:
       spree_user:
-        send_instructions: Sie erhalten in Kürze eine E-Mail mit Anweisungen, um Ihr Passwort zu ändern.
+        send_instructions: Du erhältst in Kürze eine E-Mail mit Anweisungen, um Dein Passwort zu ändern.
     mailer:
       welcome:
-        subject: Willkommen auf nelou!
+        subject: Willkommen bei nelou – Best Of Independent Style
+      reset_password_instructions:
+        subject: Passwort zurücksetzen
+    user_sessions:
+      signed_in: Anmeldung erfolgreich.
+      signed_out: Abmeldung erfolgreich.
   spree:
+    spree/address:
+      address1: Straße und Hausnr.
+      address2: Adresse (Fortsetzung)
+      city: Stadt
+      country: Land
+      firstname: Vorname
+      lastname: Nachname
+      phone: Telefon
+      state: Bundesland
+      zipcode: PLZ
+      company: Firma
+    spree/order/bill_address:
+      address1: Straße und Hausnr.
+      city: Stadt
+      country: Land
+      firstname: Vorname
+      lastname: Nachname
+      phone: Telefonnummer
+      state: Bundesland
+      zipcode: PLZ
+      company: Firma
     address_book:
-      edit_shipping_address: 'Adresse bearbeiten'
+      edit_shipping_address: Adresse bearbeiten
     contact_us:
       contacts:
         new:
-          description: Hier können Sie unseren Kundenservice kontaktieren. Wir werden Ihre Anfrage so schnell wie möglich bearbeiten.
+          description: Hier kannst Du unseren Kundenservice kontaktieren. Wir werden Deine Anfrage so schnell wie möglich bearbeiten.
+    logged_in_as: Angemeldet als
+    logged_in_succesfully: Anmeldung erfolgreich.
+    logged_out: Du hast Dich ausgeloggt.
     dear:
       f: Liebe
       m: Lieber
@@ -48,7 +66,7 @@ de:
     accepted: Bewerbung akzeptiert
     add_to_wishlist: Auf die Wunschliste
     amount_off_sale_price: Betrag vom Verkaufspreis
-    are_you_sure_you_want_to_cancel_the_sale: Sind Sie sich sicher, dass sie das Sonderangebot entfernen wollen?
+    are_you_sure_you_want_to_cancel_the_sale: Bist Du sich sicher, dass Du das Sonderangebot entfernen möchtest?
     back_designer: Zurück zum Designer
     back_to_user: Zurück zum Benutzer
     calculator_type: Sonderangebotstyp
@@ -99,7 +117,7 @@ de:
     start_at: Beginnt am
     unique_item: Einzelstück
     variant_is_limited: Variante ist Limitiert
-    vat: Umsatzsteuernummer
+    vat: USt-IdNr.
     shipping: Versand
     designers_with: "Designer mit '%{name}'"
     vat_included_in_price: 'MwSt 19%'
@@ -144,3 +162,7 @@ de:
     delivery_info: 'Deine Stücke werden zusammengefasst vom jeweiligen Designer in separaten Paketen versendet. Die Lieferzeiten der einzelnen Sendungen können daher voneinander abweichen.'
     please_enter_reasonable_quantity: Die gewünsche Anzahl von %{quantity} ist nicht verfügbar.
     remove_from_cart: Aus Warenkorb entfernen
+    sold_out: Ausverkauft
+    not_shipped: Unversandt
+    please_select: Bitte wählen
+    required_fields: '* Pflichtfelder'

@@ -12,16 +12,18 @@ $main-nav-height: 32px
             text-decoration: none
 
 .main-nav-links
-    position: relative
-    list-style-type: none
+    font-size: 0
     height: 100%
+    list-style-type: none
     margin: 0
     padding: 0
+    position: relative
 
 .main-nav-item
+    +transit(all, 150ms, ease-out)
     display: inline-block
     height: 100%
-    padding: 0 20px
+    padding: 0
     text-align: center
     &:hover
         background: $colour-grey
@@ -65,8 +67,11 @@ $main-nav-height: 32px
             color: $colour-white
 
 .main-nav-link
+    +transit(all, 150ms, ease-in)
     +text-menu
-    line-height: $main-nav-height
+    display: inline-block
+    line-height: $main-nav-height - 2px
+    padding: 0 20px
     text-decoration: none
     text-transform: uppercase
 

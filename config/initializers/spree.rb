@@ -19,6 +19,7 @@ Spree.config do |config|
   config.show_variant_full_price = true
   config.auto_capture = true
   config.allow_guest_checkout = false
+  config.default_country_id = Spree::Country.find_by(iso: 'DE').id rescue nil
 end
 
 Spree::Config.show_products_without_price = true # To make automatically exchanged prices work
@@ -55,6 +56,8 @@ Spree::PermittedAttributes.address_attributes.push :gender
 
 # Split orders by designer label
 Rails.application.config.spree.stock_splitters << Nelou::Stock::Splitter::DesignerLabel
+
+ADDRESS_FIELDS = ["firstname", "lastname", "company", "address1", "address2", "zipcode", "city", "state", "country", "phone"]
 
 Rails.application.config.to_prepare do
   require_dependency 'spree/authentication_helpers'

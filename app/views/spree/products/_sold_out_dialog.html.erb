@@ -8,13 +8,14 @@
         <div class="dialog-content">
           <h1 class="dialog-header"><%= t('products.show.dialog.too_bad') %></h1>
           <div class="dialog-buttons">
-            <button role="button" class="button dialog-button dialog-close"><%= t('products.show.dialog.show_anyway') %></button>
-            <%= link_to main_app.nelou_designer_label_path(product.designer_label), class: 'dialog-link dialog-show-more-link' do %>
 
+            <%= link_to main_app.nelou_designer_label_path(product.designer_label), class: 'dialog-link dialog-show-more-link' do %>
               <%= t('products.show.dialog.show_more') %>
               <%= fa_icon :'arrow-right' %>
-
             <% end %>
+
+            <button role="button" class="button dialog-button dialog-close"><%= t('products.show.dialog.show_anyway') %></button>
+
           </div>
         </div>
       </div>

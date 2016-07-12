@@ -25,14 +25,23 @@
             display: none
         .form-control
             +text-normal
-            +span-columns(6 of 8)
+            +span-columns(4 of 8)
             box-sizing: border-box
             height: 24px
         select
+            // +text-normal
+            // +span-columns(4 of 8)
+            // box-sizing: border-box
+            // height: 24px
             +text-normal
-            +span-columns(5 of 8)
-            box-sizing: border-box
+            background-color: $colour-light-grey
+            border: 1px solid $colour-border
+            display: inline-block
             height: 24px
+            line-height: 1.5
+            outline: none
+            padding: 2px 5px
+            vertical-align: middle
 
     input[type="submit"]
         +nelou-button

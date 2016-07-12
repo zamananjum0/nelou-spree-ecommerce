@@ -19,6 +19,11 @@
                 <li class="main-header-menu-item">
                   <%= link_to t('.my_account'), spree.account_path, class: 'main-header-menu-item-link' %>
                 </li>
+                <% if spree_current_user.designer? %>
+                  <li class="main-header-menu-item">
+                    <%= link_to t('.my_label'), main_app.admin_dashboard_path, class: 'main-header-menu-item-link' %>
+                  </li>
+                <% end %>
                 <li class="main-header-menu-item">
                   <%= link_to t('.wishlist'), spree.wishlist_path(spree_current_user.wishlist), class: 'main-header-menu-item-link' %>
                 </li>

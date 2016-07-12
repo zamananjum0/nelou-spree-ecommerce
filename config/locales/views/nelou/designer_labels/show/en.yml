@@ -6,3 +6,7 @@ en:
         about: About
         collection: Collection
         sale: Sale
+      index:
+        show_by: "Show by:"
+        a_to_z: "A to Z"
+        country: "Location"

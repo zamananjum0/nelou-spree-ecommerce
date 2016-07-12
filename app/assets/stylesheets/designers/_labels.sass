@@ -1,9 +1,15 @@
+////////////////////////////////
+$_gutter:           20px
+$_grid:             180px
+$_cols:             4
+////////////////////////////////
+
 .designer-label-top
     +row
     +fill-parent
     height: 30px
     position: relative
-    margin-bottom: 5px
+    margin-bottom: 19px
     clear: both
 
 .designer-label-button
@@ -34,31 +40,53 @@
     +row
     +fill-parent
     clear: both
-    margin-bottom: 20px
+    font-size: 0
+    margin-bottom: 19px
+    position: relative
 
 .designer-label-profile-left
-    display: block
-    width: 360px
-    height: 330px
-    float: left
+    +borderbox
+    display: inline-block
+    width: $_grid * 2 + $_gutter
+    height: auto
+    // float: left
+    position: relative
     img
+        // +absCenter
         border: 0
-        margin: 0
+        margin: auto
         padding: 0
-        width: 360px
-        height: 330px
+        vertical-align: top
+        width: 100%
+        height: auto
 
 .designer-label-profile-right
-    float: right
+    // float: right
     overflow: hidden
-    height: 330px
-    width: calc(100% - 360px)
-    padding: 30px 20px 0 20px
+    // height: 330px
+    // width: calc(100% - 360px)
+    +borderbox
+    display: inline-block
+    height: 100%
+    vertical-align: top
+    width: ($_grid * 2) + ($_gutter * 2)
+    padding: 20px 20px 20px 20px
+    h1
+        font-weight: $font-weight-normal
+        margin-top: 0
+    p
+        margin-top: 0
 
 .designer-label-profile-name
     +text-caption($colour-white)
     font-size: 24px
-    margin-bottom: 30px
+    // margin-top: 20px
+    margin-bottom: 20px
+
+    font-weight: bold
+    font-size: 36px
+    letter-spacing: -0.045em
+    line-height: 1.05em
 
 .designer-label-profile-text
     +text-normal($colour-white)

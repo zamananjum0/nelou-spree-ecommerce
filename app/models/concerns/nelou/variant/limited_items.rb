@@ -28,7 +28,7 @@ module Nelou
       end
 
       def set_limited
-        limited = true
+        self.limited = true
       end
 
       private

@@ -19,6 +19,8 @@ module Nelou
     scope :featured, -> { where(featured: true) }
     scope :with_name_like, -> (name) { where("#{Nelou::DesignerLabel.quoted_table_name}.name ILIKE ? OR nelou_designer_label_translations.name ILIKE ?", "%#{name}%", "%#{name}%") }
 
+    self.whitelisted_ransackable_attributes = %w[id name accepted active featured]
+
     has_attached_file :logo,
                       styles: { profile: 'x50>', profile_2x: 'x100>' },
                       default_url: '/images/missing/logos/:style.png'
@@ -49,6 +51,20 @@ module Nelou
 
     def has_products_on_sale?
       products.active.on_sale.any?
+    end
+
+    def first_letter
+      if name.present?
+        name.strip[0].upcase
+      else
+        '?'
+      end
+    end
+
+    private
+
+    def self.ransackable_associations(auth_object = nil)
+      reflect_on_all_associations.map { |a| a.name.to_s }
     end
   end
 end

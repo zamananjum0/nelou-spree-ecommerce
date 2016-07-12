@@ -18,45 +18,88 @@
 .designer-application-header
     +fill-parent
     +text-normal($colour-white, $font-weight-bold)
-    background: darken($colour-light-grey, 15%)
-    border-bottom: 3px solid darken($colour-light-grey, 25%)
+    background: $colour-grey
+    // border-bottom: 3px solid darken($colour-light-grey, 25%)
+    margin-bottom: 20px
     padding: 5px 10px
-    &:after
-        content: ':'
 
 .designer-form-row
     +row
     +fill-parent
-    margin: 5px 0
+    font-size: 0
+    margin: 0
     padding: 5px 0
-    border-bottom: 1px dotted $colour-border
+    // border-bottom: 1px dotted $colour-border
     &:last-child
         border-bottom: none
+    select
+        +text-normal
+        background-color: $colour-light-grey
+        border: 1px solid $colour-border
+        display: inline-block
+        height: 24px
+        line-height: 1.5
+        outline: none
+        padding: 2px 5px
+        vertical-align: middle
+        &:focus
+            border-color: $colour-base
 
 .designer-form-label
-    +text-normal($colour-base, $font-weight-bold)
-    +span-columns(2 of 8)
+    // height: 24px
+    // line-height: 24px
     +ellipsis
+    +span-columns(2 of 8)
+    +text-normal($colour-base, $font-weight-bold)
+    display: inline-block
+    float: none
     text-align: right
-    height: 24px
-    line-height: 24px
-    &:after
-        content: ':'
+    vertical-align: middle
+    // &:after
+    //     content: ':'
+    &[required="required"]
+        &:after
+            content: ' *'
+
+
+.designer-form-label:last-child
+    margin-right: 2.34986945%
 
 .designer-form-field
+    +span-columns(4 of 8)
     +text-normal
-    +span-columns(6 of 8)
+    border: 1px solid $colour-border
     box-sizing: border-box
+    display: inline-block
+    float: none
     height: 24px
     padding: 2px 5px
-    border: 1px solid $colour-light-grey
+    vertical-align: middle
     &:focus
         outline: 0
         border: 1px solid $colour-base
 
+.field_with_errors
+    label
+        color: $colour-error
+        font-weight: $font-weight-bold
+
 .designer-form-checkbox-label
     +shift-in-context(2 of 8)
     +span-columns(6 of 8)
+    +text-normal
+    display: inline-block
+    float: none
+
+.designer-form-info
+    // +shift-in-context(2 of 8)
+    +text-small
+    // color: $colour-grey
+    display: block
+    float: none
+    // font-style: italic
+    margin-bottom: -5px
+    text-align: right
 
 .designer-form-button
     +nelou-button($colour-base)

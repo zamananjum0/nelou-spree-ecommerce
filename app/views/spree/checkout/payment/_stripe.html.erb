@@ -6,6 +6,20 @@
 </script>
 
 <script>
+  Spree.stripeErrors = {
+    invalid_number: '<%= t('stripe.error.invalid_number') %>',
+    invalid_expiry_month: '<%= t('stripe.error.invalid_expiry_month') %>',
+    invalid_expiry_year: '<%= t('stripe.error.invalid_expiry_year') %>',
+    invalid_cvc: '<%= t('stripe.error.invalid_cvc') %>',
+    incorrect_number: '<%= t('stripe.error.incorrect_number') %>',
+    expired_card: '<%= t('stripe.error.expired_card') %>',
+    incorrect_cvc: '<%= t('stripe.error.incorrect_cvc') %>',
+    incorrect_zip: '<%= t('stripe.error.incorrect_zip') %>',
+    card_declined: '<%= t('stripe.error.card_declined') %>',
+    missing: '<%= t('stripe.error.missing') %>',
+    processing_error: '<%= t('stripe.error.processing_error') %>'
+  };
+
   Spree.stripePaymentMethod = $('#payment_method_' + <%= payment_method.id %>);
 
   var mapCC, stripeResponseHandler;
@@ -29,7 +43,8 @@
   stripeResponseHandler = function(status, response) {
     var paymentMethodId, token;
     if (response.error) {
-      $('#stripeError').html(response.error.message);
+      var errMessage = Spree.stripeErrors[response.error.code] || '<%= t('stripe.error.unknown_error') %>';
+      $('#stripeError').html(errMessage);
       var param_map = {
         number:    '#card_number',
         exp_month: '#card_expiry',
@@ -60,7 +75,7 @@
       var expiration, params;
       $('#stripeError').hide();
       Spree.stripePaymentMethod.find('#card_number, #card_expiry, #card_code').removeClass('error');
-      if (Spree.stripePaymentMethod.is(':visible')) {
+      if (Spree.stripePaymentMethod.find('.payment-method-fields').is(':visible')) {
         expiration = $('.cardExpiry:visible').payment('cardExpiryVal');
         params = $.extend({
           number: $('.cardNumber:visible').val(),

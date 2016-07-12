@@ -1,0 +1,7 @@
+<!--
+replace_contents '[data-hook="admin_product_form_multiple_variants"] .info.marginb .text_list'
+-->
+
+<% @product.variants.first(5).each do |variant| %>
+  <li><%= link_to variant_options(variant), edit_admin_product_variant_path(@product, variant) %></li>
+<% end %>

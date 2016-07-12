@@ -53,7 +53,6 @@
     color: $colour-accent
     text-decoration: none
     line-height: 1
-    margin-top: 4px
     display: block
 
 .main-header-search
@@ -83,10 +82,14 @@
 
 .main-header-menu-caption
     +text-normal($colour-accent, $font-weight-bold)
+    line-height: 1
+    padding-bottom: 5px
     &:after
         +text-normal($colour-base, $font-weight-bold)
+        line-height: 1
         font-family: 'FontAwesome'
-        content: "\f0d7"            /* Caret down */
+        // Caret down
+        content: "\f0d7"
         margin-left: 1rem
 
 .main-header-menu-list
@@ -115,10 +118,10 @@
 .main-header
     .locale-select-control, .currency-select-control
         background: transparent
-        border: none
+        border: 0
         box-sizing: border-box
         color: $colour-accent
         display: inline-block
-        margin: 0 0 0 -8px
+        margin: -3px 0 0 -8px
         min-width: 72px
         padding: 0

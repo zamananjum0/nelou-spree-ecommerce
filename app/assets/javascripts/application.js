@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require zoom.overlay
+//= require filter.designers
 //= require spree/frontend
 //= require bxslider
 //= require_tree .

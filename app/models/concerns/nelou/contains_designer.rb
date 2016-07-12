@@ -3,7 +3,7 @@ module Nelou
     extend ActiveSupport::Concern
 
     included do
-      scope :containing_designer, -> (designer_label) { includes(:designer_labels).where('nelou_designer_labels.id': designer_label.id) }
+      scope :containing_designer, -> (designer_label) { includes(:designer_labels).where("#{Nelou::DesignerLabel.quoted_table_name}.id": designer_label.id) }
     end
 
     def contains_products_from_designer(designer_label)

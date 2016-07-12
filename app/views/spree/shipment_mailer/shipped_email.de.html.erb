@@ -1,32 +1,36 @@
 <% user = @shipment.order.user %>
-<table>
+<table align="center" style="color: #222; width: 100%;">
   <tr>
-    <td>
-      <p class="lede">
-        <%= Spree.t("dear.#{@shipment.address.gender}") %> <%= @shipment.address.name %>,
+    <td style="padding: 0px 20px 0px 20px;">
+      <p>
+        <strong>
+        <%= Spree.t("dear.#{@shipment.address.gender}") %> <%= @shipment.address.name %></strong>,
       </p>
       <p>
-        Ihre nelou-Bestellung <%= @shipment.number %> wurde versendet.
+        Deine nelou-Bestellung wurde versendet.
       </p>
       <p>
         Folgende Produkte sind in dieser Sendung enthalten:
       </p>
-      <table>
+      <table align="center" style="background-color: #f2f2f2; color: #222; margin: 20px 0 20px 0; width: 100%;">
         <% @shipment.manifest.each do |item| %>
         <tr>
-          <td><%= item.variant.product.name %></td>
-          <td><%= item.variant.options_text %></td>
+          <td style="font-weight: bold; padding: 10px 10px 10px 10px;"><%= item.variant.product.name %></td>
+          <td style="font-weight: normal; padding: 10px 10px 10px 10px;"><%= item.variant.options_text %></td>
         </tr>
         <% end %>
       </table>
       <% if @shipment.tracking.present? || @shipment.tracking_url.present? %>
-        <h3>SENDUNGSVERFOLGUNG</h3>
+        <hr style="background: #d9d9d9; border: 0; height: 1px; margin: 20px 0 0 0;" />
+        <h3 style="font-size: 18px; line-height: 2em;">Sendungsverfolgung</h3>
+        <hr style="background: #d9d9d9; border: 0; height: 1px; margin: 0 0 20px 0;" />
         <% if @shipment.tracking_url %>
-        <p>
-          Um den Status Ihrer Sendung zu verfolgen, klicken Sie einfach auf diesen Link: <a href="<%= @shipment.tracking_url %>"><%= @shipment.tracking_url %></a>
+        <p>Um den Status Deiner Sendung zu verfolgen, klick einfach auf diesen Link: </p>
+        <p style="color: #fff; font-size: 13px; font-weight: bold; line-height: 1.5em; background: #ca0044; border-radius: 5px; border: none; box-sizing: border-box; cursor: pointer; display: inline-block; margin: 10px 0 20px 0; min-height: 28px; padding: 5px 15px; text-decoration: none; text-transform: uppercase;">
+          <%= link_to 'Sendung verfolgen', @shipment.tracking_url, style: 'color: #fff !important;' %>
         </p>
         <p>
-          Bitte beachten Sie, dass es etwas dauern kann, bis Ihre Nummer auf der Website des Versandpartners registriert ist.
+          Bitte beachte, dass es etwas dauern kann, bis Deine Nummer auf der Website des Versandpartners registriert ist.
         </p>
         <% end %>
         <% if @shipment.tracking %>
@@ -34,19 +38,19 @@
         <% end %>
       <% end %>
       <p>
-        Vielen Dank für Ihren Einkauf auf nelou.com - wir hoffen, Ihre Bestellung bereitet Ihnen viel Freude!
+        Vielen Dank für Deinen Einkauf auf nelou.com - wir hoffen, Deine Bestellung bereitet Dir viel Freude!
       </p>
       <p>
-        Sie haben Fragen zu Ihrer Bestellung? BItte kontaktieren Sie uns unter: <a href="mailto:customercare@nelou.com"></a>
+        Du hast Fragen zu Deiner Bestellung? <br/>Bitte kontaktiere uns unter: <a href="mailto:customercare@nelou.com" style="color: #222 !important; text-decoration: underline;">customercare@nelou.com</a>
       </p>
       <p>
-        Für Fragen Ihre Bestellung betreffend verweisen Sie bitte auf Ihre Bestellnummer <%= @shipment.order.number %>.
+        Bitte halte dazu Deine Bestellnummer bereit. <br/>
+        Deine Bestellnummer lautet: <strong><%= @shipment.order.number %></strong>
       </p>
       <p>
-        Mit vielen Grüßen,<br/>
-        Ihr nelou-Team
+        Liebe Grüße,<br/>
+        Dein nelou-Team
       </p>
     </td>
-    <td class="expander"></td>
   </tr>
 </table>

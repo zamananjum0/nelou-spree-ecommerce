@@ -15,9 +15,10 @@ module Nelou
       if @user.save
         Nelou::ApplicationMailer.notification_mail(@user).deliver_later
 
-        flash.now[:success] = t('designers.flash.designer_application_successful')
+        flash[:success] = t('designers.flash.designer_application_successful')
         redirect_to spree.root_path
       else
+        flash[:error] = t('designers.flash.designer_application_error')
         render :new
       end
     end

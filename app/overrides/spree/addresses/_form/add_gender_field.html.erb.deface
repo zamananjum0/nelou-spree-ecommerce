@@ -6,6 +6,6 @@ insert_before 'erb[silent]:contains("ADDRESS_FIELDS.each")'
   <%= address_form.label :gender, Spree.t(:gender) %>
   <span class="required">*</span><br/>
   <span id="<%= " #{address_id}gender-selection" %>">
-    <%= address_form.select :gender, options_for_select([[Spree.t(:mister), 'm'], [Spree.t(:miss), 'f']], address.gender), {}, {:class => 'required form-control'} %>
+    <%= address_form.select :gender, options_for_select([[Spree.t(:mister), 'm'], [Spree.t(:miss), 'f']], address.gender), { include_blank: true }, {:class => 'required form-control'} %>
   </span>
 </p>

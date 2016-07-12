@@ -16,5 +16,8 @@ module Nelou
     def imprint
     end
 
+    def designers
+    end
+
   end
 end

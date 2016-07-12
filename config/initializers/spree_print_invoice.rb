@@ -1,4 +1,4 @@
-Spree::PrintInvoice::Config.set(logo_path: Rails.root.join('app', 'assets', 'images', 'logo.png'))
+Spree::PrintInvoice::Config.set(logo_path: Rails.root.join('app', 'assets', 'images', 'logo_invoice.png'))
 Spree::PrintInvoice::Config.set(font_face: 'Helvetica') # TODO: Figure out to add Futura font family
 Spree::PrintInvoice::Config.set(print_buttons: 'invoice')
 

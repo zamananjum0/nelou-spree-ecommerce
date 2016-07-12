@@ -4,16 +4,17 @@
 Sehr geehrter Kunde,
 <% end %>
 
-Vielen Dank für Ihre Bestellung auf nelou.com. Ihre Order wurde an den/die Designer weitergeleitet und wird dort bearbeitet.
+Vielen Dank für Deine Bestellung auf nelou.com. Deine Order wurde an den/die Designer weitergeleitet und wird dort bearbeitet.
 
-In dieser E-Mail finden Sie alle Details zu Ihrer Bestellung.
+In dieser E-Mail findest Du alle Details zu Deiner Bestellung.
 
-Sollten Sie Fragen zu Ihrer Bestellung haben oder weitere Hilfe benötigen, bitte kontaktieren Sie uns unter: customercare@nelou.com
+Solltest Du Fragen zu Deiner Bestellung haben oder weitere Hilfe benötigen, kontaktiere uns bitte: customercare@nelou.com
 
-Für Rückfragen die Bestellung betreffend halten Sie bitte die unten aufgeführte Bestellnummer bereit.
+Für Rückfragen die Bestellung betreffend halte bitte die Bestellnummer bereit.
+Bestellnummer: <%= @order.number %>
 
 Liebe Grüße,
-Ihr nelou-Team
+Dein nelou-Team
 
 BESTELLINFORMATIONEN:
 
@@ -28,15 +29,17 @@ Bestellwert: <%= @order.display_item_total %>
 Versandkosten: <%= name %> <%= Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency) %>
 <% end %>
 
-<% if @order.all_adjustments.eligible.tax.exists? %>
-  <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
-MwSt.: <%= label %> <%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %>
+<% if false %>
+  <% if @order.all_adjustments.eligible.tax.exists? %>
+    <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
+  MwSt.: <%= label %> <%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %>
+    <% end %>
   <% end %>
-<% end %>
 
-<% @order.adjustments.eligible.each do |adjustment| %>
-  <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
-<%= adjustment.label %> <%= adjustment.display_amount %>
+  <% @order.adjustments.eligible.each do |adjustment| %>
+    <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+  <%= adjustment.label %> <%= adjustment.display_amount %>
+  <% end %>
 <% end %>
 ===========================================================
 Gesamt: <%= @order.display_total %>

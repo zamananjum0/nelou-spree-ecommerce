@@ -6,7 +6,7 @@ Dear customer,
 
 Thank you for ordering from nelou.com. Your order has been passed on to the designer/s and will be processed there.
 
-This e-mail contains all details relating to your order.
+This email contains all details relating to your order.
 
 If you have any questions regarding your order or require further assistance, please contact us under: customercare@nelou.com
 
@@ -27,15 +27,17 @@ Subtotal: <%= @order.display_item_total %>
 Shipment: <%= name %> <%= Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency) %>
 <% end %>
 
-<% if @order.all_adjustments.eligible.tax.exists? %>
-  <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
-Text <%= label %> <%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %>
+<% if false %>
+  <% if @order.all_adjustments.eligible.tax.exists? %>
+    <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
+  MwSt.: <%= label %> <%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %>
+    <% end %>
   <% end %>
-<% end %>
 
-<% @order.adjustments.eligible.each do |adjustment| %>
-  <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
-<%= adjustment.label %> <%= adjustment.display_amount %>
+  <% @order.adjustments.eligible.each do |adjustment| %>
+    <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+  <%= adjustment.label %> <%= adjustment.display_amount %>
+  <% end %>
 <% end %>
 ===========================================================
 Total: <%= @order.display_total %>

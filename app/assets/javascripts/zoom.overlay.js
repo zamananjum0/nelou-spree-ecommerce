@@ -42,15 +42,17 @@
       var $img = $('<img />', { src: src, class: 'zoomImg' }).on('load', function () {
         $overlay.removeClass('loading');
 
-        var ratio = $(window).height() / $img.height();
-
         $(document).on('mousemove', function(e) {
           if ( isTouch == false ) {
             $('body').addClass('flyout-open');
             $('html, body').scrollTop(function() {
-              var t_percent = e.clientY / $(window).height(),
-                t = t_percent * $(window).height();
-              return t;
+              var _winheight = $(window).height(),
+                _imgheight = $img.height(),
+                _diff = _imgheight - _winheight,
+                _t_percent = e.clientY / _winheight,
+                _t = _t_percent * _diff;
+
+              return _t;
             });
           }
         });

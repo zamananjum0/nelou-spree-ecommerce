@@ -8,6 +8,7 @@ Spree::Product.class_eval do
   scope :recent, -> { where('available_on >= ?', 50.days.ago) }
   scope :limited, -> { includes(:variants).where("#{Spree::Variant.quoted_table_name}.limited": true) }
   scope :on_sale, -> { joins(variants: [prices: :sale_prices]).merge(Nelou::SalePrice.active) }
+  scope :sold_out, -> { where(sold_out: true) }
   scope :eco, -> { where(eco: true) }
 
   scope :descend_by_available_on, -> { order(available_on: :desc) }
@@ -19,8 +20,8 @@ Spree::Product.class_eval do
 
   # attr_accessor :sale_price, :original_price
 
-  self.whitelisted_ransackable_associations = %w[stores variants_including_master master variants designer_label]
-  self.whitelisted_ransackable_attributes = %w[description name slug designer_label_id]
+  self.whitelisted_ransackable_associations = %w[stores variants_including_master master variants designer_label translations]
+  self.whitelisted_ransackable_attributes = %w[description name slug designer_label_id sold_out]
 
   def recent_from_same_designer
     Spree::Product.active.by_designer(designer_label).order(available_on: :desc)
@@ -45,7 +46,7 @@ Spree::Product.class_eval do
   end
 
   def available?
-    !(available_on.nil? || available_on.future? || sold_out) && !deleted? && designer_label.present? && designer_label.active && designer_label.accepted
+    !(available_on.nil? || available_on.future?) && !deleted? && designer_label.present? && designer_label.active && designer_label.accepted
   end
 
   # Can't use add_search_scope for this as it needs a default argument

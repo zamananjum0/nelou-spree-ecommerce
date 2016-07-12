@@ -30,7 +30,15 @@ module Nelou
       def collection
         return @collection if @collection
 
-        @collection = Nelou::DesignerLabel.page(params[:page])
+        @search = Nelou::DesignerLabel.ransack(params[:q])
+
+        @collection = @search.result(distinct: true)
+          .joins(:user)
+          .includes(:user)
+          .select("#{Nelou::DesignerLabel.quoted_table_name}.*, #{Spree.user_class.quoted_table_name}.*")
+          .order("#{Spree.user_class.quoted_table_name}.last_sign_in_at DESC NULLS LAST")
+          .uniq
+          .page(params[:page])
       end
     end
   end

@@ -13,7 +13,9 @@ en:
         send_instructions: You will soon receive password instructions via e-mail.
     mailer:
       welcome:
-        subject: Welcome to nelou!
+        subject: Welcome to nelou – Best Of Independent Style
+      reset_password_instructions:
+        subject: Reset password
   spree:
     address_book:
       edit_shipping_address: 'Edit address'
@@ -131,3 +133,7 @@ en:
     delivery_info: Your pieces will be bundled by designer and may thus vary in time of delivery.
     please_enter_reasonable_quantity: The requested amount of %{quantity} is not available.
     remove_from_cart: Remove from cart
+    sold_out: Sold out
+    unshipped: Not shipped
+    please_select: Please select
+    required_fields: '* Required fields'

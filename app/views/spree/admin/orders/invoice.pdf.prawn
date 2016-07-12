@@ -123,7 +123,7 @@ grid([1,0], [6,4]).bounding_box do
     totals << [
       make_cell(
         content: Spree.t(:payment_via,
-          gateway: (payment.payment_method.name || Spree.t(:unprocessed, scope: :print_invoice)),
+          gateway: (Spree.t(payment.payment_method.name.parameterize, scope: :payment_methods, default: Spree.t(:unprocessed, scope: :print_invoice))),
           number: payment.number,
           date: I18n.l(payment.updated_at.to_date, format: :long),
           scope: :print_invoice)

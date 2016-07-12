@@ -1,0 +1,17 @@
+<!--
+insert_before '[data-hook="admin_orders_index_search_buttons"]'
+original '9c6fa47062ff375693153a9f0b97e1a5e975c8f1'
+-->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <div class="field checkbox">
+        <label>
+          <%= f.check_box :unshipped_eq, {:checked => params[:q][:unshipped_eq] == '1'}, '1', '0' %>
+          <%= Spree.t(:unshipped) %>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

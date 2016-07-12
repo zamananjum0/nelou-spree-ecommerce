@@ -3,7 +3,11 @@ Spree::Order.class_eval do
 
   include Nelou::ContainsDesigner
 
+  scope :with_open_shipments, -> { joins(:shipments).where("#{Spree::Shipment.quoted_table_name}.state != ?", 'shipped').uniq }
+
   state_machine.after_transition to: :complete, do: :increment_limited_items_counter
+
+  self.whitelisted_ransackable_associations = %w[shipments user promotions bill_address ship_address line_items products designer_labels]
 
   alias_method :orig_deliver_order_confirmation_email, :deliver_order_confirmation_email
 
@@ -16,7 +20,7 @@ Spree::Order.class_eval do
   # Do not generate random order numbers
   def generate_number(options = {})
     options[:length]  ||= Spree::NumberGenerator::NUMBER_LENGTH
-    self.number = "R%s%04i" % [Time.now.strftime("%y%m%d"), Random.rand(0..9_999)]
+    self.number = "%s%04i" % [Time.now.strftime("%y%m%d"), Random.rand(0..9_999)]
   end
 
   def price_from_line_item(line_item)
@@ -25,6 +29,13 @@ Spree::Order.class_eval do
 
   def available_payment_methods
     @available_payment_methods ||= (Spree::PaymentMethod.available(:front_end) + Spree::PaymentMethod.available(:both)).uniq.sort { |a,b| a.name <=> b.name }
+  end
+
+  def self.with_open_shipments_from_designer(designer_label)
+    joins(shipments: :designer_labels)
+      .merge(Spree::Shipment.containing_designer(designer_label))
+      .where("#{Spree::Shipment.quoted_table_name}.state != ?", 'shipped')
+      .uniq
   end
 
   private

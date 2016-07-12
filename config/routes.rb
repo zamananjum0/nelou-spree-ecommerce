@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   scope module: :nelou do
     match '/404', to: 'errors#not_found', via: :all
 
+    get '/designers', to: 'designer_labels#index', as: :nelou_designer_labels
     get '/designer/:id', to: 'designer_labels#show', as: :nelou_designer_label
 
     get '/designer_registration', to: 'designers#new', as: :new_designer
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
     post '/newsletter/unsubscribe', to: 'subscriptions#unsubscribe', as: :unsubscribe
 
     namespace :admin do
+      get '/dashboard', to: 'dashboard#index', as: :dashboard
+
       resources :designers, only: [ :index, :new, :create ], as: :nelou_designers
       resources :designer_labels, except: [ :show ], as: :nelou_designer_labels
 

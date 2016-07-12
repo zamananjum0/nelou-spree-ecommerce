@@ -36,11 +36,19 @@
             margin: 20px 20px 0
 
         .button
-            +nelou-button($colour-base)
+            background: transparent none
+            border: 0
+            color: $colour-links
+            float: right
+            margin-top: 5px
+            outline: none
+            text-decoration: underline
+            -moz-appearance:    none
+            -webkit-appearance: none
+            appearance:         none
 
         .dialog-show-more-link
-            margin-top: 5px
-            float: right
+            +nelou-button($colour-base)
 
     .dialog-header
         +borderbox

@@ -7,4 +7,40 @@ module Nelou::DesignerLabelsHelper
       end
     end
   end
+
+  def get_country_name(code)
+    if code.present?
+      country = ISO3166::Country.find_country_by_alpha2 code
+      if country.present?
+        country.translation(I18n.locale)
+      else
+        nil
+      end
+    end
+  end
+
+  def partition_hash(hash, columns = 4)
+    all_pairs = []
+    member_count = 0
+    hash.each { |k,v| all_pairs << [k, v]; member_count += v.count }
+
+    threshold = member_count / columns;
+
+    columns = []
+    i = 0
+
+    all_pairs.each do |pair|
+      if columns[i].present? && columns[i].map(&:second).map(&:count).sum + pair.second.count >= (threshold * 1.18)
+        i = i + 1
+      end
+
+      if columns[i].nil?
+        columns[i] = []
+      end
+
+      columns[i] << pair
+    end
+
+    columns
+  end
 end

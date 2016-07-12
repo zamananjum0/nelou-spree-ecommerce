@@ -1,3 +1,9 @@
+////////////////////////////////
+$_gutter:           20px
+$_grid:             180px
+$_cols:             4
+////////////////////////////////
+
 .taxon-title
     +row
     +text-headline($colour-accent)
@@ -10,33 +16,47 @@
     +fill-parent
 
 .product-list-row
-    +row
-    +fill-parent
-    margin-bottom: 10px
+    // +fill-parent+
+    // +row
+    // margin-bottom: 10px
+    font-size: 0
+    width: 100%
 
 .product-list-item
-    min-height: 340px
-    +span-columns(2 of 8)
+    // +span-columns(2 of 8)
+    // min-height: 340px
+    display: inline-block
+    margin-bottom: $_gutter
+    margin-right: $_gutter
+    vertical-align: top
+    width: $_grid
+    // Calc: The modern way to do it...
+    width: calc(#{100%/$_cols} - #{ ($_gutter / $_cols) * ($_cols - 1) })
+    &:last-child
+        margin-right: 0
 
 .product-list-image-link
+    // height: 225px
+    // width: 150px
+    border: 0
     display: block
-    width: 150px
-    height: 225px
     margin: auto
     padding: 0
-    border: 0
 
 .product-list-image
-    width: 150px
+    // max-height: 225px
+    // width: 150px
+    border: 0
+    display: block
     height: auto
-    max-height: 225px
     margin: 0
     padding: 0
-    border: 0
+    width: 100%
 
 .product-list-text
-    width: 150px
+    width: 100%
     margin: auto
+    padding: $_gutter 0 0
 
 .product-list-item-link
     +text-normal
@@ -51,6 +71,8 @@
 
 .product-list-item-price
     font-weight: $font-weight-bold
+    &:hover
+        text-decoration: none
 
 .product-list-item-tag
     +text-tiny($colour-white, $font-weight-bold)

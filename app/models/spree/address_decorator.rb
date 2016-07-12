@@ -2,6 +2,10 @@ Spree::Address.class_eval do
 
   validates :gender, inclusion: { in: %w(m f) }, presence: true
 
+  def self.build_default
+    new
+  end
+
   def require_phone?
     false
   end
