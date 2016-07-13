@@ -122,7 +122,7 @@
         </div>
 
         <div class="product-description-text" itemprop="description" data-hook="description">
-          <%= product_description(@product) rescue Spree.t(:product_has_no_description) %>
+          <%= scrub(@product.description) rescue Spree.t(:product_has_no_description) %>
         </div>
 
       </div>

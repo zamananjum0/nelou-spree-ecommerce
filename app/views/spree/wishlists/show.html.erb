@@ -45,11 +45,11 @@
           <td class="wishlist-table-column wishlist-table-column-description">
             <span class="wishlist-product-name"><%= link_to product.name, product, class: 'wishlist-product-link' %></span>
             <span class="wishlist-product-social">
-              <%= link_to facebook_sharer_path(spree.product_url(product)), title: t('products.show.share_on_facebook'), target: :blank, class: 'product-info-line-link product-share-link' do %>
+              <%= link_to facebook_sharer_path(spree.product_path(product)), title: t('products.show.share_on_facebook'), target: :blank, class: 'product-info-line-link product-share-link' do %>
                 <%= fa_icon :'facebook-square' %>
               <% end %>
 
-              <%= link_to twitter_sharer_path(product.name, spree.product_url(product)), title: t('products.show.share_on_twitter'), target: :blank, class: 'product-info-line-link product-share-link' do %>
+              <%= link_to twitter_sharer_path(product.name, spree.product_path(product)), title: t('products.show.share_on_twitter'), target: :blank, class: 'product-info-line-link product-share-link' do %>
                 <%= fa_icon :'twitter-square' %>
               <% end %>
 
@@ -102,7 +102,7 @@
     <% end %>
     <%= link_to Spree.t(:continue_shopping), recent_products_path, class: 'wishlist-footer-button' %>
     <% if respond_to?(:email_to_friend_url) %>
-      <%= link_to email_to_friend_url('wishlist', @wishlist), class: 'wishlist-footer-button', title: Spree.t('email_to_friend.send_to_friend') do %>
+      <%= link_to email_to_friend_path('wishlist', @wishlist), class: 'wishlist-footer-button', title: Spree.t('email_to_friend.send_to_friend') do %>
         <%= fa_icon :envelope %>
       <% end %>
     <% end %>

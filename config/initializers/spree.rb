@@ -11,7 +11,7 @@
 # config.setting_name = 'new value'
 Spree.config do |config|
   config.logo = 'logo.svg'
-  config.admin_interface_logo = 'logo.svg'
+  config.admin_interface_logo = 'logo-white.svg'
   config.currency = 'EUR'
   config.layout = 'layouts/application'
   config.track_inventory_levels = false

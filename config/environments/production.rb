@@ -92,11 +92,20 @@ Rails.application.configure do
   }
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
-  :slack => {
-    :webhook_url => 'https://hooks.slack.com/services/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',
-    :channel => '#nelou-exceptions',
-    :additional_parameters => {
-      :mrkdwn => true
+    slack: {
+      webhook_url: 'https://hooks.slack.com/services/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',
+      channel: '#nelou-exceptions',
+      additional_parameters: {
+        mrkdwn: true
+      }
+    },
+    email: {
+      email_prefix: '[NELOU EXCEPTION] ',
+      sender_address: %{"nelou exception notifier" <exceptions@nelou.com>},
+      exception_recipients: %w{denny.carl@sternzeit.de tom.streller@sternzeit.de}
     }
   }
+
+  config.x.changelog_repo = Rails.root.join('..', '..', 'repo')
+  config.x.changelog_branch = 'production'
 end

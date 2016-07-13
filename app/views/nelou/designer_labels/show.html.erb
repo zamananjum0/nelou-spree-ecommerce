@@ -28,7 +28,7 @@
             <%= @designer_label.name %>
           </div>
           <div class="designer-label-profile-text">
-            <%= truncate @designer_label.short_description, length: 500, separator: ' ', omission: '' do %>
+            <%= truncate scrub(@designer_label.short_description), length: 500, separator: ' ', omission: '' do %>
               <%= raw('&hellip;') %>
             <% end %>
           </div>
@@ -58,9 +58,7 @@
         <div class="designer-label-profile-right">
           <div class="designer-label-profile-text">
             <% if @designer_label.profile.present? %>
-              <% @designer_label.profile.lines.each do |line| %>
-                <%= line.html_safe %>
-              <% end %>
+              <%= longtext_to_html(@designer_label.profile) %>
             <% end %>
           </div>
         </div>

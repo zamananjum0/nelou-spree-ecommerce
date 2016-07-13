@@ -41,4 +41,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.x.changelog_repo = Rails.root.join('.git')
+  config.x.changelog_branch = 'master'
 end

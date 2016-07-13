@@ -17,17 +17,17 @@
       <div class="col-sm-6">
         <p>
           <%= link_to spree.admin_products_path(q: { sold_out_eq: false }) do %>
-            <%= Spree.t(:available) %> (<%= products.available.count %>)
+            <%= t('.available_products') %> (<%= products.available.count %>)
           <% end %>
         </p>
         <p>
           <%= link_to spree.admin_products_path(q: { sold_out_eq: true }) do %>
-            <%= Spree.t(:sold_out) %> (<%= products.sold_out.count %>)
+            <%= t('.sold_out_products') %> (<%= products.sold_out.count %>)
           <% end %>
         </p>
         <p>
           <%= link_to spree.admin_products_path do %>
-            <%= Spree.t(:all) %> (<%= products.count %>)
+            <%= t('.all') %> (<%= products.count %>)
           <% end %>
         </p>
       </div>
@@ -35,17 +35,28 @@
         <h4><%= t('.newest_products') %></h4>
         <table class="table table-bordered">
           <thead>
+            <tr>
+              <th class="table-cell-date"><%= Spree.t(:date) %></th>
+              <th><%= Spree.t(:product) %></th>
+              <th class="table-cell-button single-button"></th>
+            </tr>
           </thead>
           <tbody>
-            <% products.limit(5).each do |product| %>
+            <% if products.any? %>
+              <% products.limit(5).each do |product| %>
+                <tr>
+                  <td class="table-cell-date"><%= l(product.created_at.to_date) %></td>
+                  <td><%= product.name %></td>
+                  <td class="table-cell-button single-button">
+                    <%= link_to spree.edit_admin_product_path(product), class: 'btn btn-primary btn-sm icon-link with-tip action-edit no-text' do %>
+                      <span class="icon icon-edit"></span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% else %>
               <tr>
-                <td><%= l(product.created_at.to_date) %></td>
-                <td><%= product.name %></td>
-                <td>
-                  <%= link_to spree.edit_admin_product_path(product), class: 'btn btn-primary btn-sm icon-link with-tip action-edit no-text' do %>
-                    <span class="icon icon-edit"></span>
-                  <% end %>
-                </td>
+                <td colspan="3" class="table-cell-info"><%= t('.no_products_added_yet') %></td>
               </tr>
             <% end %>
           </tbody>

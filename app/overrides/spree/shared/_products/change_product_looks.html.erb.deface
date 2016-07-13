@@ -6,7 +6,7 @@
   <% products.each_slice(4) do |slice| %>
     <div class="product-list-row">
       <% slice.each do |product| %>
-        <% url = spree.product_url(product, taxon_id: @taxon.try(:id)) %>
+        <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
         <div class="product-list-item" id="product_<%= product.id %>" data-hook="products_list_item" itemscope itemtype="https://schema.org/Product">
           <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : [I18n.locale, current_currency, product]) do %>
             <%= link_to small_image(product, itemprop: 'image', class: 'product-list-image'), url, itemprop: 'url', class: 'product-list-image-link' %>
@@ -33,7 +33,7 @@
                   </span>
                 <% end %>
               </div>
-              <%= link_to product.designer_label.name, main_app.nelou_designer_label_url(product.designer_label), class: 'product-list-item-link product-list-item-designer' %>
+              <%= link_to product.designer_label.name, main_app.nelou_designer_label_path(product.designer_label), class: 'product-list-item-link product-list-item-designer' %>
               <%= link_to truncate(product.name, length: 50), url, class: 'product-list-item-link product-list-item-name', itemprop: "name", title: product.name %>
               <% if product.on_sale? %>
                 <span class="product-list-item-link product-list-item-price product-list-item-price-sale" itemprop="offers" itemscope itemtype="https://schema.org/Offer">

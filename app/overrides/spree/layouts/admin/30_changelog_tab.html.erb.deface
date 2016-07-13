@@ -1,0 +1,8 @@
+<!--
+insert_bottom "[data-hook='admin_tabs']"
+-->
+<% if can? :index, :changelog %>
+  <ul class="nav nav-sidebar">
+    <%= tab Spree.t(:changelog), url: main_app.admin_changelog_path, icon: :list %>
+  </ul>
+<% end %>

@@ -91,4 +91,7 @@ Rails.application.configure do
 
   # For Spree
   config.deface.enabled = false
+
+  config.x.changelog_repo = Rails.root.join('..', '..', 'repo')
+  config.x.changelog_branch = 'staging'
 end

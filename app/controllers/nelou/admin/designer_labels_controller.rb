@@ -29,6 +29,7 @@ module Nelou
 
       def collection
         return @collection if @collection
+        params[:q] ||= {}
 
         @search = Nelou::DesignerLabel.ransack(params[:q])
 

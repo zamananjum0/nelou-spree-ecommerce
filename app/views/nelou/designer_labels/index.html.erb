@@ -5,80 +5,98 @@
   <h1><%= t('.nelou_designers') %></h1>
 
   <div class="directory-options sort-options" role="navigation">
-    <span class="sort-options-label"><%= t('.show_by') %> </span>
     <ul id="filters" class="sort-option-list">
       <li class="sort-option active" data-sortby="name"><%= t('.a_to_z') %></li>
       <li class="sort-option" data-sortby="country"><%= t('.country') %></li>
     </ul>
   </div>
 
-  <div id="directory" class="directory-sections filterable" role="main">
+  <%= cache([I18n.locale, @designer_labels.maximum(:updated_at)]) do %>
 
-    <div class="directory-collection js-show-by-param name">
-      <ul class="alphabetical-list">
-        <% all_letters = @designer_labels.map(&:first_letter).uniq %>
-        <% ('A'..'Z').each do |l| %>
-          <li>
-            <% if all_letters.include?(l) %>
-              <a href="#<%= l %>"><%= l %></a>
-            <% else %>
-              <span><%= l %></span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    <!-- data-masonry='{ "itemSelector": ".directory-section" }' -->
-    <% partition_hash(@designer_labels.group_by(&:first_letter).sort.to_h).each do |column| %>
-      <ul class="directory-list directory-entries-list designer-labels">
-        <% column.each do |pair| %>
-          <% letter = pair.first %>
-          <% designer_labels = pair.second %>
-          <% next if designer_labels.nil? %>
-          <li class="directory-section">
-            <h3 class="directory-section-header letter" data-sort-option="<%= letter %>"><a name="<%= letter %>"><%= letter %></a></h3>
-            <ul class="section-entries">
-              <% designer_labels.sort.each do |designer_label| %>
-                <li class="section-entry" data-name="<%= designer_label.name %>" data-country="<%= designer_country_name(designer_label) %>">
-                  <%= link_to nelou_designer_label_path(designer_label) do %>
-                    <%= designer_label.name %>
-                  <% end %>
-                  <span class="location"><%= designer_label.city %>, <%= designer_country_name(designer_label) %></span>
+    <div id="directory" class="directory-sections filterable" role="main">
+
+      <div class="directory-collection js-show-by-param name">
+
+        <ul class="alphabetical-list">
+          <% all_letters = @designer_labels.map(&:first_letter).uniq %>
+          <% ('A'..'Z').each do |l| %>
+            <li>
+              <% if all_letters.include?(l) %>
+                <a href="#<%= l %>"><%= l %></a>
+              <% else %>
+                <span><%= l %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="directory-lists">
+          <% partition_hash(@designer_labels.group_by(&:first_letter)).each do |column| %>
+            <ul class="directory-list directory-entries-list designer-labels">
+              <% column.each do |pair| %>
+                <% letter = pair.first %>
+                <% designer_labels = pair.second %>
+                <% next if designer_labels.nil? %>
+                <li class="directory-section">
+                  <h3 class="directory-section-header letter" data-sort-option="<%= letter %>"><a name="<%= letter %>"><%= letter %></a></h3>
+                  <ul class="section-entries">
+                    <% designer_labels.sort_by(&:name).each do |designer_label| %>
+                      <li class="section-entry" data-name="<%= designer_label.name %>" data-country="<%= designer_country_name(designer_label) %>">
+                        <%= link_to nelou_designer_label_path(designer_label) do %>
+                          <%= designer_label.name %>
+                        <% end %>
+                        <span class="location"><%= [designer_label.city, designer_country_name(designer_label)].reject(&:nil?).reject(&:blank?).join(', ') %></span>
+                      </li>
+                    <% end %>
+                  </ul>
                 </li>
               <% end %>
             </ul>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+          <% end %>
+        </div>
+
+      </div>
+
+      <div class="directory-collection js-show-by-param country" style="display: none;">
+
+        <ul class="alphabetical-list">
+          <% all_countries = @designer_labels.map(&:country).uniq.sort %>
+          <% all_countries.each do |c| %>
+            <li>
+              <a href="#<%= c %>"><%= c %></a>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="directory-lists">
+          <% partition_hash(@designer_labels.reorder(:country).group_by(&:country), 4, true).each do |column| %>
+            <ul class="directory-list directory-entries-list designer-labels">
+              <% column.each do |pair| %>
+                <% country_code = pair.first %>
+                <% country = get_country_name(country_code) %>
+                <% designer_labels = pair.second %>
+                <% next if designer_labels.nil? %>
+                <li class="directory-section">
+                  <h3 class="directory-section-header country" data-sort-option="<%= country_code %>"><a name="<%= country_code %>"><%= country %></a></h3>
+                  <ul class="section-entries">
+                    <% designer_labels.sort_by(&:name).each do |designer_label| %>
+                      <li class="section-entry" data-name="<%= designer_label.name %>" data-country="<%= country %>">
+                        <%= link_to nelou_designer_label_path(designer_label) do %>
+                          <%= designer_label.name %>
+                        <% end %>
+                        <span class="location"><%= [designer_label.city, designer_country_name(designer_label)].reject(&:nil?).reject(&:blank?).join(', ') %></span>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
 
     </div>
 
-    <div class="directory-collection js-show-by-param country" style="display: none;">
-    <% partition_hash(@designer_labels.reorder(:country).group_by(&:country).sort.to_h).each do |column| %>
-      <ul class="directory-list directory-entries-list designer-labels">
-        <% column.each do |pair| %>
-          <% country_code = pair.first %>
-          <% country = get_country_name(country_code) %>
-          <% designer_labels = pair.second %>
-          <% next if designer_labels.nil? %>
-          <li class="directory-section">
-            <h3 class="directory-section-header country" data-sort-option="<%= country_code %>"><a name="<%= country_code %>"><%= country %></a></h3>
-            <ul class="section-entries">
-              <% designer_labels.sort.each do |designer_label| %>
-                <li class="section-entry" data-name="<%= designer_label.name %>" data-country="<%= country %>">
-                  <%= link_to nelou_designer_label_path(designer_label) do %>
-                    <%= designer_label.name %>
-                  <% end %>
-                  <span class="location"><%= designer_country_name(designer_label) %>, <%= designer_label.city %></span>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-
-  </div>
+  <% end %>
 
 </div>

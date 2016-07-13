@@ -1,0 +1,8 @@
+<!--
+insert_top "[data-hook='admin_tabs']"
+-->
+<% if can? :index, :dashboard %>
+  <ul class="nav nav-sidebar">
+    <%= tab Spree.t(:dashboard), url: main_app.admin_dashboard_path, icon: :home %>
+  </ul>
+<% end %>

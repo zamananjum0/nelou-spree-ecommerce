@@ -7,11 +7,14 @@ replace_contents '[data-hook="admin_products_index_rows"]'
 <td class="sku"><%= product.sku rescue '' %></td>
 <td><%= product.taxons.map(&:name).uniq.sort.join(', ') %></td>
 <td class="text-center"><%= product.display_price.to_html rescue '' %></td>
-<td class="text-center"><%= product.variants.count %></td>
-<td class="text-center"><%= product.variants.reject { |v| not v.can_supply? }.count %></td>
+<td class="text-center">
+  <% if product.variants.count > 0 %>
+    <%= product.variants.count %> / <%= product.variants.reject { |v| not v.can_supply? }.count %>
+  <% end %>
+</td>
 <td class="text-center"><%= bootstrap_boolean(!product.sold_out) %></td>
 <td class="actions actions-3 text-right" data-hook="admin_products_index_row_actions">
-  <%= link_to product, no_text: true, target: :blank, class: 'btn btn-success btn-sm icon-link with-tip no-text' do %>
+  <%= link_to product, no_text: true, target: :blank, class: 'btn btn-success btn-sm icon-link with-tip no-text', 'data-original-title': Spree.t(:preview) do %>
     <span class="icon icon-clone"></span>
   <% end if can?(:show, product) %>
   <%= link_to_edit product, no_text: true, class: 'edit' if can?(:edit, product) && !product.deleted? %>

@@ -7,6 +7,7 @@ en:
         collection: Collection
         sale: Sale
       index:
+        nelou_designers: Designers
         show_by: "Show by:"
-        a_to_z: "A to Z"
-        country: "Location"
+        a_to_z: A to Z
+        country: Countries

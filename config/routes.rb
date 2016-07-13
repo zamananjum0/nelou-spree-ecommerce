@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       get '/dashboard', to: 'dashboard#index', as: :dashboard
+      get '/changelog', to: 'changelog#index', as: :changelog
 
       resources :designers, only: [ :index, :new, :create ], as: :nelou_designers
       resources :designer_labels, except: [ :show ], as: :nelou_designer_labels
