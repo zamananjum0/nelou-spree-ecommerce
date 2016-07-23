@@ -1,3 +1,8 @@
+////////////////////////////////////////
+$image_height:  448px
+$image_width:   300px
+////////////////////////////////////////
+
 .product
     +row
     +fill-parent
@@ -18,17 +23,40 @@
 
 .product-info
     margin: 20px 0
+    ul
+        float: left
+        list-style: none
+        margin: 0
+        padding: 0
+        li
+            display: inline-block
+            a
+                display: inline-block
+            &::after
+                color: $colour-grey
+                content: '/'
+                display: inline-block
+                text-align: right
+                width: 0.7em
+            &:last-child
+                &::after
+                    display: none
+
 
 .product-main-image
+    // width: $image_width
+    +aspectRatio(150%)
     cursor: zoom-in
-    height: 448px
+    font-size: 0
+    // height: $image_height
+    max-width: $image_width
     overflow: hidden
-    width: 300px
+    position: relative
 
     img
-        width: 300px
+        +absCenter
         height: auto
-        max-height: 448px
+        width: 100%
 
 .product-thumbnails
     .list-inline
@@ -36,7 +64,7 @@
         list-style-type: none
         margin: 0 0 10px
         padding: 0
-        width: 300px
+        width: $image_width
         li
             +borderbox
             display: inline-block
@@ -45,15 +73,20 @@
             list-style-type: none
             margin: 11px 12px 0 0
             position: relative
+            vertical-align: top
+            width: 50px
             &:nth-child(5n+5)
                 margin-right: 0
             &.selected
                 box-shadow: 0 0 0 3px rgba($colour-grey, 0.5)
             a
+                +aspectRatio(150%)
                 display: inline-block
+                position: relative
             img
+                +absCenter
                 display: block
-                width: 50px
+                width: 100%
                 height: auto
                 margin: auto
 

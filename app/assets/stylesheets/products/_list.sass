@@ -16,19 +16,16 @@ $_cols:             4
     +fill-parent
 
 .product-list-row
-    // +fill-parent+
-    // +row
-    // margin-bottom: 10px
     font-size: 0
     width: 100%
 
 .product-list-item
-    // +span-columns(2 of 8)
-    // min-height: 340px
     display: inline-block
     margin-bottom: $_gutter
     margin-right: $_gutter
+    position: relative
     vertical-align: top
+    // Fallback for obsolete browsers
     width: $_grid
     // Calc: The modern way to do it...
     width: calc(#{100%/$_cols} - #{ ($_gutter / $_cols) * ($_cols - 1) })
@@ -36,22 +33,23 @@ $_cols:             4
         margin-right: 0
 
 .product-list-image-link
-    // height: 225px
-    // width: 150px
+    +aspectRatio(150%)
     border: 0
     display: block
     margin: auto
     padding: 0
+    position: relative
 
 .product-list-image
-    // max-height: 225px
-    // width: 150px
+    +absCenter
     border: 0
     display: block
     height: auto
-    margin: 0
     padding: 0
     width: 100%
+
+.product-list-item-category
+    +text-normal($colour-grey)
 
 .product-list-text
     width: 100%
@@ -74,13 +72,16 @@ $_cols:             4
     &:hover
         text-decoration: none
 
+.product-list-item-tags
+    margin-bottom: 4px
+
 .product-list-item-tag
     +text-tiny($colour-white, $font-weight-bold)
-    margin: 0 5px 0 0
-    display: inline-block
-    text-transform: uppercase
     border-radius: 3px
+    display: inline-block
+    margin: 0 5px 0px 0
     padding: 2px 4px
+    text-transform: uppercase
 
 .product-list-item-tag-sale, .product-list-item-tag-limit
     background: $colour-red

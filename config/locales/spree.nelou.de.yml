@@ -2,12 +2,32 @@ de:
   activerecord:
     attributes:
       spree/order:
-          invoice_number: Rechnungsnummer
+        invoice_number: Rechnungsnummer
+      spree/product:
+        taxons: Kategorien
+    errors:
+      spree/product:
+        missing_taxons: nicht angegeben. Mindestens eine ist erforderlich.
+    models:
+      spree/taxon:
+        one: Kategorie
+        other: Kategorien
   devise:
     user_confirmations:
       spree_user:
         send_instructions: In ein paar Minuten erhältst Du eine E-Mail mit Anweisungen, um Dein Konto zu aktivieren.
         confirmed: Dein Konto wurde erfolgreich aktiviert.
+    confirmations:
+      confirmed: Vielen Dank für Deine Registrierung. Du bist jetzt angemeldet.
+      send_instructions: In wenigen Minuten erhälst Du eine E-Mail, mit der Du Deine Registrierung bestätigen kannst.
+    failure:
+      inactive: Dein Konto wurde noch nicht aktiviert.
+      invalid: Ungültige Email Adresse oder Passwort
+      invalid_token: Ungültiges Authentifikationstoken
+      locked: Dein Konto ist gesperrt.
+      timeout: Deine Sitzung ist abgelaufen, bitte melde Dich wieder an um fortzufahren.
+      unauthenticated: Zum Fortfahren musst Du Dich registrieren oder angemeldet sein.
+      unconfirmed: Du musst Dein Konto bestätigen bevor Du fortfahren kannst.
     passwords:
       spree_user:
         send_instructions: Du erhältst in Kürze eine E-Mail mit Anweisungen, um Dein Passwort zu ändern.
@@ -19,7 +39,21 @@ de:
     user_sessions:
       signed_in: Anmeldung erfolgreich.
       signed_out: Abmeldung erfolgreich.
+    sessions:
+      signed_in: Anmeldung erfolgreich.
+      signed_out: Abmeldung erfolgreich.
+    registrations:
+      signed_up: Du hast Dich erfolgreich registriert.
+      signed_up_but_unconfirmed: Du erhälst in wenigen Minuten eine E-Mail mit einem Link für die Bestätigung der Registrierung. Klicke auf den Link um den Account zu aktivieren.
   spree:
+    admin:
+      tab:
+        taxons: Kategorien
+    orders/shipment:
+       shipment: Versand
+    reimbursement_mailer:
+      reimbursement_email:
+        subject: Rückerstattung
     spree/address:
       address1: Straße und Hausnr.
       address2: Adresse (Fortsetzung)
@@ -62,6 +96,8 @@ de:
     payment_methods:
       creditcard: Kreditkarte
       paypal: PayPal
+    order_state:
+      complete: bereit
     invoice_number: 'Rechnungsnummer #%{number}'
     accepted: Bewerbung akzeptiert
     add_to_wishlist: Auf die Wunschliste
@@ -172,3 +208,19 @@ de:
     dashboard: Dashboard
     changelog: Changelog
     macedonia: Mazedonien
+    shipment_to: Lieferung nach
+    you_are_not_accepted_yet: Deine Bewerbung als Designer bei nelou wurde von unserem Team noch nicht akzeptiert. Bitte versuche es später erneut.
+    production_type: Fertigung
+    admin_welcome: Willkommen, Admin
+    admin_edit_product: Produkt bearbeiten
+    'no': Nein
+    'yes': Ja
+    similar_products: '%{taxon}, die Dir auch gefallen könnten'
+    show_all_similar_products: 'Alle %{taxon} anzeigen'
+    taxon: Kategorie
+    taxons: Kategorien
+    taxon_edit: Kategorien bearbeiten
+    taxon_placeholder: Kategorie hinzufügen
+    taxon_rule:
+      choose_taxons: Kategorien auswählen
+      label: Bestellung muss x Kategorien beinhalten

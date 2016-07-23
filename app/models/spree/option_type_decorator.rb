@@ -1,6 +1,6 @@
 Spree::OptionType.class_eval do
 
-  default_scope -> { joins(:translations) }
+  default_scope -> { joins(:translations).distinct }
   scope :in_products, -> (products) { joins(:option_values).merge(Spree::OptionValue.in_products(products)) }
   scope :in_taxon, -> (taxon) { joins(:option_values).merge(Spree::OptionValue.in_taxon(taxon)) }
 

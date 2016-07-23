@@ -37,17 +37,6 @@ Spree::Auth::Config[:confirmable] = true
 # Set Spree to use the spree_auth_devise user class
 Spree.user_class = 'Spree::User'
 
-Spree::Image.attachment_definitions[:attachment][:styles] = {
-  mini: '50x75>',
-  mini_2x: '100x150>',
-  small: '150x225>',
-  small_2x: '300x450>',
-  product: '300x450>',
-  product_2x: '600x900>',
-  large: '1000x1500>',
-  large_2x: '2000x3000>'
-}
-
 # Add permitted attributes for standard spree classes
 Spree::PermittedAttributes.product_attributes.push :designer_label_id, :eco, :photo_credits, :production_type
 Spree::PermittedAttributes.variant_attributes.push :limited, :limited_items, :limited_items_sold, :original_price
@@ -56,8 +45,6 @@ Spree::PermittedAttributes.address_attributes.push :gender
 
 # Split orders by designer label
 Rails.application.config.spree.stock_splitters << Nelou::Stock::Splitter::DesignerLabel
-
-ADDRESS_FIELDS = ["firstname", "lastname", "company", "address1", "address2", "zipcode", "city", "state", "country", "phone"]
 
 Rails.application.config.to_prepare do
   require_dependency 'spree/authentication_helpers'

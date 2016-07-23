@@ -24,10 +24,6 @@ class AbilityDecorator
         image.viewable.is_a?(Spree::Variant) && image.viewable.product.is_by_user?(user)
       end
 
-      can [:admin, :manage], Spree::ProductProperty do |product_property|
-        product_property.product.is_by_user?(user)
-      end
-
       can [:admin, :manage], Spree::Product::Translation do |product_translation|
         product_id = product_translation.spree_product_id
         Spree::Product.exist?(product_id) && Spree::Product.find(product_id).is_by_user?(user)
@@ -66,6 +62,7 @@ class AbilityDecorator
 
     # Remove stock from app
     cannot [:stock], Spree::Product
+    cannot :manage, Spree::ProductProperty
 
     # Disallow editing or deleting of admin and designer roles
     cannot [:update, :destroy], Spree::Role, name: %w(admin designer)

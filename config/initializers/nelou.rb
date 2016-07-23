@@ -4,4 +4,6 @@ module Nelou
 
   SPECIAL_CATEGORIES = %i(recent limited eco on_sale)
 
+  ADDRESS_FIELDS = %w(firstname lastname company address1 address2 zipcode city state country phone)
+
 end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, :at => '/'
 
   scope module: :nelou do
+    match '/globalsign', to: proc { [200, {}, ['125hxH ']] }, via: :get
     match '/404', to: 'errors#not_found', via: :all
 
     get '/designers', to: 'designer_labels#index', as: :nelou_designer_labels

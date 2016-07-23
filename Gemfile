@@ -58,7 +58,7 @@ group :development do
   gem 'capistrano-bundler', '1.1.4', require: false
   gem 'capistrano-rails', '1.1.6', require: false
   gem 'capistrano-rvm', '0.1.2', require: false
-  gem 'capistrano-spree', '1.0.3', require: false
+  # gem 'capistrano-spree', '1.0.3', require: false
   gem 'capistrano', '3.4.0'
   gem 'capistrano3-unicorn', '0.2.1', require: false
   gem 'html2haml', '2.0.0'

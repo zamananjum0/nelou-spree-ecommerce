@@ -2,6 +2,10 @@ Spree::Address.class_eval do
 
   validates :gender, inclusion: { in: %w(m f) }, presence: true
 
+  def self.whitelisted_ransackable_associations
+    %w(country)
+  end
+
   def self.build_default
     new
   end

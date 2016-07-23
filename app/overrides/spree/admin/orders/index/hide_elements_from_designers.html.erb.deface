@@ -1,6 +1,5 @@
 <!--
 replace_contents '[data-hook="admin_orders_index_rows"]'
-original '5fe45091b8359a9e5cbd9fb2fa253e84228291d2'
 -->
 
 <td><%= l (@show_only_completed ? order.completed_at : order.created_at).try(&:to_date) %></td>
@@ -13,11 +12,6 @@ original '5fe45091b8359a9e5cbd9fb2fa253e84228291d2'
   </td>
 <% end %>
 <td>
-  <span class="label label-<%= order.considered_risky ? 'considered_risky' : 'considered_safe' %>">
-    <%= order.considered_risky ? Spree.t("risky") : Spree.t("safe") %>
-  </span>
-</td>
-<td>
   <span class="label label-<%= order.state.downcase %>"><%= Spree.t("order_state.#{order.state.downcase}") %></span>
   <span class="icon icon-filter filterable js-add-filter" data-ransack-field="q_state_eq" data-ransack-value="<%= order.state %>"></span>
 </td>
@@ -27,7 +21,17 @@ original '5fe45091b8359a9e5cbd9fb2fa253e84228291d2'
     <span class="icon icon-filter filterable js-add-filter" data-ransack-field="q_payment_state_eq" data-ransack-value="<%= order.payment_state %>"></span>
   <% end %>
 </td>
+<td class="text-center">
+  <% if spree_current_user.admin? %>
+    <%= order.line_items.map(&:quantity).sum %>
+  <% else %>
+    <%= order.line_items.by_designer(spree_current_user.designer_label).map(&:quantity).sum %>
+  <% end %>
+</td>
 <% if Spree::Order.checkout_step_names.include?(:delivery) %>
+  <td>
+    <%= order.ship_address.country %>
+  </td>
   <td>
     <% if order.shipment_state %>
       <span class="label label-<%= order.shipment_state %>"><%= Spree.t("shipment_states.#{order.shipment_state}") %></span>
@@ -53,7 +57,13 @@ original '5fe45091b8359a9e5cbd9fb2fa253e84228291d2'
     <% end %>
   <% end %>
 </td>
-<td><%= order.display_total.to_html %></td>
+<td>
+  <% if spree_current_user.admin? %>
+    <%= order.display_total.to_html %>
+  <% else %>
+    <%= Spree::Money.new(order.line_items.by_designer(spree_current_user.designer_label).map(&:total).sum, currency: order.currency).to_html %>
+  <% end %>
+</td>
 <td class='actions actions-1' data-hook="admin_orders_index_row_actions">
   <%= link_to_edit_url edit_admin_order_path(order), :title => "admin_edit_#{dom_id(order)}", :no_text => true %>
   <% if spree_current_user.admin? %>

@@ -90,7 +90,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'ec2-54-93-201-196.eu-central-1.compute.amazonaws.com' }
 
   # For Spree
-  config.deface.enabled = false
+  config.deface.enabled = ENV['DEFACE_ENABLED'] == 'true'
 
   config.x.changelog_repo = Rails.root.join('..', '..', 'repo')
   config.x.changelog_branch = 'staging'

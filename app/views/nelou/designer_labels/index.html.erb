@@ -17,7 +17,7 @@
 
       <div class="directory-collection js-show-by-param name">
 
-        <ul class="alphabetical-list">
+        <ul class="directory-navigation">
           <% all_letters = @designer_labels.map(&:first_letter).uniq %>
           <% ('A'..'Z').each do |l| %>
             <li>
@@ -40,7 +40,7 @@
                 <li class="directory-section">
                   <h3 class="directory-section-header letter" data-sort-option="<%= letter %>"><a name="<%= letter %>"><%= letter %></a></h3>
                   <ul class="section-entries">
-                    <% designer_labels.sort_by(&:name).each do |designer_label| %>
+                    <% designer_labels.sort_by { |d| d.name.try(&:parameterize) }.each do |designer_label| %>
                       <li class="section-entry" data-name="<%= designer_label.name %>" data-country="<%= designer_country_name(designer_label) %>">
                         <%= link_to nelou_designer_label_path(designer_label) do %>
                           <%= designer_label.name %>
@@ -59,15 +59,6 @@
 
       <div class="directory-collection js-show-by-param country" style="display: none;">
 
-        <ul class="alphabetical-list">
-          <% all_countries = @designer_labels.map(&:country).uniq.sort %>
-          <% all_countries.each do |c| %>
-            <li>
-              <a href="#<%= c %>"><%= c %></a>
-            </li>
-          <% end %>
-        </ul>
-
         <div class="directory-lists">
           <% partition_hash(@designer_labels.reorder(:country).group_by(&:country), 4, true).each do |column| %>
             <ul class="directory-list directory-entries-list designer-labels">
@@ -79,7 +70,7 @@
                 <li class="directory-section">
                   <h3 class="directory-section-header country" data-sort-option="<%= country_code %>"><a name="<%= country_code %>"><%= country %></a></h3>
                   <ul class="section-entries">
-                    <% designer_labels.sort_by(&:name).each do |designer_label| %>
+                    <% designer_labels.sort_by { |d| d.name.try(&:parameterize) }.each do |designer_label| %>
                       <li class="section-entry" data-name="<%= designer_label.name %>" data-country="<%= country %>">
                         <%= link_to nelou_designer_label_path(designer_label) do %>
                           <%= designer_label.name %>

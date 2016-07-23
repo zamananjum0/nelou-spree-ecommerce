@@ -10,6 +10,7 @@
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <%= render partial: 'shared/messages' %>
+    <%= yield :options_bar %>
     <div class="main-container">
       <%= render partial: 'shared/header' %>
       <%= render partial: 'shared/nav_bar' %>

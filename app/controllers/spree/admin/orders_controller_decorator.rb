@@ -40,15 +40,11 @@ Spree::Admin::OrdersController.class_eval do
       end
     end
 
-    @search = @collection
-      .ransack(params[:q].reject { |k, _v| k.to_s == 'unshipped_eq' })
-
-    # lazyoading other models here (via includes) may result in an invalid query
-    # e.g. SELECT  DISTINCT DISTINCT "spree_orders".id, "spree_orders"."created_at" AS alias_0 FROM "spree_orders"
-    # see https://github.com/spree/spree/pull/3919
+    @search = @collection.ransack(params[:q].reject { |k, _v| k.to_s == 'unshipped_eq' })
     @orders = @search.result(distinct: true)
-
-    @orders = @orders.page(params[:page]).per(params[:per_page] || Spree::Config[:orders_per_page])
+      .joins(bill_address: :country)
+      .select("#{Spree::Order.quoted_table_name}.*, #{Spree::Country.quoted_table_name}.name")
+      .page(params[:page]).per(params[:per_page] || Spree::Config[:orders_per_page])
 
     # Restore dates
     params[:q][:created_at_gt] = created_at_gt

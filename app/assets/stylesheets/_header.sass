@@ -24,9 +24,14 @@
     height: 27px
 
 .main-header-link-column
-    +span-columns(1.5 of 6)
+    +span-columns(2 of 8)
     position: relative
     height: 27px
+    &.icon-links
+        text-align: right
+
+.main-header-social-link-label
+    display: inline-block
 
 .main-header-link-icon
     position: absolute
@@ -49,6 +54,18 @@
     line-height: 1
     font-weight: bold
 
+.main-header-icon-link
+    +text-caption($colour-base)
+    display: inline-block
+    font-size: $font-size-intro
+    margin-left: 5px
+    text-decoration: none
+    vertical-align: top
+    .fa
+        vertical-align: top
+    &:hover
+        text-decoration: none
+
 .main-header-link-text-link
     color: $colour-accent
     text-decoration: none
@@ -61,18 +78,19 @@
 
 .main-header-search-field
     box-sizing: border-box !important
-    width: calc(100% - 40px)
+    float: left
     height: 22px
     padding: 0 8px
+    width: calc(100% - 32px)
 
 .main-header-search-submit
-    box-sizing: border-box
-    width: 22px
-    height: 22px
-    margin-left: 8px
-    border: 0
     background: $colour-grey
+    border: 0
+    box-sizing: border-box
     color: $colour-white
+    float: right
+    height: 22px
+    width: 22px
 
 .main-header-menu
     position: relative

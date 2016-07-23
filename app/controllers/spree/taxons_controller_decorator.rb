@@ -41,7 +41,6 @@ Spree::TaxonsController.class_eval do
   end
 
   def per_page
-    per_page = params[:per_page].to_i
     if params[:per_page].respond_to?(:to_i)
       (params[:per_page].to_i <= 0) ? Spree::Config[:products_per_page] : params[:per_page].to_i
     else

@@ -1,8 +1,12 @@
 Spree::Product.class_eval do
   belongs_to :designer_label, class_name: 'Nelou::DesignerLabel'
 
+  has_many :option_types, -> { reorder(id: :asc) }, through: :product_option_types
+
   validates :designer_label, presence: true, on: :create
   validates :production_type, presence: true, inclusion: { in: Nelou::PRODUCTION_TYPES }
+
+  validate :has_taxons
 
   scope :by_designer, -> (designer_label) { where(designer_label_id: designer_label.id) }
   scope :recent, -> { where('available_on >= ?', 50.days.ago) }
@@ -13,6 +17,8 @@ Spree::Product.class_eval do
 
   scope :descend_by_available_on, -> { order(available_on: :desc) }
   scope :ascend_by_available_on, -> { order(available_on: :asc) }
+
+  scope :random, -> (limit = 1) { reorder('RANDOM()').limit(limit).distinct(false) }
 
   include Nelou::Product::LimitedItems
   include Nelou::Product::Sales
@@ -34,6 +40,12 @@ Spree::Product.class_eval do
         .select("#{Spree::Product.quoted_table_name}.*", '"spree_products_taxons"."position"') # PSQL fails if position is not queried as well
     else
       Spree::Product.active.recent
+    end
+  end
+
+  def duplicate_extra(old_product)
+    if Spree::Variant.where(sku: master.sku).any?
+      master.sku = "#{master.sku} #{rand.to_s[2..5]}"
     end
   end
 
@@ -92,5 +104,11 @@ Spree::Product.class_eval do
 
   def self.at_random(limit = 12)
     where(id: available.select(:id).map(&:id).shuffle.slice(0, limit))
+  end
+
+  private
+
+  def has_taxons
+    errors.add(:taxons, :invalid, message: I18n.t('activerecord.errors.spree/product.missing_taxons')) if self.taxons.blank?
   end
 end

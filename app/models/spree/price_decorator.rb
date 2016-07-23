@@ -10,4 +10,8 @@ Spree::Price.class_eval do
   def amount
     price
   end
+
+  def display_html
+    Spree::Money.new(amount, currency: currency).to_html
+  end
 end

@@ -35,7 +35,7 @@
       = f.fields_for :bill_address do |bf|
         .designer-form-row
           = bf.label :gender, t('.gender'), class: 'designer-form-label', required: true
-          = bf.select :gender, options_for_select([[Spree.t(:mister), 'm'], [Spree.t(:miss), 'f']]), class: 'designer-form-field', required: true, include_blank: Spree.t('please_select')
+          = bf.select :gender, options_for_select([[Spree.t(:mister), 'm'], [Spree.t(:miss), 'f']]), {:include_blank => Spree.t('please_select')}, {:required => true, :class => 'select'}
         .designer-form-row
           = bf.label :firstname, t('.firstname'), class: 'designer-form-label', required: true
           = bf.text_field :firstname, class: 'designer-form-field', required: true

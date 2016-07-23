@@ -36,6 +36,24 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :keep_releases, 3
 
 after 'deploy:publishing', 'deploy:restart'
+
+namespace :deface do
+  desc "Pre-compile Deface overrides into templates"
+  task :precompile do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env), deface_enabled: true do
+          execute :rake, 'deface:precompile'
+        end
+      end
+    end
+  end
+
+  if Rake.application.tasks.collect(&:to_s).include?("rvm:hook")
+    before :precompile, 'rvm:hook'
+  end
+end
+
 after 'deploy:updated', 'deface:precompile'
 
 namespace :deploy do

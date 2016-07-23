@@ -48,7 +48,7 @@ module Nelou
 
     config.x.social = config_for :social
 
-    config.action_view.sanitized_allowed_tags = %w(br p)
+    config.action_view.sanitized_allowed_tags = %w(br p ul li)
     config.action_view.sanitized_allowed_attributes = %w()
   end
 end

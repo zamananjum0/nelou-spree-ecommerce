@@ -21,7 +21,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <%= f.label :user_email_cont, Spree.t(:email) %>
-            <%= f.text_field :user_email_cont, class: 'form-control js-quick-search-target' %>
+            <%= f.text_field :user_email_cont, class: 'form-control' %>
           </div>
         </div>
         <div class="col-md-4">
@@ -33,27 +33,33 @@
       </div>
       <div class="row">
         <div class="col-md-4">
-          <div class="field checkbox">
-            <label>
-              <%= f.check_box :active_eq, { :checked => params[:q][:active_eq] == '1' }, '1', '' %>
-              <%= Spree.t(:active) %>
-            </label>
+          <div class="form-group">
+            <%= f.label :active_eq, Spree.t(:active) %>
+            <%= f.select :active_eq, {}, {}, class: 'form-control' do %>
+              <%= content_tag :option, '', value: '' %>
+              <%= content_tag :option, Spree.t(:no), value: '0', selected: params[:q][:active_eq] == '0' %>
+              <%= content_tag :option, Spree.t(:yes), value: '1', selected: params[:q][:active_eq] == '1' %>
+            <% end %>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="field checkbox">
-            <label>
-              <%= f.check_box :accepted_eq, { :checked => params[:q][:accepted_eq] == '1' }, '1', '' %>
-              <%= Spree.t(:accepted) %>
-            </label>
+          <div class="form-group">
+            <%= f.label :accepted_eq, Spree.t(:accepted) %>
+            <%= f.select :accepted_eq, {}, {}, class: 'form-control' do %>
+              <%= content_tag :option, '', value: '' %>
+              <%= content_tag :option, Spree.t(:no), value: '0', selected: params[:q][:accepted_eq] == '0' %>
+              <%= content_tag :option, Spree.t(:yes), value: '1', selected: params[:q][:accepted_eq] == '1' %>
+            <% end %>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="field checkbox">
-            <label>
-              <%= f.check_box :featured_eq, { :checked => params[:q][:featured_eq] == '1' }, '1', '' %>
-              <%= Spree.t(:featured) %>
-            </label>
+          <div class="form-group">
+            <%= f.label :featured_eq, Spree.t(:featured) %>
+            <%= f.select :featured_eq, {}, {}, class: 'form-control' do %>
+              <%= content_tag :option, '', value: '' %>
+              <%= content_tag :option, Spree.t(:no), value: '0', selected: params[:q][:featured_eq] == '0' %>
+              <%= content_tag :option, Spree.t(:yes), value: '1', selected: params[:q][:featured_eq] == '1' %>
+            <% end %>
           </div>
         </div>
       </div>

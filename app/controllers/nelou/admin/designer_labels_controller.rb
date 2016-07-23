@@ -31,6 +31,9 @@ module Nelou
         return @collection if @collection
         params[:q] ||= {}
 
+        params[:q][:active_eq] = '1' unless params[:q].has_key?(:active_eq)
+        params[:q][:accepted_eq] = '1' unless params[:q].has_key?(:accepted_eq)
+
         @search = Nelou::DesignerLabel.ransack(params[:q])
 
         @collection = @search.result(distinct: true)

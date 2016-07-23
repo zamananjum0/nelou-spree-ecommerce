@@ -10,3 +10,31 @@
  *= require spree/backend/spree_i18n
  *= require spree/backend/spree_paypal_express
 */
+
+.icon.icon-duplicate::before {
+  content: '\e224';
+}
+
+.product-item-tag-bar {
+  display: block;
+}
+
+.product-item-tag {
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+  margin: 0 5px 0 0;
+  display: inline-block;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+.product-item-tag.sale, .product-item-tag.limit {
+  background: #ca0044;
+}
+
+.product-item-tag.eco {
+  background: #01b820;
+}

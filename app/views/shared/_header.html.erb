@@ -59,8 +59,11 @@
           <%= render partial: 'shared/lang_selector' %>
         </div>
       </div>
-      <div class="main-header-link-column">
-        <% if Spree::Config[:allow_currency_change] && Spree::Config[:show_currency_selector] && supported_currencies.size > 1 %>
+      <div class="main-header-link-column icon-links">
+          <%= render partial: 'shared/social_links' %>
+      </div>
+      <% if Spree::Config[:allow_currency_change] && Spree::Config[:show_currency_selector] && supported_currencies.size > 1 %>
+        <div class="main-header-link-column">
           <div class="main-header-link-icon">
             <%= fa_icon :money %>
           </div>
@@ -70,8 +73,8 @@
             </span>
             <%= render partial: 'shared/currency_selector' %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
     <div class="main-header-search">
       <%= form_tag spree.products_path, :method => :get do %>

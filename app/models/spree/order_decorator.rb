@@ -3,7 +3,7 @@ Spree::Order.class_eval do
 
   include Nelou::ContainsDesigner
 
-  scope :with_open_shipments, -> { joins(:shipments).where("#{Spree::Shipment.quoted_table_name}.state != ?", 'shipped').uniq }
+  scope :with_open_shipments, -> { joins(:shipments).where("#{Spree::Shipment.quoted_table_name}.state": %w(ready partial)).uniq }
 
   state_machine.after_transition to: :complete, do: :increment_limited_items_counter
 
@@ -34,8 +34,20 @@ Spree::Order.class_eval do
   def self.with_open_shipments_from_designer(designer_label)
     joins(shipments: :designer_labels)
       .merge(Spree::Shipment.containing_designer(designer_label))
-      .where("#{Spree::Shipment.quoted_table_name}.state != ?", 'shipped')
+      .where("#{Spree::Shipment.quoted_table_name}.state": %w(ready partial))
       .uniq
+  end
+
+  def display_item_total_for_designer(designer_label)
+    Spree::Money.new(line_items.by_designer(designer_label).map(&:total).sum, currency: currency)
+  end
+
+  def display_ship_total_for_designer(designer_label)
+    Spree::Money.new(shipments.containing_designer(designer_label).map(&:cost).sum, currency: currency)
+  end
+
+  def display_total_for_designer(designer_label)
+    Spree::Money.new([display_item_total_for_designer(designer_label).money.amount, display_ship_total_for_designer(designer_label).money.amount].sum, currency: currency)
   end
 
   private

@@ -31,6 +31,14 @@
   <%= render partial: 'related', locals: { product: @product } %>
 <% end %>
 
+<% content_for :options_bar do %>
+  <% if can? [:admin, :edit], @product %>
+    <div class="top-options-bar">
+      <%= link_to Spree.t(:admin_edit_product), spree.edit_admin_product_path(@product), rel: :nofollow, target: :blank, class: 'top-options-button' %>
+    </div>
+  <% end %>
+<% end %>
+
 <% cache [I18n.locale, current_currency, @product, @product.possible_promotions, spree_current_user.present?] do %>
 <div class="product" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
   <div class="product-left" data-hook="product_left_part">
@@ -71,10 +79,18 @@
             </div>
           </div>
 
-          <div class="product-info-line" title="<%= t('products.show.item_number') %>">
-            <div class="product-info-line-label"><%= t('products.show.item_number') %></div>
-            <div class="product-info-line-content"><%= @product.id %></div>
-          </div>
+          <% if @product.taxons.any? %>
+            <div class="product-info-line">
+              <div class="product-info-line-label"><%= Spree.t(:taxons) %></div>
+              <div class="product-info-line-content">
+                <ul>
+                  <% @product.taxons.each do |taxon| %>
+                    <li><%= link_to taxon.name, spree.nested_taxons_path(taxon) %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          <% end %>
 
           <% if @product.designer_label.present? %>
           <div class="product-info-line">
@@ -131,5 +147,7 @@
   </div>
 </div>
 <% end %>
+
+<%= render partial: 'similar', locals: { product: @product } %>
 
 <%= render partial: 'sold_out_dialog', locals: { product: @product } %>

@@ -2,7 +2,16 @@ en:
   activerecord:
     attributes:
       spree/order:
-          invoice_number: Invoice Number
+        invoice_number: Invoice Number
+      spree/product:
+        taxons: Categories
+    errors:
+      spree/product:
+        missing_taxons: not set. Give at least one.
+    models:
+      spree/taxon:
+        one: Category
+        other: Categories
   devise:
     user_confirmations:
       spree_user:
@@ -17,6 +26,14 @@ en:
       reset_password_instructions:
         subject: Reset password
   spree:
+    admin:
+      tab:
+        taxons: Categories
+    orders/shipment:
+      shipment: Shipment
+    reimbursement_mailer:
+      reimbursement_email:
+        subject: Reimbursement
     address_book:
       edit_shipping_address: 'Edit address'
     contact_us:
@@ -35,6 +52,8 @@ en:
     payment_methods:
       creditcard: Credit card
       paypal: PayPal
+    order_state:
+      complete: ready
     invoice_number: 'Invoice #%{number}'
     accepted: Application accepted
     add_to_wishlist: Add to wishlist
@@ -143,3 +162,19 @@ en:
     dashboard: Dashboard
     changelog: Changelog
     macedonia: Macedonia
+    shipment_to: Shipment to
+    you_are_not_accepted_yet: Your application as a nelou designer has not been accepted yet. Try again later.
+    production_type: Making
+    admin_welcome: Welcome, Admin
+    admin_edit_product: Edit product
+    'no': No
+    'yes': Yes
+    similar_products: '%{taxon} you might also like'
+    show_all_similar_products: 'Show all %{taxon}'
+    taxon: Category
+    taxons: Categories
+    taxon_edit: Edit Categories
+    taxon_placeholder: Add a Category
+    taxon_rule:
+      choose_taxons: Choose categories
+      label: Order must contain x amount of these categories

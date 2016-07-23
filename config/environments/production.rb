@@ -80,7 +80,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # For Spree
-  config.deface.enabled = false
+  config.deface.enabled = ENV['DEFACE_ENABLED'] == 'true'
 
   config.action_mailer.default_url_options = { host: 'nelou.com' }
   config.action_mailer.delivery_method = :smtp
@@ -91,7 +91,7 @@ Rails.application.configure do
     password: 'Ak1jVg7kTpSiGQuQy7NO4/uaxZBLXKBjGUZSrOPXlS4f'
   }
 
-  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  Rails.application.config.middleware.use ExceptionNotification::Rack, {
     slack: {
       webhook_url: 'https://hooks.slack.com/services/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',
       channel: '#nelou-exceptions',

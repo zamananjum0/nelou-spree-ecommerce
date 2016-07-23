@@ -13,6 +13,7 @@ module Nelou
 
     def load_label
       @designer_label = Nelou::DesignerLabel.active.friendly.find(params[:id])
+      @title = @designer_label.name
     end
 
     def load_labels
