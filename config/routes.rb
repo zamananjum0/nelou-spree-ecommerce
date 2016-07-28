@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
       resources :designers, only: [ :index, :new, :create ], as: :nelou_designers
       resources :designer_labels, except: [ :show ], as: :nelou_designer_labels
+      resources :wishlists, only: [ :index, :show ], as: :nelou_wishlists 
 
       get '/orders_export', to: 'orders_export#index', as: :export_orders
 

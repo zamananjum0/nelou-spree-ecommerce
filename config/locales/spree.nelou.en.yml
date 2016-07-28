@@ -178,3 +178,9 @@ en:
     taxon_rule:
       choose_taxons: Choose categories
       label: Order must contain x amount of these categories
+    wishlists: Wishlists
+    wishlist: Wishlist
+    added_at: Added at
+    updated_at: Updated at
+    primary_address: Primary Address
+    primary_address_hint: This addresse will be used for credit you will receive for your sold items in our shop.

@@ -2,6 +2,11 @@
 
 <div id="<%= type %>" data-hook="address_fields">
   <div class="form-group <%= "#{type}-row" %>">
+    <%= f.label :gender, Spree.t(:gender) %>
+    <%= f.select :gender, options_for_select([[Spree.t(:mister), 'm'], [Spree.t(:miss), 'f']], f.object.gender), {:include_blank => Spree.t('please_select')}, {:required => true, :class => 'select2'} %>
+  </div>
+
+  <div class="form-group <%= "#{type}-row" %>">
     <%= f.label :firstname, Spree.t(:first_name) %>
     <%= f.text_field :firstname, class: 'form-control' %>
   </div>
@@ -11,12 +16,10 @@
     <%= f.text_field :lastname, class: 'form-control' %>
   </div>
 
-  <% if Spree::Config[:company] %>
-    <div class="form-group <%= "#{type}-row" %>">
-      <%= f.label :company, Spree.t(:company) %>
-      <%= f.text_field :company, class: 'form-control' %>
-    </div>
-  <% end %>
+  <div class="form-group <%= "#{type}-row" %>">
+    <%= f.label :company, Spree.t(:company) %>
+    <%= f.text_field :company, class: 'form-control' %>
+  </div>
 
   <div class="form-group <%= "#{type}-row" %>">
     <%= f.label :address1, Spree.t(:street_address) %>

@@ -3,9 +3,11 @@ en:
     designers:
       new:
         address1: Address
+        address2: Address (contd.)
         apply_now: Apply Now to Showcase Your Label on nelou!
         apply: Apply
         city: City
+        company: Company
         country: Country
         description: "nelou is a leading independent fashion site that combines fashion, shopping and entertainment to create a one-of-a-kind experience. We are constantly on the lookout for the best, most interesting designers and you could be one of them! Fill out this form (don't worry, it's free). With an interesting collection and a little luck, you can soon be part of nelou's unique fashion community."
         email: E-Mail

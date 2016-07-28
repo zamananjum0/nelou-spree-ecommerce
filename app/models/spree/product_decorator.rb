@@ -44,8 +44,13 @@ Spree::Product.class_eval do
   end
 
   def duplicate_extra(old_product)
+    self.designer_label_id = old_product.designer_label_id
     if Spree::Variant.where(sku: master.sku).any?
       master.sku = "#{master.sku} #{rand.to_s[2..5]}"
+    end
+
+    self.variants.each do |variant|
+      variant.sku = ''
     end
   end
 

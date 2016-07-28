@@ -3,16 +3,17 @@ Spree::AddressesController.class_eval do
 
   def address_params
     params[:address].permit(:address,
-                            :firstname,
-                            :lastname,
                             :address1,
                             :address2,
                             :city,
-                            :state_id,
-                            :zipcode,
+                            :company,
                             :country_id,
+                            :firstname,
+                            :gender,
+                            :lastname,
                             :phone,
-                            :gender
+                            :state_id,
+                            :zipcode
                            )
   end
 end

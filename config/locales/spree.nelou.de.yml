@@ -5,6 +5,8 @@ de:
         invoice_number: Rechnungsnummer
       spree/product:
         taxons: Kategorien
+      spree/address:
+        company: Unternehmen
     errors:
       spree/product:
         missing_taxons: nicht angegeben. Mindestens eine ist erforderlich.
@@ -224,3 +226,10 @@ de:
     taxon_rule:
       choose_taxons: Kategorien auswählen
       label: Bestellung muss x Kategorien beinhalten
+    wishlists: Wunschlisten
+    wishlist: Wunschliste
+    added_at: Hinzugefügt am
+    updated_at: Geändert am
+    primary_address: Hauptadresse
+    primary_address_hint: Diese Adresse wird auch für die Gutschriften verwendet, die Du für Deine Verkäufe von uns bekommst.
+    company: Unternehmen

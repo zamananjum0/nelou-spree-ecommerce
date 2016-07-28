@@ -11,6 +11,7 @@ module Nelou
       @user = Spree.user_class.new(user_params)
       @user.spree_roles << Spree::Role.designer_role
       @user.designer_label.city = @user.bill_address.city
+      @user.bill_address.user = @user if @user.bill_address.present?
 
       if @user.save
         Nelou::ApplicationMailer.notification_mail(@user).deliver_later
@@ -32,7 +33,7 @@ module Nelou
           :name, :website, :green, :vat, :paypal
         ], bill_address_attributes: [
           :firstname, :lastname, :address1, :address2, :zipcode, :city,
-          :country_id, :state_id, :phone, :gender
+          :country_id, :state_id, :phone, :gender, :company
         ]
     end
   end
