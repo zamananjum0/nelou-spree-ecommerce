@@ -22,19 +22,21 @@ RSpec.feature 'User Login', type: :feature do
         click_button Spree.t(:resend_confirmation_instructions)
 
         within('body') do
-          expect(page).to have_content I18n.t('devise.user_confirmations.spree_user.send_instructions')
+          expect(page).to have_content I18n.t('devise.confirmations.send_instructions')
         end
 
         expect(unread_emails_for(user.email).size).to be >= parse_email_count(1)
+
         email = open_email(user.email)
         expect(email.body).to be
-        click_first_link_in_email
+
+        click_email_link_matching(/confirmation_token=/i)
 
         within('body') do
-          expect(page).to have_content I18n.t('devise.user_confirmations.spree_user.confirmed')
+          expect(page).to have_content I18n.t('devise.confirmations.confirmed')
         end
 
-        fill_in 'spree_user[email]', with: user.email
+        fill_in 'spree_user[login]', with: user.email
         fill_in 'spree_user[password]', with: user.password
         click_button Spree.t(:login)
 

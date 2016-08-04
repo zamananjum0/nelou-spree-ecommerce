@@ -7,9 +7,10 @@ begin
 
     factory :base_product do
       association :designer_label, factory: :designer_label
+      taxons { [FactoryGirl.create(:taxon)] }
     end
 
   end
 
-rescue => e
+rescue
 end

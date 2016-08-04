@@ -35,7 +35,11 @@ en:
       reimbursement_email:
         subject: Reimbursement
     address_book:
+      edit_address: 'Edit address'
       edit_shipping_address: 'Edit address'
+      new_address: 'New address'
+      new_shipping_address: 'New address'
+      add_new_shipping_address: 'Add address'
     contact_us:
       contacts:
         new:
@@ -183,4 +187,6 @@ en:
     added_at: Added at
     updated_at: Updated at
     primary_address: Primary Address
-    primary_address_hint: This addresse will be used for credit you will receive for your sold items in our shop.
+    primary_address_hint: This address will be used for credit notes you will receive for your sold items in our shop.
+    addresses: Addresses
+    your_order_from: Your items from %{designer} / Order %{number}

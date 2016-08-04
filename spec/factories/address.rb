@@ -7,9 +7,11 @@ begin
 
     factory :address do
       gender { %w(m f).sample }
+      user
     end
 
   end
 
 rescue => e
+  puts e.to_s
 end

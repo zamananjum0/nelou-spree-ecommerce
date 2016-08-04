@@ -1,3 +1,7 @@
+require 'sidekiq/web'
+require 'sidekiq-status/web'
+Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+
 Rails.application.routes.draw do
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
@@ -5,6 +9,10 @@ Rails.application.routes.draw do
   #
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, :at => '/'
+
+  authenticate :spree_user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   scope module: :nelou do
     match '/globalsign', to: proc { [200, {}, ['125hxH ']] }, via: :get
@@ -29,7 +37,7 @@ Rails.application.routes.draw do
 
       resources :designers, only: [ :index, :new, :create ], as: :nelou_designers
       resources :designer_labels, except: [ :show ], as: :nelou_designer_labels
-      resources :wishlists, only: [ :index, :show ], as: :nelou_wishlists 
+      resources :wishlists, only: [ :index, :show ], as: :nelou_wishlists
 
       get '/orders_export', to: 'orders_export#index', as: :export_orders
 

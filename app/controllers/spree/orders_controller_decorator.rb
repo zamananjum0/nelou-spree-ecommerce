@@ -5,9 +5,15 @@ Spree::OrdersController.class_eval do
   def invoice
     respond_with(@order) do |format|
       format.pdf do
-        @order.update_invoice_number!
+        if @order.invoice_path
+          send_file Rails.root.join(@order.invoice_path),
+            type: 'application/pdf', disposition: "attachment; filename=#{@order.number}.pdf"
+        else
+          @order.update_invoice_number!
 
-        send_data @order.pdf_file(pdf_template_name), type: 'application/pdf', disposition: "attachment; filename=#{@order.number}.pdf"
+          send_data @order.pdf_file(pdf_template_name),
+            type: 'application/pdf', disposition: "attachment; filename=#{@order.number}.pdf"
+        end
       end
     end
   end

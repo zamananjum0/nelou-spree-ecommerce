@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727085801) do
+ActiveRecord::Schema.define(version: 20160802141124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,9 +128,11 @@ ActiveRecord::Schema.define(version: 20160727085801) do
     t.integer  "user_id"
     t.datetime "deleted_at"
     t.string   "gender"
+    t.integer  "enterprise_id"
   end
 
   add_index "spree_addresses", ["country_id"], name: "index_spree_addresses_on_country_id", using: :btree
+  add_index "spree_addresses", ["enterprise_id"], name: "index_spree_addresses_on_enterprise_id", using: :btree
   add_index "spree_addresses", ["firstname"], name: "index_addresses_on_firstname", using: :btree
   add_index "spree_addresses", ["lastname"], name: "index_addresses_on_lastname", using: :btree
   add_index "spree_addresses", ["state_id"], name: "index_spree_addresses_on_state_id", using: :btree
@@ -406,6 +408,8 @@ ActiveRecord::Schema.define(version: 20160727085801) do
     t.integer  "state_lock_version",                                         default: 0,       null: false
     t.integer  "invoice_number"
     t.date     "invoice_date"
+    t.boolean  "sent_to_enterprise",                                         default: false
+    t.string   "invoice_path"
   end
 
   add_index "spree_orders", ["approver_id"], name: "index_spree_orders_on_approver_id", using: :btree
@@ -416,6 +420,7 @@ ActiveRecord::Schema.define(version: 20160727085801) do
   add_index "spree_orders", ["created_by_id"], name: "index_spree_orders_on_created_by_id", using: :btree
   add_index "spree_orders", ["guest_token"], name: "index_spree_orders_on_guest_token", using: :btree
   add_index "spree_orders", ["number"], name: "index_spree_orders_on_number", using: :btree
+  add_index "spree_orders", ["sent_to_enterprise", "completed_at"], name: "index_spree_orders_on_sent_to_enterprise_and_completed_at", using: :btree
   add_index "spree_orders", ["ship_address_id"], name: "index_spree_orders_on_ship_address_id", using: :btree
   add_index "spree_orders", ["shipping_method_id"], name: "index_spree_orders_on_shipping_method_id", using: :btree
   add_index "spree_orders", ["user_id", "created_by_id"], name: "index_spree_orders_on_user_id_and_created_by_id", using: :btree
@@ -847,9 +852,11 @@ ActiveRecord::Schema.define(version: 20160727085801) do
     t.decimal  "promo_total",          precision: 10, scale: 2, default: 0.0
     t.decimal  "included_tax_total",   precision: 10, scale: 2, default: 0.0, null: false
     t.decimal  "pre_tax_amount",       precision: 12, scale: 4, default: 0.0, null: false
+    t.integer  "enterprise_id"
   end
 
   add_index "spree_shipments", ["address_id"], name: "index_spree_shipments_on_address_id", using: :btree
+  add_index "spree_shipments", ["enterprise_id"], name: "index_spree_shipments_on_enterprise_id", using: :btree
   add_index "spree_shipments", ["number"], name: "index_shipments_on_number", using: :btree
   add_index "spree_shipments", ["order_id"], name: "index_spree_shipments_on_order_id", using: :btree
   add_index "spree_shipments", ["stock_location_id"], name: "index_spree_shipments_on_stock_location_id", using: :btree
@@ -1176,10 +1183,14 @@ ActiveRecord::Schema.define(version: 20160727085801) do
     t.string   "legacy_password_hash",   limit: 255
     t.string   "legacy_username",        limit: 255
     t.string   "locale",                 limit: 5,   default: "en", null: false
+    t.integer  "enterprise_partner_id"
+    t.integer  "enterprise_contact_id"
   end
 
   add_index "spree_users", ["deleted_at"], name: "index_spree_users_on_deleted_at", using: :btree
   add_index "spree_users", ["email"], name: "email_idx_unique", unique: true, using: :btree
+  add_index "spree_users", ["enterprise_contact_id"], name: "index_spree_users_on_enterprise_contact_id", using: :btree
+  add_index "spree_users", ["enterprise_partner_id"], name: "index_spree_users_on_enterprise_partner_id", using: :btree
   add_index "spree_users", ["legacy_username", "email"], name: "index_spree_users_on_legacy_username_and_email", using: :btree
   add_index "spree_users", ["spree_api_key"], name: "index_spree_users_on_spree_api_key", using: :btree
 

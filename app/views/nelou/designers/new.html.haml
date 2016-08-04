@@ -38,7 +38,7 @@
           = bf.text_field :company, class: 'designer-form-field'
         .designer-form-row
           = bf.label :gender, t('.gender'), class: 'designer-form-label', required: true
-          = bf.select :gender, options_for_select([[Spree.t(:mister), 'm'], [Spree.t(:miss), 'f']]), {:include_blank => Spree.t('please_select')}, {:required => true, :class => 'select'}
+          = bf.select :gender, options_for_select([[Spree.t(:mister), 'm'], [Spree.t(:miss), 'f']], @user.bill_address.try(:gender)), {:include_blank => Spree.t('please_select')}, {:required => true, :class => 'select'}
         .designer-form-row
           = bf.label :firstname, t('.firstname'), class: 'designer-form-label', required: true
           = bf.text_field :firstname, class: 'designer-form-field', required: true
@@ -50,7 +50,7 @@
           = bf.text_field :address1, class: 'designer-form-field', required: true
         .designer-form-row
           = bf.label :address2, t('.address2'), class: 'designer-form-label'
-          = bf.text_field :address1, class: 'designer-form-field'
+          = bf.text_field :address2, class: 'designer-form-field'
         .designer-form-row
           = bf.label :zipcode, t('.zipcode'), class: 'designer-form-label', required: true
           = bf.text_field :zipcode, class: 'designer-form-field', required: true

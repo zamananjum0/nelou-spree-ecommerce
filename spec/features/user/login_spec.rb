@@ -19,7 +19,7 @@ RSpec.feature 'User Login', type: :feature do
 
         visit spree.login_path
 
-        fill_in 'spree_user[email]', with: user.email
+        fill_in 'spree_user[login]', with: user.email
         fill_in 'spree_user[password]', with: user.password
         click_button Spree.t(:login)
 
@@ -35,7 +35,7 @@ RSpec.feature 'User Login', type: :feature do
 
         visit spree.login_path
 
-        fill_in 'spree_user[email]', with: user.email
+        fill_in 'spree_user[login]', with: user.email
         fill_in 'spree_user[password]', with: SecureRandom.hex
         click_button Spree.t(:login)
 
@@ -51,7 +51,7 @@ RSpec.feature 'User Login', type: :feature do
 
         visit spree.login_path
 
-        fill_in 'spree_user[email]', with: SecureRandom.hex
+        fill_in 'spree_user[login]', with: SecureRandom.hex
         fill_in 'spree_user[password]', with: user.password
         click_button Spree.t(:login)
 

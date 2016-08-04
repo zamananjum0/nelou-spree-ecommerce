@@ -24,10 +24,10 @@ RSpec.feature 'CustomerRegistration', type: :feature do
         fill_in 'spree_user[password_confirmation]', with: password
         check 'spree_user[terms_and_services]'
         check 'spree_user[privacy_and_conditions]'
-        click_button Spree.t(:create)
+        click_button I18n.t('spree.user_registrations.form.sign_up')
 
         within('body') do
-          expect(page).to have_content I18n.t('devise.user_registrations.signed_up')
+          expect(page).to have_content I18n.t('devise.registrations.signed_up')
         end
 
         user = Spree::User.last
@@ -35,12 +35,14 @@ RSpec.feature 'CustomerRegistration', type: :feature do
         expect(user.email).to eq(email)
 
         expect(unread_emails_for(user.email).size).to be >= parse_email_count(1)
+
         email = open_email(user.email)
         expect(email.body).to be
-        click_first_link_in_email
+
+        click_email_link_matching(/confirmation_token=/i)
 
         within('body') do
-          expect(page).to have_content I18n.t('devise.user_confirmations.spree_user.confirmed')
+          expect(page).to have_content I18n.t('devise.confirmations.confirmed')
         end
       end
 
@@ -54,10 +56,10 @@ RSpec.feature 'CustomerRegistration', type: :feature do
         fill_in 'spree_user[password_confirmation]', with: Faker::Internet.password(8,32)
         check 'spree_user[terms_and_services]'
         check 'spree_user[privacy_and_conditions]'
-        click_button Spree.t(:create)
+        click_button I18n.t('spree.user_registrations.form.sign_up')
 
         within('body') do
-          expect(page).not_to have_content I18n.t('devise.user_registrations.signed_up')
+          expect(page).not_to have_content I18n.t('devise.registrations.signed_up')
         end
       end
 
@@ -70,10 +72,10 @@ RSpec.feature 'CustomerRegistration', type: :feature do
         password = Faker::Internet.password(8,32)
         fill_in 'spree_user[password]', with: password
         fill_in 'spree_user[password_confirmation]', with: password
-        click_button Spree.t(:create)
+        click_button I18n.t('spree.user_registrations.form.sign_up')
 
         within('body') do
-          expect(page).not_to have_content I18n.t('devise.user_registrations.signed_up')
+          expect(page).not_to have_content I18n.t('devise.registrations.signed_up')
         end
       end
 

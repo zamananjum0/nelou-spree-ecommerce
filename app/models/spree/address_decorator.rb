@@ -1,5 +1,7 @@
 Spree::Address.class_eval do
 
+  before_save :save_in_enterprise
+
   validates :gender, inclusion: { in: %w(m f) }, presence: true
 
   def self.whitelisted_ransackable_associations
@@ -24,6 +26,21 @@ Spree::Address.class_eval do
 
   def female?
     gender == 'f'
+  end
+
+  def address
+    [address1, address2].reject(&:nil?).reject(&:empty?).join '\n'
+  end
+
+  def postcode
+    zipcode
+  end
+
+  protected
+
+  def save_in_enterprise
+    Enterprise::AddressService.new(self).save!
+    Enterprise::ContactService.new(user).save! if user.try(:bill_address).present?
   end
 
 end

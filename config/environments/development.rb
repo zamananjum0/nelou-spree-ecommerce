@@ -49,4 +49,5 @@ Rails.application.configure do
 
   config.x.changelog_repo = Rails.root.join('.git')
   config.x.changelog_branch = 'master'
+
 end

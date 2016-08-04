@@ -6,6 +6,7 @@ Spree::Order.class_eval do
   scope :with_open_shipments, -> { joins(:shipments).where("#{Spree::Shipment.quoted_table_name}.state": %w(ready partial)).uniq }
 
   state_machine.after_transition to: :complete, do: :increment_limited_items_counter
+  state_machine.after_transition to: :complete, do: :persist_with_enterprise
 
   self.whitelisted_ransackable_associations = %w[shipments user promotions bill_address ship_address line_items products designer_labels]
 
@@ -58,5 +59,9 @@ Spree::Order.class_eval do
       variant.limited_items_sold += line_item.quantity
       Spree::Variant.update variant.id, limited_items_sold: variant.limited_items_sold
     end
+  end
+
+  def persist_with_enterprise
+    Nelou::CreateOrderInvoiceJob.perform_later(self.id)
   end
 end

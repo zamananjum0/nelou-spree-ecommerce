@@ -6,12 +6,14 @@ Spree::User.class_eval do
   has_one :designer_label, class_name: 'Nelou::DesignerLabel', dependent: :destroy, autosave: true, inverse_of: :user
   has_many :products, through: :designer_label
 
-  delegate :firstname, :lastname, :name, :male?, :female?, to: :billing_address, allow_nil: true
+  delegate :firstname, :lastname, :name, :male?, :female?, :phone, to: :bill_address, allow_nil: true
 
   accepts_nested_attributes_for :designer_label
   accepts_nested_attributes_for :bill_address
 
   before_save :ensure_designer_label_exists
+  before_save :ensure_bill_and_ship_address_are_mine
+  before_save :save_in_enterprise
   before_create :set_locale
 
   scope :designers, -> { includes(:spree_roles).where("#{Spree::Role.quoted_table_name}.name" => 'designer') }
@@ -44,5 +46,19 @@ Spree::User.class_eval do
     if designer? && designer_label.nil?
       build_designer_label name: email.split('@').first
     end
+  end
+
+  def ensure_bill_and_ship_address_are_mine
+    [ship_address, bill_address].each do |address|
+      if address.present? && address.user.nil?
+        address.user = self if address.present?
+        address.save
+      end
+    end
+  end
+
+  def save_in_enterprise
+    Enterprise::PartnerService.new(self).save!
+    Enterprise::ContactService.new(self).save! if bill_address.present?
   end
 end

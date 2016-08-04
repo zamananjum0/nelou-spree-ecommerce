@@ -78,7 +78,11 @@ de:
       zipcode: PLZ
       company: Firma
     address_book:
+      add_new_shipping_address: 'Adresse hinzufügen'
+      edit_address: 'Adresse bearbeiten'
       edit_shipping_address: Adresse bearbeiten
+      new_address: 'Neue Adresse'
+      new_shipping_address: 'Neue Adresse'
     contact_us:
       contacts:
         new:
@@ -233,3 +237,5 @@ de:
     primary_address: Hauptadresse
     primary_address_hint: Diese Adresse wird auch für die Gutschriften verwendet, die Du für Deine Verkäufe von uns bekommst.
     company: Unternehmen
+    addresses: Adressen
+    your_order_from: Deine Stücke von %{designer} / Bestellung %{number}

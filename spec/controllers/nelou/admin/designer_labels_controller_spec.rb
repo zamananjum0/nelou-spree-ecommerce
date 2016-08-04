@@ -4,6 +4,7 @@ RSpec.describe Nelou::Admin::DesignerLabelsController, type: :controller do
   let!(:store) { create :store }
   let(:admin) { create :admin }
   let(:designer) { create :designer }
+  let(:unaccepted_designer) { create :unaccepted_designer }
   let(:customer) { create :confirmed_user }
 
   # The Spree Controller Helper overrides the default router, we have to set it to the main-app router again
@@ -26,7 +27,21 @@ RSpec.describe Nelou::Admin::DesignerLabelsController, type: :controller do
 
     end
 
-    context 'when user is a designer' do
+    context 'when user is not an accepted designer' do
+
+      before(:each) do
+        sign_in :spree_user, unaccepted_designer
+      end
+
+      it 'redirects to root' do
+        get :index
+
+        expect(response).to redirect_to(spree.root_path)
+      end
+
+    end
+
+    context 'when user is an accepted designer' do
 
       before(:each) do
         sign_in :spree_user, designer

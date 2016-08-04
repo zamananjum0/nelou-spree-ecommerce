@@ -35,6 +35,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 set :keep_releases, 3
 
+set :sidekiq_config, current_path.join('config', 'sidekiq.yml')
+
 after 'deploy:publishing', 'deploy:restart'
 
 namespace :deface do

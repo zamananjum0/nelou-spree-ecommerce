@@ -19,12 +19,13 @@ RSpec.feature 'User Password Reset', type: :feature do
 
         visit spree.reset_password_path
         fill_in 'spree_user[email]', with: user.email
-        click_button Spree.t(:reset_password)
+        click_button I18n.t('spree.user_passwords.new.send_password_instructions')
 
         expect(unread_emails_for(user.email).size).to be >= parse_email_count(1)
         email = open_email(user.email)
-        expect(email.body).to include('reset_password_token=') # TODO: Figure out a better test for this
-        click_first_link_in_email
+        expect(email.body.parts.last.to_s).to include('reset_password_token=') # TODO: Figure out a better test for this
+
+        click_email_link_matching(/password_token=/i)
 
         within('body') do
           expect(page).to have_content Spree.t(:change_your_password)
@@ -32,10 +33,10 @@ RSpec.feature 'User Password Reset', type: :feature do
 
         fill_in 'spree_user[password]', with: user.password
         fill_in 'spree_user[password_confirmation]',  with: user.password
-        click_button Spree.t(:update)
+        click_button I18n.t('spree.user_passwords.edit.change_password')
 
         within('body') do
-          expect(page).to have_content I18n.t('devise.user_passwords.spree_user.updated')
+          expect(page).to have_content I18n.t('devise.passwords.updated')
         end
 
         customer = Spree::User.find user.id
