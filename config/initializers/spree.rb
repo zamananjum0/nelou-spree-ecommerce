@@ -32,6 +32,8 @@ end
 SpreeI18n::Config.available_locales = [:en, :de]
 SpreeI18n::Config.supported_locales = [:en, :de]
 
+Globalize.fallbacks = {:en => [:en, :de], :de => [:de, :en]}
+
 # Require confirmation of user emails
 Spree::Auth::Config[:confirmable] = true
 # Set Spree to use the spree_auth_devise user class

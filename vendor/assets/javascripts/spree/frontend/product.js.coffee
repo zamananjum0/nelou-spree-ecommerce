@@ -5,7 +5,16 @@ Spree.ready ($) ->
     ($ '#main-image')
       .data 'selectedThumb', ($ '#main-image img').attr('src')
       .data 'selectedThumbSrcSet', ($ '#main-image img').attr('srcset')
-      .zoomOverlay('img')
+    ($ '#image-flyout')
+      .zoomOverlay $('#main-image'), ->
+        index = 0
+        thumbnails.find('li').each (i) ->
+          if ($(this).hasClass('selected'))
+            index = i
+            no
+          else
+            yes
+        index
 
     thumbnails.find('a').on 'click', (event) ->
       ($ '#main-image')

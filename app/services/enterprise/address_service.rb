@@ -49,6 +49,7 @@ class Enterprise::AddressService
   end
 
   def save!(always_save = false)
+    return if Rails.application.secrets.skip_enterprise
     if has_enterprise_id
       update!(always_save)
     else

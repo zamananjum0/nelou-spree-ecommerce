@@ -14,6 +14,8 @@ module Nelou
     include Nelou::HasCustomFileName
     include Nelou::AttachmentFromUrl
 
+    after_commit :check_designer_group
+
     default_scope -> { joins(:translations) }
     scope :active, -> { where(active: true, accepted: true) }
     scope :featured, -> { where(featured: true) }
@@ -65,6 +67,10 @@ module Nelou
 
     def self.ransackable_associations(auth_object = nil)
       reflect_on_all_associations.map { |a| a.name.to_s }
+    end
+
+    def check_designer_group
+      Nelou::Mailchimp::AssignUserToGroupJob.perform_later user.id
     end
   end
 end

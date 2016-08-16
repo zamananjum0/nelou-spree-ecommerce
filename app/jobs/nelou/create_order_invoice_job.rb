@@ -2,10 +2,14 @@ class Nelou::CreateOrderInvoiceJob < ActiveJob::Base
   queue_as :low
 
   def perform(*args)
+    old_locale = I18n.locale
+
     order_id = args.first
     order = Spree::Order.find_by(id: order_id)
 
     return unless order.present?
+
+    I18n.locale = order.user.locale.to_sym if order.user.locale.present?
 
     Enterprise::OrderService.new(order).save!
 
@@ -39,6 +43,8 @@ class Nelou::CreateOrderInvoiceJob < ActiveJob::Base
     documents.each do |file|
       File.unlink file rescue ''
     end
+
+    I18n.locale = old_locale
   end
 
   private

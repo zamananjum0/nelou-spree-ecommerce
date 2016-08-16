@@ -24,7 +24,14 @@
         <%= hidden_field_tag "b_#{mailchimp_user_id}_#{mailchimp_mailing_list_id}", '', tabindex: '-1' %>
       </div>
       <% if Rails.application.secrets.mailchimp_groupings_id.present? %>
-        <%= hidden_field_tag "group[#{Rails.application.secrets.mailchimp_groupings_id}]", user.designer? ? '4' : '1' %>
+        <% if user.designer? && user.designer_label.present? %>
+          <%= hidden_field_tag "group[#{Rails.application.secrets.mailchimp_groupings_id}]", '4' %>
+          <% if user.designer_label.active && user.designer_label.accepted %>
+            <%= hidden_field_tag "group[#{Rails.application.secrets.mailchimp_groupings_id}]", '16' %>
+          <% end %>
+        <% else %>
+          <%= hidden_field_tag "group[#{Rails.application.secrets.mailchimp_groupings_id}]", '1' %>
+        <% end %>
       <% end %>
       <%= button_tag t('users.show.subscribe'), class: 'account-button', role: 'submit' %>
     <% end %>

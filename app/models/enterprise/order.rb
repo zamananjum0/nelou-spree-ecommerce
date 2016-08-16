@@ -33,7 +33,7 @@ class Enterprise::Order < Enterprise::Base
     items = shipment.line_items.map do |line_item|
       {
         unit: 1,
-        quantity: BigDecimal.new(1, 0),
+        quantity: BigDecimal.new(line_item.quantity, 0),
         price: line_item.variant.price,
         product: {
           name: line_item.product.name,

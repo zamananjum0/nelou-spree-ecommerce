@@ -3,7 +3,7 @@ define_grid(columns: 5, rows: 8, gutter: 10)
 font_families.update(
  "futura" => {
     :bold        => Rails.root.join('lib', 'fonts', 'futura-bold.ttf'),
-    :italic      => Rails.root.join('lib', 'fonts', 'futura-oblique.ttf'),
+    :italic      => Rails.root.join('lib', 'fonts', 'futura-book-oblique.ttf'),
     :bold_italic => Rails.root.join('lib', 'fonts', 'futura-bold-oblique.ttf'),
     :normal      => Rails.root.join('lib', 'fonts', 'futura-book.ttf')
   }
@@ -23,10 +23,10 @@ repeat(:all) do
 
   grid([0,3], [0,4]).bounding_box do
     font @font_face, size: @font_size
-    text Spree.t(:invoice, scope: :print_invoice), align: :right, style: :bold, size: 18
-    move_down 4
+    text Spree.t(:invoice_your_order), align: :right, style: :bold, size: 16
+    move_down 2
     text Spree.t(:order_number, number: @order.number), align: :right
-    text Spree.t(:invoice_number, number: @order.invoice_number), align: :right
+    #text Spree.t(:invoice_number, number: @order.invoice_number), align: :right
     move_down 2
     text I18n.l(@order.completed_at.to_date), align: :right
   end
@@ -68,7 +68,7 @@ grid([1,0], [6,4]).bounding_box do
   move_down 10
 
   header = [
-    make_cell(content: Spree.t(:item_description)),
+    make_cell(content: Spree.t(:item)),
     make_cell(content: Spree.t(:designer)),
     make_cell(content: Spree.t(:options)),
     make_cell(content: Spree.t(:price)),
@@ -77,7 +77,7 @@ grid([1,0], [6,4]).bounding_box do
   ]
   data = [header]
 
-  @order.line_items.each do |item|
+  @order.line_items.sort_by { |l| l.product.try(:designer_label).try(:name) }.each do |item|
     next unless item.variant.present?
 
     row = [
@@ -91,7 +91,7 @@ grid([1,0], [6,4]).bounding_box do
     data += [row]
   end
 
-  table(data, header: true, position: :center, column_widths: [171, 90, 91, 65, 40, 65]) do
+  table(data, header: true, position: :center, column_widths: [171, 90, 91, 62, 43, 65]) do
     row(0).style align: :center, font_style: :bold
     column(0..2).style align: :left
     column(3..6).style align: :right
@@ -110,8 +110,8 @@ grid([1,0], [6,4]).bounding_box do
   # end
 
   # Shipments
-  @order.shipments.each do |shipment|
-    totals << [make_cell(content: [Spree.t(:shipping), ': ', shipment.shipping_method.name].join('')), shipment.display_cost.to_s]
+  @order.shipments.group_by { |s| s.shipping_method.name }.each do |name, s|
+    totals << [make_cell(content: [Spree.t(:shipping), ': ', name].join('')), Spree::Money.new(s.map(&:cost).sum, currency: @order.currency).to_s]
   end
 
   # Taxes
@@ -120,8 +120,8 @@ grid([1,0], [6,4]).bounding_box do
   net_price = @order.total
   tax = net_price - gross_price
 
-  totals << [make_cell(content: Spree.t(:gross)), Spree::Money.new(gross_price, currency: @order.currency).to_s]
-  totals << [make_cell(content: Spree.t(:vat_included_in_price)), Spree::Money.new(tax, currency: @order.currency).to_s]
+  #totals << [make_cell(content: Spree.t(:gross)), Spree::Money.new(gross_price, currency: @order.currency).to_s]
+  #totals << [make_cell(content: Spree.t(:vat_included_in_price)), Spree::Money.new(tax, currency: @order.currency).to_s]
 
   # Totals
   totals << [make_cell(content: Spree.t(:order_total_gross)), @order.display_total.to_s]
@@ -149,7 +149,9 @@ grid([1,0], [6,4]).bounding_box do
   end
 
   move_down 60
-  text Spree.t(:date_of_performance), align: :right, size: @font_size
+  text Spree.t(:invoice_notice_headline), align: :left, size: @font_size, style: :bold_italic
+  move_down 10
+  text Spree.t(:invoice_per_designer_notice), align: :left, size: @font_size, style: :italic
 
   move_down 30
   text Spree::PrintInvoice::Config[:return_message], align: :right, size: @font_size

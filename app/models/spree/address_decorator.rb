@@ -1,6 +1,6 @@
 Spree::Address.class_eval do
 
-  before_save :save_in_enterprise
+  after_save :save_in_enterprise
 
   validates :gender, inclusion: { in: %w(m f) }, presence: true
 
@@ -29,7 +29,7 @@ Spree::Address.class_eval do
   end
 
   def address
-    [address1, address2].reject(&:nil?).reject(&:empty?).join '\n'
+    [address1, address2].reject(&:nil?).reject(&:empty?).join "\n"
   end
 
   def postcode
@@ -39,8 +39,10 @@ Spree::Address.class_eval do
   protected
 
   def save_in_enterprise
-    Enterprise::AddressService.new(self).save!
-    Enterprise::ContactService.new(user).save! if user.try(:bill_address).present?
+    if user.present?
+      Enterprise::AddressService.new(self).save!
+      Enterprise::ContactService.new(user).save! if user.try(:bill_address).present?
+    end
   end
 
 end

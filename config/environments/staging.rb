@@ -80,14 +80,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'email-smtp.eu-west-1.amazonaws.com',
-    port: 587,
-    user_name: 'AKIAIAJT77SY5H4FOHJA',
-    password: 'Ak1jVg7kTpSiGQuQy7NO4/uaxZBLXKBjGUZSrOPXlS4f'
-  }
-
-  config.action_mailer.default_url_options = { host: 'ec2-54-93-201-196.eu-central-1.compute.amazonaws.com' }
+  config.action_mailer.smtp_settings = Rails.application.secrets['smtp']
+  config.action_mailer.default_url_options = { host: 'stage.nelou.com' }
 
   # For Spree
   config.deface.enabled = ENV['DEFACE_ENABLED'] == 'true'

@@ -16,15 +16,15 @@ module Nelou
       end
 
       def limited_items_available
-        if limited_items.nil? || limited_items_sold > limited_items
+        if limited_items.nil? || (limited_items_sold || 0) > limited_items
           0
         else
-          limited_items - limited_items_sold
+          limited_items - (limited_items_sold || 0)
         end
       end
 
       def can_supply?
-        !limited? || (limited_items_sold <= limited_items)
+        !limited? || ((limited_items_sold || 0) <= limited_items)
       end
 
       def set_limited

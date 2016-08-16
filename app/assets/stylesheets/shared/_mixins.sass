@@ -87,7 +87,7 @@ $default-prefixes: webkit moz ms o
     -moz-border-radius: $radius
     -ms-border-radius: $radius
     -o-border-radius: $radius
-    
+
 
 =noselect
     -webkit-user-select: none
@@ -121,6 +121,29 @@ $default-prefixes: webkit moz ms o
     &:before
         +clear
         padding-top: #{$top}
+
+
+=arrowPoint($val: 2rem, $rot: 45, $color: $colour-red, $left: false, $right: false)
+    &::after
+        +absCenter
+        +prefix-values(transform, rotate(#{$rot+'deg'}))
+        border: 2px solid $color
+        border-bottom: none
+        content: ''
+        display: inline-block
+        height: 100%
+        height: $val/2
+        @if $left == true
+            border-right: none
+            left: $val
+            right: auto
+        @if $right == true
+            border-left: none
+            left: auto
+            right: $val
+        text-align: center
+        vertical-align: middle
+        width: $val/2
 
 
 =flex($direction: row, $justify: space-between, $align: stretch, $wrap: wrap)
@@ -256,6 +279,15 @@ $default-prefixes: webkit moz ms o
     100%
         background-position: 100% center
         left: 99px
+
+
++keyframes(descriptionBox)
+    0%
+        opacity: 0
+        +prefix-values(transform, translate3d(0, 0%, 0))
+    100%
+        opacity: 1
+        +prefix-values(transform, translate3d(0, -100%, 0))
 
 
 +keyframes(bounceinout)

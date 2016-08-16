@@ -24,7 +24,7 @@ Spree::User.class_eval do
   validates :privacy_and_conditions, acceptance: true, on: :create
 
   def designer?
-    has_spree_role?('designer')
+    has_spree_role?('designer') || has_spree_role_in_array?('designer')
   end
 
   # For Mailchimp, which doesn't work with true/false
@@ -45,6 +45,12 @@ Spree::User.class_eval do
   def ensure_designer_label_exists
     if designer? && designer_label.nil?
       build_designer_label name: email.split('@').first
+    end
+  end
+
+  def has_spree_role_in_array?(role)
+    spree_roles.to_a.any? do |spree_role|
+      spree_role.name == role.to_s
     end
   end
 

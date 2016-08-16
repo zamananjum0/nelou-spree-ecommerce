@@ -166,6 +166,9 @@ de:
     order_number: 'Bestellnummer %{number}'
     gross: Netto
     date_of_performance: 'Soweit nicht anders angegeben ist, gilt der Zeitpunkt der Rechnungsausstellung als Zeitpunkt der Leistung.'
+    invoice_your_order: 'Deine Bestellung'
+    invoice_notice_headline: 'Bitte beachte:'
+    invoice_per_designer_notice: 'Du erhältst von jedem Designer ein eigenes Paket mit Deinen Artikeln. Auf den folgenden Seiten findest Du Deine Rechnungen - für jeden Designer eine.'
     order_total: Gesamt
     order_total_gross: 'Gesamtsumme (Brutto)'
     export_orders: Bestellungen exportieren
@@ -239,3 +242,4 @@ de:
     company: Unternehmen
     addresses: Adressen
     your_order_from: Deine Stücke von %{designer} / Bestellung %{number}
+    view_product: Zum Produkt

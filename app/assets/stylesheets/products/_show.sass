@@ -42,11 +42,15 @@ $image_width:   300px
                 &::after
                     display: none
 
+.touch
+    .product-main-image
+        cursor: pointer
 
 .product-main-image
     // width: $image_width
     +aspectRatio(150%)
     cursor: zoom-in
+    cursor: pointer
     font-size: 0
     // height: $image_height
     max-width: $image_width

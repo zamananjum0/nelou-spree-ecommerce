@@ -119,6 +119,9 @@ en:
     vat_included_in_price: 'VAT 19%'
     gross: Net Amount
     date_of_performance: 'Unless otherweise stated, the date of performance is the invoice date.'
+    invoice_your_order: 'Your order'
+    invoice_notice_headline: 'Please note:'
+    invoice_per_designer_notice: 'You will receive your ordered items separated into one shipment per designer. Correspondingly, you will receive a separate invoice per designer on the following pages.'
     order_total: Total
     order_total_gross: 'Total (Gross)'
     export_orders: Export Orders
@@ -190,3 +193,4 @@ en:
     primary_address_hint: This address will be used for credit notes you will receive for your sold items in our shop.
     addresses: Addresses
     your_order_from: Your items from %{designer} / Order %{number}
+    view_product: View product

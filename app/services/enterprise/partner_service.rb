@@ -25,6 +25,7 @@ class Enterprise::PartnerService
   end
 
   def save!(always_save = false)
+    return if Rails.application.secrets.skip_enterprise
     if has_partner_id
       update!(always_save)
     else

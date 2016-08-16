@@ -40,12 +40,13 @@
 <% end %>
 
 <% cache [I18n.locale, current_currency, @product, @product.possible_promotions, spree_current_user.present?] do %>
-<div class="product" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
+<div class="product" data-hook="product_show" itemscope itemtype="https://schema.org/Product" data-images-url="<%= spree.images_product_path(@product) %>">
   <div class="product-left" data-hook="product_left_part">
     <div data-hook="product_left_part_wrap">
       <div id="product-images" data-hook="product_images">
-        <div id="main-image" class="product-main-image" data-hook>
+        <div id="main-image" class="product-main-image quickview-icon-holder" data-hook>
           <%= render :partial => 'image' %>
+          <div class="quickview-icon product-quickview"></div>
         </div>
         <div id="thumbnails" class="product-thumbnails" data-hook>
           <%= render :partial => 'thumbnails' %>
@@ -151,3 +152,5 @@
 <%= render partial: 'similar', locals: { product: @product } %>
 
 <%= render partial: 'sold_out_dialog', locals: { product: @product } %>
+
+<%= render partial: 'flyout', locals: { product: @product  } %>

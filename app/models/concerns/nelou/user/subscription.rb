@@ -5,8 +5,8 @@ module Nelou
       extend ActiveSupport::Concern
 
       included do
-        after_create  :subscribe
-        after_destroy :unsubscribe
+        after_commit :subscribe, on: :create
+        after_commit :unsubscribe, on: :destroy
       end
 
       def is_subscribed?
@@ -19,25 +19,11 @@ module Nelou
       private
 
       def subscribe
-        if subscribed
-          # TODO: Use ActiveJob
-          Nelou::SubscriptionService.new.subscribe! email, locale, designer?
-        end
-      rescue
-        self.subscribed = false
-        self.update_column(:subscribed, false)
+        Nelou::Mailchimp::SubscribeUserJob.perform_later id
       end
 
       def unsubscribe
-        if subscribed
-          begin
-            Nelou::SubscriptionService.new.unsubscribe! email
-          rescue
-          end
-        end
-
-        self.subscribed = false
-        self.update_column(:subscribed, false)
+        Nelou::Mailchimp::UnsubscribeUserJob.perform_later id
       end
 
     end

@@ -75,4 +75,10 @@ Spree::Core::Engine.add_routes do
   get '/eco', to: 'taxons#eco', as: :eco_products
 
   get '/wished_products', to: 'wished_products#create'
+
+  resources :products, :only => [:index, :show] do
+    member do
+      get 'images', defaults: {format: :json}
+    end
+  end
 end

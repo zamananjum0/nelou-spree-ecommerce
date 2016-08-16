@@ -30,6 +30,7 @@ class Enterprise::ContactService
   end
 
   def save!(always_save = false)
+    return if Rails.application.secrets.skip_enterprise
     if has_contact_id && has_partner_id
       update!(always_save)
     else

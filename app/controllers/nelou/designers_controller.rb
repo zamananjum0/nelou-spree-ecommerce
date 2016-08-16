@@ -12,6 +12,7 @@ module Nelou
       @user.spree_roles << Spree::Role.designer_role
       @user.designer_label.city = @user.bill_address.city
       @user.bill_address.user = @user if @user.bill_address.present?
+      @user.subscribed = true # Designers are subscribed, no matter if they want to or not
 
       if @user.save
         Nelou::ApplicationMailer.notification_mail(@user).deliver_later

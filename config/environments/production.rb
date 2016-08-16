@@ -84,12 +84,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'nelou.com' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'email-smtp.eu-west-1.amazonaws.com',
-    port: 587,
-    user_name: 'AKIAIAJT77SY5H4FOHJA',
-    password: 'Ak1jVg7kTpSiGQuQy7NO4/uaxZBLXKBjGUZSrOPXlS4f'
-  }
+  config.action_mailer.smtp_settings = Rails.application.secrets[:smtp]
 
   Rails.application.config.middleware.use ExceptionNotification::Rack, {
     slack: {

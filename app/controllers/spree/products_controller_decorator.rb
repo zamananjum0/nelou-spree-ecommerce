@@ -2,6 +2,8 @@ Spree::ProductsController.class_eval do
   include Nelou::ProductSorting
   include Nelou::ProductFiltering
 
+  before_action :load_product, only: [ :images, :show ]
+
   alias_method :old_index, :index
 
   def index
@@ -10,6 +12,9 @@ Spree::ProductsController.class_eval do
     if params[:keywords].present?
       @designers = Nelou::DesignerLabel.active.with_name_like(params[:keywords]).distinct
     end
+  end
+
+  def images
   end
 
   private
